@@ -1,0 +1,49 @@
+﻿@model RestoranWeb.Models.RecipeCreateViewModel
+@{
+    ViewBag.Title = "Новый рецепт";
+}
+<div class="panel panel-primary">
+    <div class="panel-heading"> 
+        Новый рецепт
+    </div>
+    @using (Html.BeginForm("Create", "Recipe", FormMethod.Post))
+    {
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.Label("Название")
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                @Html.Label("Описание")
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @row = 10 })
+            </div>
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th class="col-md-2">Название</th>
+                        <th class="col-md-2">Ед.изм.</th>
+                        <th class="col-md-2">Количество</th>
+                        <th class="col-md-7"></th>
+                    </tr>
+                </thead>
+                @for (int i = 0; i < Model.Products.Count; i++)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => m.Products[@i].Product.Name)
+                    @Html.HiddenFor(m => m.Products[@i].Product.ProductId)
+                </td>
+                <td>@Html.DisplayFor(m => m.Products[@i].Product.Unit.Symbol)</td>
+                <td>@Html.TextBoxFor(m => m.Products[@i].Value,  new { @class = "form-control" } )</td>
+
+            </tr>
+            }
+            </table>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-primary">Добавить</button>
+        </div>
+    }
+</div>

@@ -1,0 +1,40 @@
+﻿@model Restoran.Recipe
+@{
+    ViewBag.Title = Model.Name;
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        @Model.Name
+    </div>
+    <div class="panel-body">
+
+        @Model.Description
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table">
+                    <caption>Состав</caption>
+                    <thead>
+                        <tr>
+                            <th>Продукт</th>
+                            <th>Количество</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    @foreach (var product in Model.Products)
+                    {
+                        <tr>
+                            <td>@product.Product.Name</td>
+                            <td>@product.Value</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="col-md-6">
+                Локации
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Список рецептов", "Index", null, new { @class = "btn btn-primary" })
+    </div>
+</div>

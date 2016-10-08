@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Restoran.Location>
+@{
+    ViewBag.Title = "Локации";
+}
+<table class="table">
+    <thead>Склады</thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID @item.Name</td>
+            <td>@Html.ActionLink("Просмотр", "Details",new { id=item.ID})</td>
+            <td>@Html.ActionLink("Редактировать", "Index")</td>
+            <td>@Html.ActionLink("Удалить", "Index")</td>
+        </tr>
+    }
+</table>
+
+

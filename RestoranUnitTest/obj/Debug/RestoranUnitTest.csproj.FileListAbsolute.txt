@@ -1,0 +1,9 @@
+C:\Users\Евгений\documents\visual studio 2015\Projects\Restoran\RestoranUnitTest\bin\Debug\RestoranUnitTest.dll
+C:\Users\Евгений\documents\visual studio 2015\Projects\Restoran\RestoranUnitTest\bin\Debug\RestoranUnitTest.pdb
+C:\Users\Евгений\documents\visual studio 2015\Projects\Restoran\RestoranUnitTest\obj\Debug\RestoranUnitTest.csprojResolveAssemblyReference.cache
+C:\Users\Евгений\documents\visual studio 2015\Projects\Restoran\RestoranUnitTest\obj\Debug\RestoranUnitTest.dll
+C:\Users\Евгений\documents\visual studio 2015\Projects\Restoran\RestoranUnitTest\obj\Debug\RestoranUnitTest.pdb
+C:\Users\Евгений\documents\visual studio 2015\Projects\Restoran\RestoranUnitTest\bin\Debug\Restoran.dll
+C:\Users\Евгений\documents\visual studio 2015\Projects\Restoran\RestoranUnitTest\bin\Debug\Restoran.pdb
+C:\Users\Евгений\documents\visual studio 2015\Projects\Restoran\RestoranUnitTest\bin\Debug\EntityFramework.dll
+C:\Users\Евгений\documents\visual studio 2015\Projects\Restoran\RestoranUnitTest\bin\Debug\EntityFramework.xml

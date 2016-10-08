@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Restoran.Recipe>
+@{
+    ViewBag.Title = "Список рецептов";
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Рецепты
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Название</th>
+                </tr>
+            </thead>
+            @foreach (var recipe in Model)
+            {
+                <tr>
+                    <td>@recipe.RecipeId</td>
+                    <td>@recipe.Name</td>
+                    <td>@Html.ActionLink("Просмотр", "Detail", "Recipe", new { id = @recipe.RecipeId }, new {  @class="btn btn-primary"})
+                    @Html.ActionLink("Изменить", "Update", "Recipe", new { id= @recipe.RecipeId },new { @class= "btn btn-success" })
+                   @Html.ActionLink("Удалить", "Delete", "Recipe",new { id=@recipe.RecipeId},new { @class= "btn btn-danger" })</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Новый рецепт", "Create", null, new { @class = "btn btn-primary" })
+    </div>
+   
+</div>

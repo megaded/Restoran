@@ -1,0 +1,27 @@
+﻿@model List<Restoran.ProductOrdered>
+@{
+    ViewBag.Title = "Заказ";
+}
+<table class="table">
+    <caption>Заказ</caption>
+    <thead>
+       <tr>
+           <td>Название</td>
+           <td>Ед.изм.</td>
+           <td>Количество</td>
+           <td>Цена</td>
+       </tr>
+        </thead>   
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Product.Name</td>
+            <td>@item.Product.Unit.Symbol</td>
+            <td>@item.Value</td>
+            <td>@item.Price</td>
+        </tr>
+    }
+  
+</table>
+
+

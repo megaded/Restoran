@@ -1,0 +1,53 @@
+﻿@model RestoranWeb.Models.OrdersListViewModel
+@{
+    ViewBag.Title = "Заказы";
+}
+<div class="row">
+    <div class="col-md-6">
+        
+        <table class="table">       
+            <caption>Активные заказы</caption> 
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Дата заказа</td>
+                    <td>Поставщик</td>
+                </tr>
+            </thead>    
+            @foreach (var item in Model.NotAcceptOrders)
+            {
+                <tr>
+                    <td>@item.OrderID</td>
+                    <td>@item.OrderDate.ToShortDateString()</td>
+                    <td>@item.Supplier.Name</td>
+                    <td>@Html.ActionLink("Просмотр", "Detail", new { id = @item.OrderID })</td>
+                    <td>@Html.ActionLink("Принять", "Accept", new { id = @item.OrderID })</td>
+                    <td>@Html.ActionLink("Удалить", "Delete", new { id = item.OrderID })</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="col-md-6">
+       
+        <table class="table">
+            <caption>Принятые заказы</caption>
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Дата заказа</td>
+                    <td>Поставщик</td>
+                </tr>
+            </thead>
+            @foreach (var item in Model.AccertOrders)
+            {
+                <tr>
+                    <td>@item.OrderID</td>
+                    <td>@item.OrderDate.ToShortDateString()</td>
+                    <td>@item.Supplier.Name</td>
+                    <td>@Html.ActionLink("Просмотр", "Details", new { id = @item.OrderID })</td>              
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

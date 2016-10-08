@@ -1,0 +1,60 @@
+﻿@model Restoran.Product
+@{
+    ViewBag.Title = Model.Name;
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        @Model.Name (@Model.Unit.Symbol)
+    </div>
+    <div class="panel-body">
+        @Html.DisplayFor(m => m.Description)
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-bordered">
+                    <caption>Поставщики</caption>
+                    <thead>
+                        <tr>
+                            <th>Поставщик</th>
+                            <th>Цена</th>
+                        </tr>
+                    </thead>
+
+                    @if (Model.ProductsSupplier != null)
+                    {
+                        foreach (var item in Model.ProductsSupplier)
+                        {
+                            <tr>
+                                <td>@item.Supplier.Name</td>
+                                <td>@item.Price</td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-bordered">
+                    <caption>Остатки</caption>
+                    <thead>
+                        <tr>
+                            <th>Локация</th>
+                            <th>Цена</th>
+                            <th>Количество</th>
+                            <th>Общая сумма</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.ProductsStorage)
+            {
+                        <tr>
+                            <td>@item.Storage.Name</td>
+                            <td>@item.Price</td>
+                            <td>@item.Value</td>
+                            <td>@(item.Price * (decimal)item.Value)</td>
+                        </tr>
+                    }
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">@Html.ActionLink("Список продуктов", "Index", null, new { @class = "btn btn-primary" })</div>
+</div>

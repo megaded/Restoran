@@ -1,0 +1,16 @@
+﻿@model Restoran.Location
+@{
+    ViewBag.Title = Model.Name;
+}
+@{
+    ViewBag.Title = "Details";
+}
+<h1>@Model.Name</h1>
+
+@Html.ActionLink("Просмотр остатков","Index","ProductStorage")<br />
+@Html.ActionLink("Создать заказ", "Create","Order")<br />
+@Html.ActionLink("Просмотр заказов", "Index","Order")<br />
+@Html.ActionLink("Создать трансфер", "CreateTransfer")<br />
+@Html.ActionLink("Просмотр трансферов", "ListTransfer")<br />
+
+

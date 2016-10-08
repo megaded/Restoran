@@ -1,0 +1,17 @@
+﻿@model List<Restoran.Supplier>
+@{
+    ViewBag.Title = "Новый заказ";
+}
+<div class="container">
+    <div class="col-md-4 col-md-offset-4">
+        <h2 class="text-center">Выберите поставщика</h2>
+        <ul class="list-group text-center">
+            @foreach (var supplier in Model)
+            {
+                <li class="list-group-item list-group-item-success">
+                    @Html.ActionLink(supplier.Name, "Products", "Supplier", new { id = supplier.SupplierId },null)
+                </li>
+            }
+        </ul>
+    </div>
+</div>

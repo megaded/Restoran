@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Restoran.Product>
+@{
+    ViewBag.Title = "Список продуктов";
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Продукты
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Название</th>
+                    <th>Категория</th>
+                    <th>Ед.изм.</th>
+                </tr>
+            </thead>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.ProductId</td>
+                    <td>@product.Name</td>
+                    <td>@product.ProductCategory.Name</td>
+                    <td>@product.Unit.Symbol</td>
+                    <td>@Html.ActionLink("Просмотр", "Detail", new { id = product.ProductId }, new { @class = "btn btn-primary" })</td>
+                    <td>@Html.ActionLink("Редактировать", "Edit", new { id = product.ProductId }, new { @class = "btn btn-success" })</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Добавить продукт", "Create", null, new { @class = "btn btn-primary" })
+    </div>  
+</div>
