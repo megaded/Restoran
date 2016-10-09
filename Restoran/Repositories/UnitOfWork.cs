@@ -15,7 +15,7 @@ namespace Restoran.Repositories
         public IOrderRepository OrderRep { get; private set; }
         public ISupplierRepository SupplierRep { get; private set; }
         public IProductCategoryRepository ProductCategoryRep { get; private set; }
-        private RestoranContext context;
+        private  RestoranContext context;
         public UnitOfWork(RestoranContext context, IUnitRepository unitRep, IProductRepository productRep, ILocationRepository locationRep, IOrderRepository orderRep, ISupplierRepository supplierRep, IProductCategoryRepository productCategoryRep, IRecipeRepository recipeRep)
         {
             this.context = context;

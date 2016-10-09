@@ -30,8 +30,8 @@ namespace RestoranWeb.Infrastructure
         }
         private void AddBindings()
         {
-            kernel.Bind<UnitOfWork>().ToSelf().InRequestScope();
-            kernel.Bind<RestoranContext>().ToSelf().InRequestScope();
+            kernel.Bind<RestoranContext>().ToSelf().InSingletonScope();
+            kernel.Bind<UnitOfWork>().ToSelf().InRequestScope();      
             kernel.Bind<ILocationRepository>().To<LocationRepository>();
             kernel.Bind<IOrderRepository>().To<OrderRepository>();
             kernel.Bind<IProductCategoryRepository>().To<ProductCategoryRepository>();
@@ -39,8 +39,7 @@ namespace RestoranWeb.Infrastructure
             kernel.Bind<IProductRepository>().To<ProductRepository>();
             kernel.Bind<IRecipeRepository>().To<RecipeRepository>();
             kernel.Bind<ISupplierRepository>().To<SupplierRepository>();
-            kernel.Bind<IUnitRepository>().To<UnitRepository>();
-            
+            kernel.Bind<IUnitRepository>().To<UnitRepository>();            
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Restoran
     {
         public double Value { get; set; }
         public int ProductRecipeId { get; set; }
+        public int RecipeId { get; set; }
         public virtual Product Product { get; set; }
         public virtual  Recipe Recipe { get; set; }           
     }

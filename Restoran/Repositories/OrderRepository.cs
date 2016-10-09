@@ -9,6 +9,7 @@ namespace Restoran.Repositories
     public class OrderRepository : IOrderRepository
     {
         private readonly RestoranContext context;
+
         public OrderRepository(RestoranContext context)
         {
             this.context = context;

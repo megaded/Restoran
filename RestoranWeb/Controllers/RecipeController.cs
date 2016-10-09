@@ -52,11 +52,26 @@ namespace RestoranWeb.Controllers
         }
 
         [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var target = unitOfWork.RecipeRep.Get(id);
+            var model = new RecipeEditViewModel(unitOfWork, target);
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Edit()
+        {
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             var target = unitOfWork.RecipeRep.Get(id);
             if (target != null)
+            {
                 unitOfWork.RecipeRep.Remove(target);
+                unitOfWork.Save();
+            }
             return RedirectToAction("Index");
         }
     }

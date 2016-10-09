@@ -20,7 +20,7 @@
                     <td>@recipe.RecipeId</td>
                     <td>@recipe.Name</td>
                     <td>@Html.ActionLink("Просмотр", "Detail", "Recipe", new { id = @recipe.RecipeId }, new {  @class="btn btn-primary"})
-                    @Html.ActionLink("Изменить", "Update", "Recipe", new { id= @recipe.RecipeId },new { @class= "btn btn-success" })
+                    @Html.ActionLink("Изменить", "Edit", "Recipe", new { id= @recipe.RecipeId },new { @class= "btn btn-success" })
                    @Html.ActionLink("Удалить", "Delete", "Recipe",new { id=@recipe.RecipeId},new { @class= "btn btn-danger" })</td>
                 </tr>
             }

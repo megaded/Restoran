@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Restoran.Repositories;
 using Restoran;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestoranWeb.Models
 {
     public class RecipeCreateViewModel
     {
         private readonly UnitOfWork unitOfwork;
+        [Required(ErrorMessage = "Введите название")]
         public string Name { get; set; }
         public string Description { get; set; }
         public List<ProductRecipe> Products { get; set; } 
