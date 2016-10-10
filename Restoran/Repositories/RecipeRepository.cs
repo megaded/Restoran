@@ -29,10 +29,25 @@ namespace Restoran.Repositories
         public void Remove(Recipe entity)
         {
             context.Recipe.Remove(entity);
-        }      
+        }
         public void Update(Recipe entity)
         {
-            context.Entry(entity).State = EntityState.Modified;
+
+            var recipe = context.Recipe.Find(entity.RecipeId);
+            if (recipe != null)
+            {
+                recipe.Name = entity.Name;
+                recipe.Description = entity.Description;
+                recipe.Products = new List<ProductRecipe>();
+                foreach (var product in entity.Products.Where(p=>p.Value>0))
+                {
+                    var addProduct = context.Product.Find(product.ProductId);
+                    if (addProduct != null)
+                    {
+                        recipe.Products.Add(new ProductRecipe { Product = addProduct, Value = product.Value });
+                    }
+                }
+            }
         }
     }
 }

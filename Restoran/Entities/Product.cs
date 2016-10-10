@@ -17,9 +17,17 @@ namespace Restoran
         public int UnitId { get; set; }  
         public int ProductCategoryId { get; set; }
         public virtual Unit Unit { get; set; } 
-        public virtual ProductCategory ProductCategory { get; set; }    
-        public virtual List<ProductOrdered> ProductsOrdered { get; set; }
-        public virtual List<ProductSupplier> ProductsSupplier { get; set; }
-        public virtual List<ProductStorage> ProductsStorage { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }   
+        public virtual List<ProductRecipe> ProductRecipe { get; set; }
+        public virtual List<ProductOrdered> ProductOrdered { get; set; }
+        public virtual List<ProductSupplier> ProductSupplier { get; set; }
+        public virtual List<ProductStorage> ProductStorage { get; set; }
+        public Product()
+        {
+            ProductRecipe = new List<ProductRecipe>();
+            ProductOrdered = new List<ProductOrdered>();
+            ProductSupplier = new List<ProductSupplier>();
+            ProductStorage = new List<ProductStorage>();
+        }
     }
 }

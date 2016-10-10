@@ -1,0 +1,22 @@
+﻿@model  Restoran.Recipe
+<table class="table">
+    @Html.HiddenFor(m => m.RecipeId)
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Ед.изм.</th>
+            <th>Количество</th>
+        </tr>
+    </thead>
+    @for (int i = 0; i < Model.Products.Count; i++)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => m.Products[@i].Product.Name) @Html.HiddenFor(m=>m.Products[@i].ProductId)</td>
+            <td>@Html.DisplayFor(m => m.Products[@i].Product.Unit.Symbol)</td>
+            <td>@Html.TextBoxFor(m => m.Products[@i].Value, new { @class = "form-control" })</td>
+            <td>
+                @Ajax.ActionLink("Удалить", "RemoveProduct", new { id = Model.Products[@i].Product.ProductId }, new AjaxOptions { UpdateTargetId = "edit" })
+            </td>
+        </tr>
+    }
+</table>

@@ -36,18 +36,18 @@ namespace Restoran
 
             modelBuilder.Entity<ProductOrdered>().HasKey(p => p.ProductOrderedId);
             modelBuilder.Entity<ProductOrdered>().Property(p => p.Value).IsRequired();
-            modelBuilder.Entity<ProductOrdered>().HasRequired(p => p.Product).WithMany(pr => pr.ProductsOrdered).WillCascadeOnDelete(true);
+            modelBuilder.Entity<ProductOrdered>().HasRequired(p => p.Product).WithMany(pr => pr.ProductOrdered).WillCascadeOnDelete(true);
             modelBuilder.Entity<ProductOrdered>().HasRequired(p => p.Order).WithMany(o => o.Products).WillCascadeOnDelete(true);
 
             modelBuilder.Entity<ProductSupplier>().HasKey(p => p.ProductSupplierId);
             modelBuilder.Entity<ProductSupplier>().Property(p => p.Price).IsRequired();
-            modelBuilder.Entity<ProductSupplier>().HasRequired(p => p.Product).WithMany(pr => pr.ProductsSupplier).WillCascadeOnDelete(true);
+            modelBuilder.Entity<ProductSupplier>().HasRequired(p => p.Product).WithMany(pr => pr.ProductSupplier).WillCascadeOnDelete(true);
             modelBuilder.Entity<ProductSupplier>().HasRequired(p => p.Supplier).WithMany(s => s.Products).WillCascadeOnDelete(true);
 
             modelBuilder.Entity<ProductStorage>().HasKey(p => p.ProductStorageId);
             modelBuilder.Entity<ProductStorage>().Property(p => p.Price).IsRequired();
             modelBuilder.Entity<ProductStorage>().Property(p => p.Value).IsRequired();
-            modelBuilder.Entity<ProductStorage>().HasRequired(p => p.Product).WithMany(pr => pr.ProductsStorage).WillCascadeOnDelete(true);
+            modelBuilder.Entity<ProductStorage>().HasRequired(p => p.Product).WithMany(pr => pr.ProductStorage).WillCascadeOnDelete(true);
             
             modelBuilder.Entity<Supplier>().HasKey(s => s.SupplierId);
             modelBuilder.Entity<Supplier>().Property(s => s.Name).IsRequired();

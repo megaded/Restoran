@@ -1,20 +1,29 @@
 ﻿@model RestoranWeb.Models.RecipeEditViewModel
-<div class="panel panel-primary">
+<div class="panel panel-primary" id="edit">
     <div class="panel-heading">
         @Model.EditRecipe.Name
-    </div>  
-        <div class="panel-body">   
-            <h1>Продукты рецепта</h1>   
-            @foreach (var item in Model.EditRecipe.Products)
-            {
-                <p>@item.Product.Name @item.Value</p>
-            }
-            <h1>Продукты</h1>
-            @foreach (var item in Model.Products)
-            {
-                <p>@item.Product.Name @item.Value</p>
-            }
-        </div>
-        <div class="panel-footer">        
-        </div>
+    </div>
+    <div class="panel-body" id="recipeProducts">
+        <h4>Продукты рецепта</h4>
+        @using (Html.BeginForm("Edit", "Recipe", FormMethod.Post))
+        {
+            @Html.Label("Название")
+            @Html.TextBoxFor(m => m.EditRecipe.Name, new { @class = "form-control" })
+            @Html.HiddenFor(m=>m.EditRecipe.RecipeId)
+            @Html.ValidationMessageFor(m => m.EditRecipe.Name)
+            @Html.Label("Описание")
+            @Html.TextAreaFor(m=>m.EditRecipe.Description,new { @class="form-control"})
+            @Html.Partial("EditProductsRecipe", Model.EditRecipe)
+            <button type="submit">Сохранить</button>
+        }
+        <h4>Продукты</h4>
+        @Html.Partial("EditProducts", Model.Products)
+    </div>
+    <div class="panel-footer">
+    </div>
 </div>
+
+
+
+
+

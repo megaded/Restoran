@@ -1,0 +1,19 @@
+﻿@model List<Restoran.ProductRecipe>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Product.Name</td>
+            <td>@item.Product.Name @item.Value @Ajax.ActionLink("Добавить", "AddProduct", new { id = item.Product.ProductId }, new AjaxOptions { UpdateTargetId = "edit" })</td>
+        </tr>
+    } 
+</table>
+
+
+ 

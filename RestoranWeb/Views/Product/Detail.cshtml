@@ -17,18 +17,14 @@
                             <th>Поставщик</th>
                             <th>Цена</th>
                         </tr>
-                    </thead>
-
-                    @if (Model.ProductsSupplier != null)
-                    {
-                        foreach (var item in Model.ProductsSupplier)
+                    </thead>                   
+                        @foreach (var item in Model.ProductSupplier)
                         {
                             <tr>
                                 <td>@item.Supplier.Name</td>
                                 <td>@item.Price</td>
                             </tr>
-                        }
-                    }
+                        }                  
                 </table>
             </div>
             <div class="col-md-6">
@@ -41,10 +37,8 @@
                             <th>Количество</th>
                             <th>Общая сумма</th>
                         </tr>
-                    </thead>
-                    @if (Model.ProductsStorage != null)
-                    {
-                        foreach (var item in Model.ProductsStorage)
+                    </thead>                   
+                        @foreach (var item in Model.ProductStorage)
                         {
                             <tr>
                                 <td>@item.Storage.Name</td>
@@ -53,9 +47,7 @@
                                 <td>@(item.Price * (decimal)item.Value)</td>
                             </tr>
                         }
-                    }
-            </table>
-
+                                               </table>
         </div>
     </div>
 </div>

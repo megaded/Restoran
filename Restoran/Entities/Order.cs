@@ -18,6 +18,7 @@ namespace Restoran
         public bool Accept { get; set; }
         public Order()
         {
+            Location = new Location();
             OrderDate = DateTime.Today;
             AcceptDate = DateTime.Today;
             Products = new List<ProductOrdered>();
