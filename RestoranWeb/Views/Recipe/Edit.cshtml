@@ -1,28 +1,32 @@
 ﻿@model RestoranWeb.Models.RecipeEditViewModel
-<div class="panel panel-primary" id="edit">
-    <div class="panel-heading">
-        @Model.EditRecipe.Name
-    </div>
-    <div class="panel-body" id="recipeProducts">
-        <h4>Продукты рецепта</h4>
-        @using (Html.BeginForm("Edit", "Recipe", FormMethod.Post))
-        {
-            @Html.Label("Название")
-            @Html.TextBoxFor(m => m.EditRecipe.Name, new { @class = "form-control" })
-            @Html.HiddenFor(m=>m.EditRecipe.RecipeId)
-            @Html.ValidationMessageFor(m => m.EditRecipe.Name)
-            @Html.Label("Описание")
-            @Html.TextAreaFor(m=>m.EditRecipe.Description,new { @class="form-control"})
-            @Html.Partial("EditProductsRecipe", Model.EditRecipe)
-            <button type="submit">Сохранить</button>
-        }
-        <h4>Продукты</h4>
-        @Html.Partial("EditProducts", Model.Products)
-    </div>
-    <div class="panel-footer">
+<div id="edit">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            @Model.Name
+        </div>
+        <div class="panel-body" id="recipeProducts">
+            <h4>Продукты рецепта</h4>
+            @using (Html.BeginForm("Edit", "Recipe", FormMethod.Post))
+            {
+                @Html.Label("Название")
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name)
+                @Html.HiddenFor(m => m.RecipeId)
+                @Html.Label("Описание")
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Description)
+                @Html.Partial("EditProductsRecipe", Model.RecipeProducts)
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </div>
+
+            }
+            <h4>Продукты</h4>
+            @Html.Partial("EditProducts", Model.NoRecipeProducts)
+        </div>
+
     </div>
 </div>
-
 
 
 

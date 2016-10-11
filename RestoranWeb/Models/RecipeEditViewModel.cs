@@ -4,20 +4,38 @@ using System.Linq;
 using System.Web;
 using Restoran;
 using Restoran.Repositories;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestoranWeb.Models
 {
     public class RecipeEditViewModel
     {
-        public Recipe EditRecipe { get; set; }
-        public List<ProductRecipe> Products { get; set; }
+        [Required(ErrorMessage ="Введите название")]
+        public string Name { get; set; }
+        public int RecipeId { get; set; }
+        public string Description { get; set; }
+        public List<ProductRecipe> RecipeProducts { get; set; }
+        public List<Product> NoRecipeProducts { get; set; }
         private readonly UnitOfWork unitOfWork;
-        public RecipeEditViewModel(UnitOfWork unitOfWork, Recipe editRecipe)
-        {            
+        public RecipeEditViewModel(UnitOfWork unitOfWork, int recipeId)
+        {
+            RecipeProducts =new List<ProductRecipe>();
+            NoRecipeProducts = new List<Product>();
             this.unitOfWork = unitOfWork;
-            EditRecipe = editRecipe;
-            var recipeProduct = EditRecipe.Products.Select(x => x.Product);
-            Products = unitOfWork.ProductRep.GetAll().Select(p => new ProductRecipe { Product = p ,ProductId=p.ProductId}).Where(p2=>!recipeProduct.Any(p1=>p1.ProductId==p2.Product.ProductId)).ToList();
+            var editRecipe = unitOfWork.RecipeRep.Get(recipeId);
+            Name = editRecipe.Name;
+            RecipeId = editRecipe.RecipeId;
+            Description = editRecipe.Description;
+            RecipeProducts = new List<ProductRecipe>();
+            RecipeProducts.AddRange(editRecipe.Products);
+            var allProducts = unitOfWork.ProductRep.GetAll();
+            foreach (var product in allProducts)
+            {
+                if (!RecipeProducts.Any(p => p.ProductId == product.ProductId))
+                {
+                    NoRecipeProducts.Add(product);
+                }
+            }           
         }
         public RecipeEditViewModel()
         {
@@ -25,21 +43,22 @@ namespace RestoranWeb.Models
         }
         public void AddProduct(int productID)
         {
-            var newProduct = Products.Where(p => p.Product.ProductId == productID).FirstOrDefault();
-            if (newProduct != null)
+            var product = NoRecipeProducts.Find(p => p.ProductId == productID);
+            if (product != null)
             {
-                EditRecipe.Products.Add(newProduct);
-                Products.Remove(newProduct);
-            }
+                RecipeProducts.Add(new ProductRecipe { ProductId = productID, RecipeId = RecipeId, Value = 0,Product=product });
+                NoRecipeProducts.Remove(product);
+            }         
         }
         public void RemoveProduct(int productID)
         {
-            var deleteProduct = EditRecipe.Products.Where(p => p.Product.ProductId == productID).FirstOrDefault();
-            if (deleteProduct != null)
+            var product = RecipeProducts.Find(p=>p.ProductId==productID);
+            if (product != null)
             {
-                Products.Add(deleteProduct);
-                EditRecipe.Products.Remove(deleteProduct);
+                NoRecipeProducts.Add(product.Product);
+                RecipeProducts.Remove(product);
             }
+
         }
     }
 }

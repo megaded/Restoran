@@ -32,21 +32,14 @@ namespace Restoran.Repositories
         }
         public void Update(Recipe entity)
         {
-
             var recipe = context.Recipe.Find(entity.RecipeId);
+            var productDelete = recipe.Products;
+            context.ProductRecipe.RemoveRange(productDelete);
             if (recipe != null)
             {
                 recipe.Name = entity.Name;
                 recipe.Description = entity.Description;
-                recipe.Products = new List<ProductRecipe>();
-                foreach (var product in entity.Products.Where(p=>p.Value>0))
-                {
-                    var addProduct = context.Product.Find(product.ProductId);
-                    if (addProduct != null)
-                    {
-                        recipe.Products.Add(new ProductRecipe { Product = addProduct, Value = product.Value });
-                    }
-                }
+                recipe.Products = entity.Products.Select(p => new ProductRecipe { ProductId = p.ProductId, RecipeId = entity.RecipeId, Value = p.Value }).Where(p => p.Value > 0).ToList();
             }
         }
     }

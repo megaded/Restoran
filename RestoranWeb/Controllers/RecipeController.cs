@@ -22,18 +22,18 @@ namespace RestoranWeb.Controllers
         [AjaxOnly]
         public ActionResult AddProduct(int id)
         {
-            var model = (RecipeEditViewModel)Session["editRecipe"];
+            var model = (RecipeEditViewModel)TempData["editRecipe"];
             model.AddProduct(id);
-            Session["editRecipe"] = model;
+            TempData["editRecipe"] = model;
             return PartialView("Edit",model);
         }
 
         [AjaxOnly]
         public ActionResult RemoveProduct(int id)
         {
-            var model = (RecipeEditViewModel)Session["editRecipe"];
+            var model = (RecipeEditViewModel)TempData["editRecipe"];
             model.RemoveProduct(id);
-            Session["editRecipe"] = model;
+            TempData["editRecipe"] = model;
             return PartialView("Edit", model);
         }
 
@@ -56,9 +56,8 @@ namespace RestoranWeb.Controllers
         {
             Recipe newRecipe = new Recipe();
             newRecipe.Name = model.Name;
-            newRecipe.Description = model.Description;
-            List<ProductRecipe> products = model.Products.Where(p => p.Value != 0).ToList();
-            unitOfWork.CreateRecipe(newRecipe,products);
+            newRecipe.Description = model.Description;            
+            unitOfWork.CreateRecipe(newRecipe,model.Products);
             unitOfWork.Save();
 
             return RedirectToAction("Index");
@@ -74,19 +73,15 @@ namespace RestoranWeb.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {           
-            var target = unitOfWork.RecipeRep.Get(id);
-            var model = new RecipeEditViewModel(unitOfWork, target);
-            Session["editRecipe"] = model;
+            var model = new RecipeEditViewModel(unitOfWork, id);
+            TempData["editRecipe"] = model;
             return View("MainEdit",model);
         }
         [HttpPost]
-        public ActionResult Edit(RecipeEditViewModel model)
+        public ActionResult Edit(Recipe recipe,List<ProductRecipe> products)
         {
-            var recipe = model.EditRecipe;
-            recipe.Products = model.Products;
-            unitOfWork.RecipeRep.Update(recipe);
-            unitOfWork.Save();
-            Session.Clear();
+            recipe.Products = products;
+            unitOfWork.RecipeRep.Update(recipe);            
             return RedirectToAction("Index");
         }
         [HttpGet]

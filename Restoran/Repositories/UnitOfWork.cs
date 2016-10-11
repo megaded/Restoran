@@ -88,11 +88,11 @@ namespace Restoran.Repositories
 
         public void CreateRecipe(Recipe recipe,List<ProductRecipe> products)
         {
-            foreach (var product in products)
+            foreach (var product in products.Where(p=>p.Value>0&&p.Value!=null))
             {
                 recipe.Products.Add(new ProductRecipe
                 {
-                    Product = ProductRep.Get(product.Product.ProductId),
+                    ProductId=product.Product.ProductId,
                     Value = product.Value
                 });
             }

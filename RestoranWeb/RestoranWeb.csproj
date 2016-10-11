@@ -175,7 +175,6 @@
     </Compile>
     <Compile Include="Infrastructure\AjaxOnlyAttribute .cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Infrastructure\RecipeValueProvider.cs" />
     <Compile Include="Models\OrderCreateViewModel.cs" />
     <Compile Include="Models\OrdersListViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />

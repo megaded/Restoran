@@ -21,14 +21,21 @@ namespace RestoranWeb.Controllers
         public ActionResult Index()
         {
             RestoranContext context = new RestoranContext();
-            return View(context.Location.ToList());
+            var model = context.Location.ToList();
+            return View(model);
         }           
         [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
-            Session["locationId"] = id;
+            int id =(int) Session["locationId"];
             Location model = unitOfWork.LocationRep.Get(id);
             return View(model);
         }            
+        [HttpPost]
+        public ActionResult Select(int id)
+        {
+            Session["locationId"] = id;
+            return RedirectToAction("Details");
+        }
     }
 }

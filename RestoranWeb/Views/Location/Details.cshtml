@@ -1,15 +1,130 @@
 ﻿@model Restoran.Location
 @{
-    ViewBag.Title = Model.Name;
-}
-@{
     ViewBag.Title = "Details";
 }
-<h1>@Model.Name</h1>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Model.Name</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Продукты</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">Текущие остатки</li>
+                            <li class="list-group-item">Списание продуктов</li>
+                            <li class="list-group-item">Движение товара</li>
+                            <li class="list-group-item">Что-нибудь еще</li>
+                            <li class="list-group-item">Что-нибудь еще</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Заказы</h3>
+                    </div>
+                    <div class="panel-body">
 
-@Html.ActionLink("Просмотр остатков","Index","ProductStorage")<br />
-@Html.ActionLink("Создать заказ", "Create","Order")<br />
-@Html.ActionLink("Просмотр заказов", "Index","Order")<br />
+                        <ul class="list-group">
+                            <li class="list-group-item">Создать заказ</li>
+                            <li class="list-group-item">Принять заказ</li>
+                            <li class="list-group-item">Список заказов</li>
+                            <li class="list-group-item">Что-нибудь еще</li>
+                            <li class="list-group-item">Что-нибудь еще</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Продажи</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">Продажа блюд</li>
+                            <li class="list-group-item">Что-нибудь еще</li>
+                            <li class="list-group-item">Что-нибудь еще</li>
+                            <li class="list-group-item">Что-нибудь еще</li>
+                            <li class="list-group-item">Что-нибудь еще</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Трансфер</h3>
+                    </div>
+                    <div class="panel-body">
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            <ul class="list-group">
+                                <li class="list-group-item">Создать трансфер</li>
+                                <li class="list-group-item">Принять трансфер</li>
+                                <li class="list-group-item">Список трансферов</li>
+                                <li class="list-group-item">Что-нибудь еще</li>
+                                <li class="list-group-item">Что-нибудь еще</li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Рецепты</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">Доступые рецепты</li>
+                            <li class="list-group-item">Себестоимость рецепта</li>
+                            <li class="list-group-item">Что-нибудь еще</li>
+                            <li class="list-group-item">Что-нибудь еще</li>
+                            <li class="list-group-item">Что-нибудь еще</li>
+                        </ul>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Отчеты</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">Топ 20 самых продаваемых блюд</li>
+                            <li class="list-group-item">Прибыль</li>
+                            <li class="list-group-item">Закупки продукта</li>
+                            <li class="list-group-item">Что-нибудь еще</li>
+                            <li class="list-group-item">Что-нибудь еще</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@Html.ActionLink("Просмотр остатков", "Index", "ProductStorage")<br />
+@Html.ActionLink("Создать заказ", "Create", "Order")<br />
+@Html.ActionLink("Просмотр заказов", "Index", "Order")<br />
 @Html.ActionLink("Создать трансфер", "CreateTransfer")<br />
 @Html.ActionLink("Просмотр трансферов", "ListTransfer")<br />
 
