@@ -1,0 +1,15 @@
+﻿@model Restoran.Market
+
+<table class="table">
+    @foreach (var item in Model.Suppliers)
+    {
+        <tr>
+            <td>@item.SupplierId.</td>
+            <td>@item.Name</td>           
+        </tr>
+    }
+ 
+</table>
+
+
+

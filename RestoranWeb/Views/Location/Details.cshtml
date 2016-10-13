@@ -15,7 +15,7 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item">Текущие остатки</li>
+                            <li class="list-group-item">@Html.ActionLink("Просмотр остатков", "Index", "ProductStorage")</li>
                             <li class="list-group-item">Списание продуктов</li>
                             <li class="list-group-item">Движение товара</li>
                             <li class="list-group-item">Что-нибудь еще</li>
@@ -32,7 +32,7 @@
                     <div class="panel-body">
 
                         <ul class="list-group">
-                            <li class="list-group-item">Создать заказ</li>
+                            <li class="list-group-item">@Html.ActionLink("Создать заказ", "Suppliers", "Supplier", new {id=@Model.MarketId },null)</li>
                             <li class="list-group-item">Принять заказ</li>
                             <li class="list-group-item">Список заказов</li>
                             <li class="list-group-item">Что-нибудь еще</li>
@@ -65,17 +65,14 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Трансфер</h3>
                     </div>
-                    <div class="panel-body">
-                        @for (int i = 0; i < 10; i++)
-                        {
+                    <div class="panel-body">                       
                             <ul class="list-group">
                                 <li class="list-group-item">Создать трансфер</li>
                                 <li class="list-group-item">Принять трансфер</li>
                                 <li class="list-group-item">Список трансферов</li>
                                 <li class="list-group-item">Что-нибудь еще</li>
                                 <li class="list-group-item">Что-нибудь еще</li>
-                            </ul>
-                        }
+                            </ul>                        
                     </div>
                 </div>
             </div>
@@ -111,7 +108,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -122,8 +118,8 @@
 
 
 
-@Html.ActionLink("Просмотр остатков", "Index", "ProductStorage")<br />
-@Html.ActionLink("Создать заказ", "Create", "Order")<br />
+
+
 @Html.ActionLink("Просмотр заказов", "Index", "Order")<br />
 @Html.ActionLink("Создать трансфер", "CreateTransfer")<br />
 @Html.ActionLink("Просмотр трансферов", "ListTransfer")<br />

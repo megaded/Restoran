@@ -56,8 +56,9 @@ namespace RestoranWeb.Controllers
         {
             Recipe newRecipe = new Recipe();
             newRecipe.Name = model.Name;
-            newRecipe.Description = model.Description;            
-            unitOfWork.CreateRecipe(newRecipe,model.Products);
+            newRecipe.Description = model.Description;
+            newRecipe.Products = model.Products;
+            unitOfWork.RecipeRep.Add(newRecipe);
             unitOfWork.Save();
 
             return RedirectToAction("Index");

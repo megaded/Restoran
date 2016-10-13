@@ -242,7 +242,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Supplier\Products.cshtml" />
+    <Content Include="Views\Supplier\Index.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
     <Content Include="Views\Location\Index.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
@@ -261,6 +261,7 @@
     <Content Include="Views\Recipe\Edit.cshtml" />
     <Content Include="Views\Recipe\EditProductsRecipe.cshtml" />
     <Content Include="Views\Recipe\EditProducts.cshtml" />
+    <Content Include="Views\Supplier\SupplierOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductSupplier\" />

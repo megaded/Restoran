@@ -11,6 +11,7 @@ namespace RestoranWeb.Controllers
 {
     public class LocationController : Controller
     {
+      private  HttpCookie cookie = new HttpCookie("Restoran");
         private readonly UnitOfWork unitOfWork;
         public LocationController(UnitOfWork unitOfWork)
         {
@@ -23,19 +24,16 @@ namespace RestoranWeb.Controllers
             RestoranContext context = new RestoranContext();
             var model = context.Location.ToList();
             return View(model);
-        }           
-        [HttpGet]
-        public ActionResult Details()
-        {
-            int id =(int) Session["locationId"];
-            Location model = unitOfWork.LocationRep.Get(id);
-            return View(model);
-        }            
-        [HttpPost]
-        public ActionResult Select(int id)
-        {
-            Session["locationId"] = id;
-            return RedirectToAction("Details");
         }
+                 
+        [HttpPost]
+        [ActionName("Select")]
+        public ActionResult Menu(int? id)
+        {           
+            cookie["locationId"] = id.ToString();
+            Response.Cookies.Add(cookie);
+            Location model = unitOfWork.LocationRep.Get((int)id);
+            return View("Details",model);
+        }                  
     }
 }

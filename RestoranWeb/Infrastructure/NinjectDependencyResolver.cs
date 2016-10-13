@@ -39,7 +39,8 @@ namespace RestoranWeb.Infrastructure
             kernel.Bind<IProductRepository>().To<ProductRepository>();
             kernel.Bind<IRecipeRepository>().To<RecipeRepository>();
             kernel.Bind<ISupplierRepository>().To<SupplierRepository>();
-            kernel.Bind<IUnitRepository>().To<UnitRepository>();            
+            kernel.Bind<IUnitRepository>().To<UnitRepository>();
+            kernel.Bind<IMarketRepository>().To<MarketRepository>();    
         }
     }
 }

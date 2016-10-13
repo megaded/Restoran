@@ -24,7 +24,7 @@ namespace Restoran
         public virtual List<ProductStorage> ProductStorage { get; set; }
         public Product()
         {
-            ProductRecipe = new List<Restoran.ProductRecipe>();
+            ProductRecipe = new List<ProductRecipe>();
             ProductOrdered = new List<ProductOrdered>();
             ProductSupplier = new List<ProductSupplier>();
             ProductStorage = new List<ProductStorage>();

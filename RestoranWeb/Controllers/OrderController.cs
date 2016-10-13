@@ -28,9 +28,9 @@ namespace RestoranWeb.Controllers
         public ActionResult Index()
         {
             OrdersListViewModel model = new OrdersListViewModel();
-            int warehouseId = (int)Session["locationId"];
+            int locationId = (int)Session["locationId"];
             var orders = unitOfWork.OrderRep.GetAll().ToList();
-            orders = orders.Where(x => x.LocationId == warehouseId).ToList();
+            orders = orders.Where(x => x.LocationId == locationId).ToList();
             model.AccertOrders = orders.Where(o => o.Accept==true).ToList();
             model.NotAcceptOrders = orders.Where(o => o.Accept == false).ToList();
             return View(model);
@@ -39,8 +39,9 @@ namespace RestoranWeb.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var suppliers = unitOfWork.SupplierRep.GetAll();
-            return View(suppliers);
+            int locationId = (int)Session["locationId"];
+            var model = unitOfWork.LocationRep.Get(locationId).Market.Suppliers;
+            return View(model);
         }
 
         [HttpPost]

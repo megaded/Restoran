@@ -1,0 +1,14 @@
+﻿@model List<Restoran.Supplier>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Список поставщиков</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                @foreach (var supplier in Model)
+                {
+                    <li class="list-group-item">@Html.ActionLink(supplier.Name,"Order","Supplier", new { id=@supplier.SupplierId},null)</li>
+                }             
+            </ul>
+        </div>
+    </div>

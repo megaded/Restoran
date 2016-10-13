@@ -21,9 +21,23 @@ namespace Restoran
         public DbSet<Location> Location { get; set; }
         public DbSet<Recipe> Recipe { get; set; }             
         public DbSet<Order> Order { get; set; }
+        public DbSet<Market> Market { get; set; }
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+           modelBuilder.Entity<Market>().HasKey(m => m.MarketId);
+         /*   modelBuilder.Entity<Market>().Property(m => m.Name).IsRequired();
+
+           modelBuilder.Entity<Location>().HasKey(l => l.ID);
+            modelBuilder.Entity<Location>().Property(l => l.Name); */
+            modelBuilder.Entity<Location>().HasRequired(l => l.Market).WithMany().HasForeignKey(l => l.MarketId).WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Supplier>().HasKey(s => s.SupplierId);
+            modelBuilder.Entity<Supplier>().Property(s => s.Name).IsRequired();
+            modelBuilder.Entity<Supplier>().HasMany(s => s.Products).WithRequired(p => p.Supplier).WillCascadeOnDelete(true);
+            modelBuilder.Entity<Supplier>().HasMany(s => s.Markets).WithMany(m => m.Suppliers);
+
+
             modelBuilder.Entity<Product>().HasKey(p => p.ProductId);
             modelBuilder.Entity<Product>().Property(p => p.Name).IsRequired();
             modelBuilder.Entity<Product>().HasRequired(p => p.Unit).WithMany(u => u.Products).WillCascadeOnDelete(false);
@@ -54,11 +68,7 @@ namespace Restoran
             modelBuilder.Entity<ProductRecipe>().HasKey(p => p.ProductRecipeId);
             modelBuilder.Entity<ProductRecipe>().Property(p => p.Value).IsRequired();
             modelBuilder.Entity<ProductRecipe>().HasRequired(p => p.Product).WithMany().HasForeignKey(p => p.ProductId);
-            modelBuilder.Entity<ProductRecipe>().HasRequired(p => p.Recipe).WithMany(r => r.Products).HasForeignKey(p=>p.RecipeId).WillCascadeOnDelete(true);
-
-            modelBuilder.Entity<Supplier>().HasKey(s => s.SupplierId);
-            modelBuilder.Entity<Supplier>().Property(s => s.Name).IsRequired();
-            modelBuilder.Entity<Supplier>().HasMany(s => s.Products).WithRequired(p=>p.Supplier).WillCascadeOnDelete(true);
+            modelBuilder.Entity<ProductRecipe>().HasRequired(p => p.Recipe).WithMany(r => r.Products).HasForeignKey(p=>p.RecipeId).WillCascadeOnDelete(true);           
 
             modelBuilder.Entity<Order>().HasKey(o => o.OrderID);
             modelBuilder.Entity<Order>().Property(o => o.Accept).IsRequired();

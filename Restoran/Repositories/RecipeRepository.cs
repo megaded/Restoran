@@ -16,7 +16,13 @@ namespace Restoran.Repositories
         }
         public void Add(Recipe entity)
         {
-            context.Recipe.Add(entity);
+            var newProductRecipe = entity.Products.Where(p=>p.Value>0&&p.Value!=null).ToList();
+            entity.Products.Clear();
+            foreach (var product in newProductRecipe)
+            {
+                entity.Products.Add(new ProductRecipe { ProductId = product.Product.ProductId, Value = product.Value });
+            }
+            context.Recipe.Add(entity);    
         }
         public Recipe Get(int id)
         {

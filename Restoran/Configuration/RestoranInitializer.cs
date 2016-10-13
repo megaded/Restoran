@@ -12,6 +12,14 @@ namespace Restoran
     {
         protected override void Seed(RestoranContext context)
         {
+            List<ProductCategory> categoryes = new List<ProductCategory>();
+
+            for (int i = 1; i < 5; i++)
+            {
+                categoryes.Add(new ProductCategory { Name=$"Категория {i}" });
+            }
+            context.ProductCategory.AddRange(categoryes);
+
             Unit UnitKg = new Unit() { Name = "Килограмм", Symbol = "Кг" };
             Unit UnitL = new Unit() { Name = "Литр", Symbol = "Л" };
             context.Unit.Add(UnitKg);
@@ -36,10 +44,16 @@ namespace Restoran
             context.Product.AddRange(new List<Product> { p1, p2, p3, p4, p5, p6 });
             context.SaveChanges();
 
-
+            Market marker1 = new Market() { Name = "Рынок 1" };
+            Market marker2 = new Market() { Name = "Рынок 2" };
+            Market market3 = new Market() { Name = "Рынок 3" };
+            context.Market.Add(marker1);
+            context.Market.Add(marker2);
+            context.Market.Add(market3);
             Supplier sup1 = new Supplier()
             {
                 Name = "Марр",
+                Markets=new List<Market>() { marker1,market3},
                 Products = new List<ProductSupplier>
             {
                 new ProductSupplier { Product=p1,Price=50m },
@@ -53,6 +67,7 @@ namespace Restoran
             Supplier sup2 = new Supplier()
             {
                 Name = "Уренхольт",
+                Markets=new List<Market>() { marker2,market3},
                 Products = new List<ProductSupplier>
                 {
                 new ProductSupplier {Product=p1,Price=14324m },
@@ -66,6 +81,7 @@ namespace Restoran
             Supplier sup3 = new Supplier()
             {
                 Name = "ТД Ням-ням",
+                Markets=new List<Market>() { market3,marker1},
                 Products = new List<ProductSupplier>
                 {
                     new ProductSupplier {Product=p1,Price=1004m },
@@ -117,7 +133,7 @@ namespace Restoran
             Location warehouse = new Location()
             {
                 Name = "Склад Манеж",
-                Suppliers = new List<Supplier> { sup1, sup2 },
+                Market=marker1,
                 Products = new List<ProductStorage> {
                 ps1,ps2,ps3,ps4,ps5,ps6}
             };
@@ -130,17 +146,19 @@ namespace Restoran
             Location warehouse2 = new Location()
             {
                 Name = "Склад Трубная",
-                Suppliers = new List<Supplier> { sup1, sup2, sup3 },
+                Market=marker2,
                 Products = new List<ProductStorage> { ps7,ps8,ps9,ps10,ps11,ps12 }
             };
-            context.Location.Add(warehouse2);
-            context.Location.Add(warehouse);
+           
 
             Location restoran1 = new Location
             {
-                Name = "Однорукий повар"
+                Name = "Однорукий повар",
+                Market=market3
             };
             context.Location.Add(restoran1);
+            context.Location.Add(warehouse2);
+            context.Location.Add(warehouse);
             context.SaveChanges();
         }
     }

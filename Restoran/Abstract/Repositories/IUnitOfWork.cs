@@ -10,9 +10,7 @@ namespace Restoran.Repositories
     {
         void Save();
         void CreateOrder(IEnumerable<ProductOrdered> products, int supplierID, int warehouseID);
-        void AcceptOrder(int orderId);
-        void CreateRecipe(Recipe recipe, List<ProductRecipe> products);
+        void AcceptOrder(int orderId);     
         void CreateProduct(Product product, int UnitId, int ProductCategoryId);
     }
-
 }
