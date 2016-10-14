@@ -25,7 +25,7 @@ namespace Restoran.Repositories
         }
         public IEnumerable<Location> GetAll()
         {
-         return   context.Location.ToList();
+            return context.Location.ToList();
         }
         public void Remove(Location entity)
         {

@@ -178,8 +178,9 @@
     <Compile Include="Models\OrderCreateViewModel.cs" />
     <Compile Include="Models\OrdersListViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
-    <Compile Include="Models\RecipeCreateViewModel.cs" />
-    <Compile Include="Models\RecipeEditViewModel.cs" />
+    <Compile Include="Models\Recipe\RecipeCreateViewModel.cs" />
+    <Compile Include="Models\Recipe\RecipeEditViewModel.cs" />
+    <Compile Include="Models\Recipe\RecipeLocationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -244,7 +245,7 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Supplier\Index.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
-    <Content Include="Views\Location\Index.cshtml" />
+    <Content Include="Views\Location\List.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Recipe\Index.cshtml" />
     <Content Include="Views\Recipe\Create.cshtml" />
@@ -262,6 +263,10 @@
     <Content Include="Views\Recipe\EditProductsRecipe.cshtml" />
     <Content Include="Views\Recipe\EditProducts.cshtml" />
     <Content Include="Views\Supplier\SupplierOrder.cshtml" />
+    <Content Include="Views\Supplier\SupplierProducts.cshtml" />
+    <Content Include="Views\Location\Index.cshtml" />
+    <Content Include="Views\Recipe\Locations.cshtml" />
+    <Content Include="Views\Recipe\LocationsEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductSupplier\" />

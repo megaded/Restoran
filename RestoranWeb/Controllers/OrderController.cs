@@ -15,9 +15,10 @@ namespace RestoranWeb.Controllers
         public OrderController(UnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
-        }       
-     
+        }
+
         [HttpGet]
+        
         public ActionResult Detail(int id)
         {
             var products = unitOfWork.OrderRep.Get(id).Products;
@@ -25,31 +26,22 @@ namespace RestoranWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        [ActionName("Orders")]
+        public ActionResult Index(int? id)
         {
-            OrdersListViewModel model = new OrdersListViewModel();
-            int locationId = (int)Session["locationId"];
-            var orders = unitOfWork.OrderRep.GetAll().ToList();
-            orders = orders.Where(x => x.LocationId == locationId).ToList();
-            model.AccertOrders = orders.Where(o => o.Accept==true).ToList();
-            model.NotAcceptOrders = orders.Where(o => o.Accept == false).ToList();
-            return View(model);
-        }
-
-        [HttpGet]
-        public ActionResult Create()
-        {
-            int locationId = (int)Session["locationId"];
-            var model = unitOfWork.LocationRep.Get(locationId).Market.Suppliers;
-            return View(model);
+            if (id == null)
+                return RedirectToAction("Index","Location");
+            var orders = unitOfWork.OrderRep.GetAll().Where(p => p.LocationId == id).ToList();
+            OrdersListViewModel model = new OrdersListViewModel(orders);
+            return View("Index",model);
         }
 
         [HttpPost]
         public ActionResult Create(OrderCreateViewModel model)
         {
-            int supplierId = (int)TempData["supplierId"];
-            int warehouseId = (int)Session["locationId"];
-            unitOfWork.CreateOrder(model.ProductOrdered, supplierId, warehouseId);
+            HttpCookie cookie = Request.Cookies["Restoran"];
+            int locationId = int.Parse(cookie["locationId"]);
+            unitOfWork.CreateOrder(model.ProductOrdered, model.Id, locationId);
             return View("Complete");
         }
 

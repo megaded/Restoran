@@ -18,41 +18,44 @@ namespace RestoranWeb.Controllers
 
         [HttpGet]
         [ActionName("Suppliers")]
-        public ActionResult SuppliersLocation(int id)
+        public ActionResult SuppliersLocation()
         {
-          
-            var model = unitOfWork.MarketRep.Get(id).Suppliers.ToList();
+            var cookie = Request.Cookies["Restoran"];
+            var marketId = int.Parse(cookie["marketId"]);
+            var model = unitOfWork.MarketRep.Get(marketId).Suppliers.ToList();
             return View("SupplierOrder", model);
         }
 
-        [HttpGet]
-        public ActionResult Details(int id)
-        {
-            var product = unitOfWork.SupplierRep.Get(id).Products;
-            OrderCreateViewModel model = new OrderCreateViewModel(product);
-            TempData["supplierId"] = id;
-            model.Products = unitOfWork.SupplierRep.Get(id).Products;
-            return View("SupplierOrder", model);
-        }
+     
 
         [HttpGet]
         [ActionName("Order")]
-        public ActionResult SupplierProduct(int? id)
-        {
-            if(Session["locationId"]==null)
-                return RedirectToAction("Index", "Location");
-            if (id == null)
-                return RedirectToAction("SuppliersLocation");
-            var locationId = (int)Session["locationId"];
+        public ActionResult SupplierProducts(int? id)
+        {            
+            var cookie = Request.Cookies["Restoran"];
+            var marketId = int.Parse(cookie["marketId"]);
+            var productSupplier = unitOfWork.MarketRep.Get(marketId).Suppliers.Where(s=>s.SupplierId==id).FirstOrDefault().Products.ToList();
+            OrderCreateViewModel model = new OrderCreateViewModel(productSupplier,(int)id);
+            return View("SupplierProducts", model);
+        }
 
+        [HttpGet]
+        public ActionResult Details()
+        {
             return View();
         }
 
-        public ActionResult Index(int id)
+        [HttpGet]
+        public ActionResult Edit()
         {
-            var marketId = unitOfWork.LocationRep.Get(id).MarketId;
-            var model = unitOfWork.MarketRep.Get(marketId).Suppliers.ToList();
-            return View("SupplierOrder",model);
+            return View();
         }
+
+        [HttpGet]
+        public ActionResult Index()
+        {
+            var model = unitOfWork.SupplierRep.GetAll().ToList();
+            return View(model);
+        }      
     }
 }

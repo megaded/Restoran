@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Restoran.Location>
+@{
+    ViewBag.Title = "Выберите локацию";
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3>Выберите локацию</h3>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Select", "Location", FormMethod.Post))
+        {
+
+            @Html.DropDownList("Id", new SelectList(Model, "ID", "Name"))
+            <button type="submit" class="btn btn-primary">Выбрать</button>
+        }
+    </div>
+</div>

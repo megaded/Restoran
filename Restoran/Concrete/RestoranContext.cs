@@ -31,6 +31,7 @@ namespace Restoran
            modelBuilder.Entity<Location>().HasKey(l => l.ID);
             modelBuilder.Entity<Location>().Property(l => l.Name); */
             modelBuilder.Entity<Location>().HasRequired(l => l.Market).WithMany().HasForeignKey(l => l.MarketId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Location>().HasMany(l => l.Recipes).WithMany(r => r.Locations);
 
             modelBuilder.Entity<Supplier>().HasKey(s => s.SupplierId);
             modelBuilder.Entity<Supplier>().Property(s => s.Name).IsRequired();
@@ -52,7 +53,7 @@ namespace Restoran
 
             modelBuilder.Entity<ProductOrdered>().HasKey(p => p.ProductOrderedId);
             modelBuilder.Entity<ProductOrdered>().Property(p => p.Value).IsRequired();
-            modelBuilder.Entity<ProductOrdered>().HasRequired(p => p.Product).WithMany(pr => pr.ProductOrdered).WillCascadeOnDelete(true);
+            modelBuilder.Entity<ProductOrdered>().HasRequired(p => p.Product).WithMany(pr => pr.ProductOrdered).HasForeignKey(p => p.ProductId).WillCascadeOnDelete(true);
             modelBuilder.Entity<ProductOrdered>().HasRequired(p => p.Order).WithMany(o => o.Products).WillCascadeOnDelete(true);
 
             modelBuilder.Entity<ProductSupplier>().HasKey(p => p.ProductSupplierId);
@@ -81,7 +82,7 @@ namespace Restoran
             modelBuilder.Entity<Recipe>().HasKey(r => r.RecipeId);
             modelBuilder.Entity<Recipe>().Property(r => r.Name).IsRequired();
             modelBuilder.Entity<Recipe>().HasMany(r => r.Products).WithRequired().HasForeignKey(p=>p.RecipeId).WillCascadeOnDelete(true);
-
+            modelBuilder.Entity<Recipe>().HasMany(r => r.Locations).WithMany(l => l.Recipes);
 
         }
     }

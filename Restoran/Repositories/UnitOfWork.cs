@@ -47,7 +47,7 @@ namespace Restoran.Repositories
             {
                 order.Products.Add(new ProductOrdered
                 {
-                    Product = ProductRep.Get(product.Product.ProductId),
+                    ProductId = product.ProductId,
                     Value = product.Value,
                     Price = product.Price
                 });
@@ -55,7 +55,6 @@ namespace Restoran.Repositories
             OrderRep.Add(order);
             context.SaveChanges();
         }
-
         public void AcceptOrder(int orderId)
         {
             var order = OrderRep.Get(orderId);

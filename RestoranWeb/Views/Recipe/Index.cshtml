@@ -19,9 +19,12 @@
                 <tr>
                     <td>@recipe.RecipeId</td>
                     <td>@recipe.Name</td>
-                    <td>@Html.ActionLink("Просмотр", "Detail", "Recipe", new { id = @recipe.RecipeId }, new {  @class="btn btn-primary"})
-                    @Html.ActionLink("Изменить", "Edit", "Recipe", new { id= @recipe.RecipeId },new { @class= "btn btn-success" })
-                   @Html.ActionLink("Удалить", "Delete", "Recipe",new { id=@recipe.RecipeId},new { @class= "btn btn-danger" })</td>
+                    <td>
+                        @Html.ActionLink("Просмотр", "Detail", "Recipe", new { id = @recipe.RecipeId }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Локации", "Locations", "Recipe", new { id = @recipe.RecipeId }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Изменить", "Edit", "Recipe", new { id = @recipe.RecipeId }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Удалить", "Delete", "Recipe", new { id = @recipe.RecipeId }, new { @class = "btn btn-danger" })
+                    </td>
                 </tr>
             }
         </table>
@@ -29,5 +32,5 @@
     <div class="panel-footer">
         @Html.ActionLink("Новый рецепт", "Create", null, new { @class = "btn btn-primary" })
     </div>
-   
+
 </div>

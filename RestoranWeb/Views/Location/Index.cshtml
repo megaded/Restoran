@@ -1,17 +1,20 @@
-﻿@model IEnumerable<Restoran.Location>
-@{
-    ViewBag.Title = "Выберите локацию";
-}
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3>Выберите локацию</h3>
-    </div>
-    <div class="panel-body">
-        @using (Html.BeginForm("Select", "Location", FormMethod.Post))
-        {
-
-            @Html.DropDownList("Id", new SelectList(Model, "ID", "Name"))
-            <button type="submit" class="btn btn-primary">Выбрать</button>
-        }
-    </div>
-</div>
+﻿@model List<Restoran.Location>
+   <table class="table">
+       <thead>
+           <tr>
+               <td>Id</td>
+               <td>Название</td>               
+           </tr>
+       </thead>
+       <tbody>
+           @foreach (var location in Model)
+           {
+               <tr>
+                   <td>@location.ID</td>
+                   <td>@location.Name</td>
+                   <td>@Html.ActionLink("Просмотр","Details",new { id=location.ID})</td>
+                   <td>@Html.ActionLink("Редактировать", "Edit", new { id = location.ID })</td>
+               </tr>
+           }
+       </tbody>
+   </table>

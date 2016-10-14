@@ -5,11 +5,13 @@
     {
         <tr>
             <td>@item.SupplierId.</td>
-            <td>@item.Name</td>           
+            <td>@item.Name</td>  
+            <td>@Html.ActionLink("Просмотр","Details",new { id=@item.SupplierId})</td> 
+            <td>@Html.ActionLink("Редактировать","Edit",new { id=@item.SupplierId})</td>        
         </tr>
     }
- 
 </table>
+@Html.ActionLink("Новый поставщик","Create",null,new { @class="btn btn-primary"})
 
 
 

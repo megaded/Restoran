@@ -17,10 +17,11 @@ namespace Restoran
         public string Name { get; set; }
         [StringLength(200, ErrorMessage = "Не более 200 символов")]
         public string Description { get; set; }
-        public virtual List<ProductRecipe> Products { get; set; }
-        public virtual List<Location> Locations { get; set; }       
+        public virtual ICollection<ProductRecipe> Products { get; set; }
+        public virtual ICollection<Location> Locations { get; set; }       
         public Recipe()
         {
+            Locations = new List<Location>();
             Products = new List<ProductRecipe>();
         }
     }

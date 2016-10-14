@@ -15,11 +15,12 @@ namespace Restoran
         public virtual Market Market { get; set; }
         public virtual List<ProductStorage> Products { get; set; }
         public virtual List<Order> Orders { get; set; }   
-        public virtual List<Recipe> Recipes { get; set; }  
+        public virtual ICollection<Recipe> Recipes { get; set; }  
         public Location()
         {
             Products = new List<ProductStorage>();
             Orders = new List<Order>();
+            Recipes = new List<Recipe>();
         }
     }
 }

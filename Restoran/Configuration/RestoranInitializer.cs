@@ -135,7 +135,8 @@ namespace Restoran
                 Name = "Склад Манеж",
                 Market=marker1,
                 Products = new List<ProductStorage> {
-                ps1,ps2,ps3,ps4,ps5,ps6}
+                ps1,ps2,ps3,ps4,ps5,ps6},
+                Recipes=new List<Recipe> { recipe1}
             };
             ProductStorage ps7 = new ProductStorage { Product = p1, Value = 10, Price = 20 };
             ProductStorage ps8 = new ProductStorage { Product = p2, Value = 20, Price = 40 };
@@ -147,14 +148,16 @@ namespace Restoran
             {
                 Name = "Склад Трубная",
                 Market=marker2,
-                Products = new List<ProductStorage> { ps7,ps8,ps9,ps10,ps11,ps12 }
+                Products = new List<ProductStorage> { ps7,ps8,ps9,ps10,ps11,ps12 },
+                Recipes=new List<Recipe>() { recipe2}
             };
            
 
             Location restoran1 = new Location
             {
                 Name = "Однорукий повар",
-                Market=market3
+                Market=market3,
+                Recipes=new List<Recipe>() { recipe3}
             };
             context.Location.Add(restoran1);
             context.Location.Add(warehouse2);

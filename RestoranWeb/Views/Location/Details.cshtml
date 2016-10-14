@@ -32,8 +32,8 @@
                     <div class="panel-body">
 
                         <ul class="list-group">
-                            <li class="list-group-item">@Html.ActionLink("Создать заказ", "Suppliers", "Supplier", new {id=@Model.MarketId },null)</li>
-                            <li class="list-group-item">Принять заказ</li>
+                            <li class="list-group-item">@Html.ActionLink("Создать заказ", "Suppliers", "Supplier")</li>
+                            <li class="list-group-item">@Html.ActionLink("Просмотр заказов", "Orders", "Order",new { id=@Model.ID},null)<br /></li>
                             <li class="list-group-item">Список заказов</li>
                             <li class="list-group-item">Что-нибудь еще</li>
                             <li class="list-group-item">Что-нибудь еще</li>
@@ -120,7 +120,7 @@
 
 
 
-@Html.ActionLink("Просмотр заказов", "Index", "Order")<br />
+
 @Html.ActionLink("Создать трансфер", "CreateTransfer")<br />
 @Html.ActionLink("Просмотр трансферов", "ListTransfer")<br />
 

@@ -10,8 +10,7 @@ using Restoran.Repositories;
 namespace RestoranWeb.Controllers
 {
     public class LocationController : Controller
-    {
-      private  HttpCookie cookie = new HttpCookie("Restoran");
+    {     
         private readonly UnitOfWork unitOfWork;
         public LocationController(UnitOfWork unitOfWork)
         {
@@ -21,18 +20,25 @@ namespace RestoranWeb.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            RestoranContext context = new RestoranContext();
-            var model = context.Location.ToList();
+            var model = unitOfWork.LocationRep.GetAll().ToList();
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult List()
+        {
+            var model = unitOfWork.LocationRep.GetAll().ToList();
             return View(model);
         }
                  
         [HttpPost]
         [ActionName("Select")]
         public ActionResult Menu(int? id)
-        {           
+        {
+            HttpCookie cookie = new HttpCookie("Restoran");
+            Location model = unitOfWork.LocationRep.Get((int)id);                        
             cookie["locationId"] = id.ToString();
+            cookie["marketId"] = model.MarketId.ToString();
             Response.Cookies.Add(cookie);
-            Location model = unitOfWork.LocationRep.Get((int)id);
             return View("Details",model);
         }                  
     }

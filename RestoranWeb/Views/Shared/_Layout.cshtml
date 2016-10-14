@@ -19,17 +19,18 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Продукты","Index","Product")</li>
                     <li>@Html.ActionLink("Рецепты", "Index", "Recipe")</li>
-                    <li>@Html.ActionLink("Локации", "Index", "Location")</li>
+                    <li>@Html.ActionLink("Локации", "List", "Location")</li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Настройки <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Продукты</a></li>
-                            <li><a href="#">Рецепты</a></li>
-                            <li><a href="#">Локации</a></li>
-                            <li><a href="#">Поставщики</a></li>                          
+                            <li>@Html.ActionLink("Продукты","Index","Product")</li>
+                            <li>@Html.ActionLink("Рецепты","Index","Recipe")</li>
+                            <li>@Html.ActionLink("Локации","Index","Location")</li>
+                            <li>@Html.ActionLink("Поставщики", "Index", "Supplier")</li>        
+                            <li>@Html.ActionLink("Рынки","","")</li>                  
                         </ul>
                     </li>
                 </ul>
