@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Restoran;
+using System.Data.Entity;
 
 namespace Restoran.Repositories
 {
@@ -36,7 +37,7 @@ namespace Restoran.Repositories
 
         public void Update(Market entity)
         {
-            throw new NotImplementedException();
+            context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

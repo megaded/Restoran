@@ -1,0 +1,31 @@
+﻿@model List<Restoran.Market>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Рынки</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Название</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var market in Model)
+                {
+                    <tr>
+                        <td>@market.MarketId</td>
+                        <td>@market.Name</td>
+                        <td>@Html.ActionLink("Просмотр", "Detail", "Market", new { id = market.MarketId }, new { @class = "btn btn-primary" })</td>
+                        <td>@Html.ActionLink("Редактировать", "Edit", "Market", new { id = market.MarketId }, new { @class = "btn btn-success" })</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Добавить", "Create", "Market", null, new { @class = "btn btn-primary" })
+    </div>
+</div>

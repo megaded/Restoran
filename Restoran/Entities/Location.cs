@@ -13,8 +13,8 @@ namespace Restoran
         public string Name { get; set; }
         public int MarketId { get; set; }
         public virtual Market Market { get; set; }
-        public virtual List<ProductStorage> Products { get; set; }
-        public virtual List<Order> Orders { get; set; }   
+        public virtual ICollection<ProductStorage> Products { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }   
         public virtual ICollection<Recipe> Recipes { get; set; }  
         public Location()
         {

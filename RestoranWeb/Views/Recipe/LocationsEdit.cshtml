@@ -8,7 +8,7 @@
     {
         @Html.DisplayFor(m => m.RecipeLocation[@i].Name)
         @Html.HiddenFor(m => m.RecipeLocation[@i].ID)
-        @Ajax.ActionLink("Удалить", "RemoveLocation", new { locId = Model.RecipeLocation[@i].ID }, new AjaxOptions { UpdateTargetId = "edit" })
+        @Ajax.ActionLink("Удалить", "RemoveLocation", new { lockid = Model.RecipeLocation[@i].ID }, new AjaxOptions { UpdateTargetId = "edit" })
 
     }
     <button type="submit" class="btn btn-primary">Сохранить</button>
@@ -21,7 +21,7 @@
         <tr>
             <td>@location.Name</td>
             <td>
-                @Ajax.ActionLink("Добавить", "AddLocation", new { locId = location.ID }, new AjaxOptions { UpdateTargetId = "edit" })
+                @Ajax.ActionLink("Добавить", "AddLocation", new { lockid = location.ID }, new AjaxOptions { UpdateTargetId = "edit" })
             </td>
         </tr>
     }

@@ -11,7 +11,6 @@ namespace Restoran
     public class Product  
     {
         public int ProductId { get; set; }
-        [Required(ErrorMessage ="Введите название")]
         public string Name { get; set; }
         public string Description { get; set; }
         public int UnitId { get; set; }  

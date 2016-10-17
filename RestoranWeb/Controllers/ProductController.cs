@@ -16,11 +16,10 @@ namespace RestoranWeb.Controllers
         {
             this.unitOfWork = unitOfWork;
         }
-
         [HttpGet]
         public ActionResult Index()
         {
-            IEnumerable<Product> products = unitOfWork.ProductRep.GetAll();
+            var products = unitOfWork.ProductRep.GetAll().ToList();
             return View(products);
 
         }
@@ -28,41 +27,70 @@ namespace RestoranWeb.Controllers
         public ActionResult Create()
         {
             var model = new ProductViewModel();
-            var units = unitOfWork.UnitRep.GetAll();
             model.Units = new SelectList(unitOfWork.UnitRep.GetAll(), "UnitId", "Symbol");
             model.ProductСategories = new SelectList(unitOfWork.ProductCategoryRep.GetAll(), "ProductCategoryId", "Name");
             return View("Create", model);
         }
         [HttpPost]
-        public ActionResult Create(Product product, int UnitId, int ProductCategoryId)
+        public ActionResult Create(ProductViewModel model)
         {
-            product.Unit = unitOfWork.UnitRep.Get(UnitId);
-            product.ProductCategory = unitOfWork.ProductCategoryRep.Get(ProductCategoryId);
-            unitOfWork.ProductRep.Add(product);
-            unitOfWork.Save();
+            if (ModelState.IsValid)
+            {
+                var entity = new Product();
+                entity.Name = model.Name;
+                entity.Description = model.Description;
+                entity.ProductCategory = unitOfWork.ProductCategoryRep.Get(model.ProductCategoryId);
+                entity.Unit = unitOfWork.UnitRep.Get(model.UnitId);
+                unitOfWork.ProductRep.Add(entity);
+                unitOfWork.Save();
+            }
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            if (id == null)
+                return RedirectToAction("Index");
+            var entity = unitOfWork.ProductRep.Get((int)id);
+            if (entity == null)
+                return RedirectToAction("Index");
             ProductViewModel model = new ProductViewModel();
-            model.Product = unitOfWork.ProductRep.Get(id);
-            model.Units = new SelectList(unitOfWork.UnitRep.GetAll(), "UnitId", "Symbol", "Кг");
+            model.Id = entity.ProductId;
+            model.Name = entity.Name;
+            model.Description = entity.Description;
+            model.UnitId = entity.UnitId;
+            model.ProductCategoryId = entity.ProductCategoryId;
             model.ProductСategories = new SelectList(unitOfWork.ProductCategoryRep.GetAll(), "ProductCategoryId", "Name");
+            model.Units = new SelectList(unitOfWork.UnitRep.GetAll(), "UnitId", "Symbol");
             return View(model);
         }
         [HttpPost]
-        public RedirectToRouteResult Edit(Product product)
+        public ActionResult Edit(ProductViewModel model)
         {
-            unitOfWork.ProductRep.Update(product);
-            unitOfWork.Save();
+            if (ModelState.IsValid)
+            {
+                var entity = unitOfWork.ProductRep.Get(model.Id);
+                if (entity != null)
+                {
+                    entity.Name = model.Name;
+                    entity.Description = model.Description;
+                    entity.UnitId = model.UnitId;
+                    entity.ProductCategoryId = model.ProductCategoryId;
+                    unitOfWork.ProductRep.Update(entity);
+                    unitOfWork.Save();
+                }
+            }         
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public ActionResult Detail(int id)
+        public ActionResult Detail(int? id)
         {
-            var model = unitOfWork.ProductRep.Get(id);
-            return View(model);
+            if (id == null)
+                return RedirectToAction("Index");
+            var entity = unitOfWork.ProductRep.Get((int)id);
+            if (entity == null)
+                return RedirectToAction("Index");
+            return View(entity);
         }
     }
 }

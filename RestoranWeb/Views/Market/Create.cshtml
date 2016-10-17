@@ -1,0 +1,23 @@
+﻿@model RestoranWeb.Models.MarketViewModel.MarketViewModel
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Новая категория</h3>
+    </div>
+
+    @using (Html.BeginForm("Create", "Market", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.Label("Название", new { @class = "col-sm-4 control-label" })
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-primary">Добавить</button>
+        </div>
+    }
+</div>

@@ -119,10 +119,10 @@ namespace RestoranWeb.Controllers
             return View("Locations", model);
         }
         [AjaxOnly]
-        public ActionResult AddLocation(int locId)
+        public ActionResult AddLocation(int lockid)
         {
             RecipeLocationViewModel model = (RecipeLocationViewModel)TempData["locationRecipe"];
-            var location = model.NoRecipeLocation.Where(p => p.ID == locId).FirstOrDefault();
+            var location = model.NoRecipeLocation.Where(p => p.ID == lockid).FirstOrDefault();
             if (location != null)
             {
                 model.RecipeLocation.Add(location);
@@ -132,10 +132,10 @@ namespace RestoranWeb.Controllers
             return PartialView("LocationsEdit", model);
         }
         [AjaxOnly]
-        public ActionResult RemoveLocation(int locId)
+        public ActionResult RemoveLocation(int lockid)
         {
             RecipeLocationViewModel model = (RecipeLocationViewModel)TempData["locationRecipe"];
-            var location = model.RecipeLocation.Where(p => p.ID == locId).FirstOrDefault();
+            var location = model.RecipeLocation.Where(p => p.ID == lockid).FirstOrDefault();
             if (location != null)
             {
                 model.NoRecipeLocation.Add(location);

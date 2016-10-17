@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Restoran.Repositories;
 using RestoranWeb.Models;
+using RestoranWeb.Models.SupplierViewModel;
+using Restoran;
 
 namespace RestoranWeb.Controllers
 {
@@ -24,10 +26,7 @@ namespace RestoranWeb.Controllers
             var marketId = int.Parse(cookie["marketId"]);
             var model = unitOfWork.MarketRep.Get(marketId).Suppliers.ToList();
             return View("SupplierOrder", model);
-        }
-
-     
-
+        }     
         [HttpGet]
         [ActionName("Order")]
         public ActionResult SupplierProducts(int? id)
@@ -40,15 +39,63 @@ namespace RestoranWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details()
+        public ActionResult Detail(int? id)
         {
-            return View();
+            if (id == null)
+                return RedirectToAction("Index");
+            var entity = unitOfWork.SupplierRep.Get((int)id);
+            if (entity == null)
+                RedirectToAction("Index");
+            return View(entity);
         }
 
         [HttpGet]
-        public ActionResult Edit()
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+                RedirectToAction("Index");
+            var entity = unitOfWork.SupplierRep.Get((int)id);
+            if (entity == null)
+                return RedirectToAction("Index");
+            var model = new SupplierViewModel();
+            model.Id = entity.SupplierId;
+            model.Name = entity.Name;
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(SupplierViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = unitOfWork.SupplierRep.Get(model.Id);
+                if (entity != null)
+                {
+                    entity.Name = model.Name;
+                    unitOfWork.SupplierRep.Update(entity);
+                    unitOfWork.Save();
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View("Create");
+        }
+
+        [HttpPost]
+        public ActionResult Create(SupplierViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = new Supplier();
+                entity.Name = model.Name;
+                unitOfWork.SupplierRep.Add(entity);
+                unitOfWork.Save();
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

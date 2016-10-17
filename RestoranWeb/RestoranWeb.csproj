@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -164,23 +168,30 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\MarketController.cs" />
+    <Compile Include="Controllers\ProductCategoryController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductStorageController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AjaxOnlyAttribute .cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\MarketViewModel\MarketViewModel.cs" />
     <Compile Include="Models\OrderCreateViewModel.cs" />
     <Compile Include="Models\OrdersListViewModel.cs" />
-    <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\ProductCategoryViewModel\ProductCategoryViewModel.cs" />
+    <Compile Include="Models\ProductViewModel\ProductViewModel.cs" />
     <Compile Include="Models\Recipe\RecipeCreateViewModel.cs" />
     <Compile Include="Models\Recipe\RecipeEditViewModel.cs" />
     <Compile Include="Models\Recipe\RecipeLocationViewModel.cs" />
+    <Compile Include="Models\SupplierViewModel\SupplierViewModel.cs" />
+    <Compile Include="Models\UnitViewModel\UnitViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -267,6 +278,21 @@
     <Content Include="Views\Location\Index.cshtml" />
     <Content Include="Views\Recipe\Locations.cshtml" />
     <Content Include="Views\Recipe\LocationsEdit.cshtml" />
+    <Content Include="Views\Unit\Index.cshtml" />
+    <Content Include="Views\Unit\Create.cshtml" />
+    <Content Include="Views\Unit\Detail.cshtml" />
+    <Content Include="Views\Unit\Edit.cshtml" />
+    <Content Include="Views\ProductCategory\Index.cshtml" />
+    <Content Include="Views\ProductCategory\Detail.cshtml" />
+    <Content Include="Views\ProductCategory\Edit.cshtml" />
+    <Content Include="Views\ProductCategory\Create.cshtml" />
+    <Content Include="Views\Market\Index.cshtml" />
+    <Content Include="Views\Market\Detail.cshtml" />
+    <Content Include="Views\Market\Create.cshtml" />
+    <Content Include="Views\Market\Edit.cshtml" />
+    <Content Include="Views\Supplier\Detail.cshtml" />
+    <Content Include="Views\Supplier\Edit.cshtml" />
+    <Content Include="Views\Supplier\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductSupplier\" />

@@ -10,8 +10,8 @@ namespace Restoran
     {
         public int MarketId { get; set; }
         public string Name { get; set; }
-        public virtual List<Supplier> Suppliers { get; set; }
-        public virtual List<Location> Locations { get; set; }
+        public virtual ICollection<Supplier> Suppliers { get; set; }
+        public virtual ICollection<Location> Locations { get; set; }
         public Market()
         {
             Suppliers = new List<Supplier>();

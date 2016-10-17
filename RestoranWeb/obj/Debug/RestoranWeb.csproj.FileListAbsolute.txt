@@ -68,3 +68,5 @@ C:\Users\Евгений\Documents\Visual Studio 2015\Projects\Restoran\RestoranW
 C:\Users\Евгений\Documents\Visual Studio 2015\Projects\Restoran\RestoranWeb\bin\Ninject.xml
 C:\Users\Евгений\Documents\Visual Studio 2015\Projects\Restoran\RestoranWeb\bin\Ninject.Web.Common.dll
 C:\Users\Евгений\Documents\Visual Studio 2015\Projects\Restoran\RestoranWeb\bin\Ninject.Web.Common.xml
+C:\Users\Евгений\Documents\Visual Studio 2015\Projects\Restoran\RestoranWeb\bin\AutoMapper.dll
+C:\Users\Евгений\Documents\Visual Studio 2015\Projects\Restoran\RestoranWeb\bin\AutoMapper.xml

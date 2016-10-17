@@ -1,0 +1,26 @@
+﻿@model RestoranWeb.Models.MarketViewModel.MarketViewModel
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Новый рынок</h3>
+    </div>
+
+    @using (Html.BeginForm("Edit", "Market", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.Label("Название", new { @class = "col-sm-4 control-label" })
+                <div class="col-sm-4">
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </div>
+    }
+
+
+</div>

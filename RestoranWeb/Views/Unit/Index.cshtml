@@ -1,0 +1,33 @@
+﻿@model List<Restoran.Unit>
+    <div class="panel panel-primary">
+       <div class="panel-heading">
+           <h3 class="panel-title">Единицы измерения</h3>
+       </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Название</td>
+                        <td>Сокращение</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var unit in Model)
+            {
+                        <tr>
+                            <td>@unit.UnitId</td>
+                            <td>@unit.Name</td>
+                            <td>@unit.Symbol</td>
+                            <td>@Html.ActionLink("Просмотр", "Detail", "Unit", new { id = unit.UnitId }, new { @class = "btn btn-primary" })</td>
+                            <td>@Html.ActionLink("Редактировать", "Edit", "Unit", new { id = unit.UnitId }, new { @class = "btn btn-success" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+            @Html.ActionLink("Добавить","Create","Unit",null,new { @class="btn btn-primary"})
+        </div>
+    </div>
+ 

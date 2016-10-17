@@ -12,6 +12,6 @@ namespace Restoran
         public int UnitId { get; set; }
         public string Name { get; set; }
         public string Symbol { get; set; }
-        public virtual List<Product> Products { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

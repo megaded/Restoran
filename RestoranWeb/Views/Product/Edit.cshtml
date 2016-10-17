@@ -1,10 +1,10 @@
 ﻿@model RestoranWeb.Models.ProductViewModel
 @{
-    ViewBag.Title = Model.Product.Name;
+    ViewBag.Title = Model.Name;
 }
 <div class="panel panel-primary">
     <div class="panel-heading">
-        @Model.Product.Name
+       <h3 class="panel-title">@Model.Name</h3> 
     </div>
 
     @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { @class = "form-horizontal" }))
@@ -13,26 +13,27 @@
             <div class="form-group">
                 @Html.Label("Название", new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-3">
-                    @Html.HiddenFor(m => m.Product.ProductId)
-                    @Html.TextBoxFor(m => m.Product.Name, new { @class = "form-control" })
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name)
                 </div>
             </div>
             <div class="form-group">
                 @Html.Label("Категория", new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-3">
-                    @Html.DropDownListFor(m => m.Product.ProductCategoryId, Model.ProductСategories, new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.ProductCategoryId, Model.ProductСategories, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.Label("Единица измерения", new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-2">
-                    @Html.DropDownListFor(m => m.Product.UnitId, Model.Units, new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.UnitId, Model.Units, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.Label("Описание", new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-5">
-                    @Html.TextAreaFor(m => m.Product.Description, new { @class = "form-control", @rows = 6 })
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @rows = 6 })
                 </div>
             </div>
         </div>

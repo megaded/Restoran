@@ -30,7 +30,6 @@ namespace Restoran.Repositories
         public void Remove(Unit entity)
         {
             context.Unit.Remove(entity);
-            context.SaveChanges();
         }
         public void Update(Unit entity)
         {

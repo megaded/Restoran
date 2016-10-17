@@ -1,0 +1,54 @@
+﻿@model Restoran.Supplier
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Model.Name</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <table class="table">
+                    <caption>Продукты</caption>
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Название</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model.Products)
+                    {
+                            <tr>
+                                <td>@product.ProductSupplierId</td>
+                                <td>@product.Product.Name</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <table class="table">
+                    <caption>Рынки</caption>
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Название</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var market in Model.Markets)
+                        {
+                            <tr>
+                                <td>@market.MarketId</td>
+                                <td>@market.Name</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Назад", "Index", "Supplier", null, new { @class = "btn btn-primary" })
+    </div>
+</div>

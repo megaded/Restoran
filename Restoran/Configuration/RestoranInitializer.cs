@@ -44,53 +44,45 @@ namespace Restoran
             context.Product.AddRange(new List<Product> { p1, p2, p3, p4, p5, p6 });
             context.SaveChanges();
 
-            Market marker1 = new Market() { Name = "Рынок 1" };
-            Market marker2 = new Market() { Name = "Рынок 2" };
+            Market market1 = new Market() { Name = "Рынок 1" };
+            Market market2 = new Market() { Name = "Рынок 2" };
             Market market3 = new Market() { Name = "Рынок 3" };
-            context.Market.Add(marker1);
-            context.Market.Add(marker2);
+            context.Market.Add(market1);
+            context.Market.Add(market2);
             context.Market.Add(market3);
+
+          
+
             Supplier sup1 = new Supplier()
             {
                 Name = "Марр",
-                Markets=new List<Market>() { marker1,market3},
-                Products = new List<ProductSupplier>
-            {
-                new ProductSupplier { Product=p1,Price=50m },
-                new ProductSupplier { Product=p2,Price=100m},
-                new ProductSupplier {Product=p3,Price=1000m },
-                new ProductSupplier {Product=p4,Price=58.9m },
-                new ProductSupplier {Product=p5,Price=60.1m },
-                new ProductSupplier {Product=p6,Price=100.2m }
-            }
+                Markets=new List<Market>() { market1,market3},
+                Products = new List<ProductSupplier>()                         
+
             };
+
+            ProductSupplier ps1 = new ProductSupplier() { Product = p1, Price = 4m, Supplier = sup1, Market = market1 };
+            ProductSupplier ps2 = new ProductSupplier() { Product = p2, Price = 40m, Supplier = sup1, Market = market1 };
+            ProductSupplier ps3 = new ProductSupplier() { Product = p3, Price = 15m, Supplier = sup1, Market = market1 };
+            ProductSupplier ps4 = new ProductSupplier() { Product = p4, Price = 80m, Supplier = sup1, Market = market1 };
+
+            sup1.Products.Add(ps1);
+            sup1.Products.Add(ps2);
+            sup1.Products.Add(ps3);
+            sup1.Products.Add(ps4);
             Supplier sup2 = new Supplier()
             {
                 Name = "Уренхольт",
-                Markets=new List<Market>() { marker2,market3},
-                Products = new List<ProductSupplier>
-                {
-                new ProductSupplier {Product=p1,Price=14324m },
-                new ProductSupplier {Product=p2,Price=13432m },
-                new ProductSupplier {Product=p3,Price=12324m },
-                new ProductSupplier {Product=p4,Price=100m },
-                new ProductSupplier {Product=p5,Price=200m },
-                new ProductSupplier {Product=p6,Price=100m }
-                }
+                Markets=new List<Market>() { market2,market3},
+                Products = new List<ProductSupplier>()
+               
             };
             Supplier sup3 = new Supplier()
             {
                 Name = "ТД Ням-ням",
-                Markets=new List<Market>() { market3,marker1},
-                Products = new List<ProductSupplier>
-                {
-                    new ProductSupplier {Product=p1,Price=1004m },
-                    new ProductSupplier {Product=p2,Price=140.3m },
-                    new ProductSupplier {Product=p3,Price=200m },
-                    new ProductSupplier {Product=p4,Price=9999m },
-                    new ProductSupplier {Product=p5,Price=228m },
-                    new ProductSupplier {Product=p6,Price=77m }
-                }
+                Markets = new List<Market>() { market3, market1 },
+                Products = new List<ProductSupplier>()
+               
             };
             context.Supplier.Add(sup1);
             context.Supplier.Add(sup2);
@@ -98,13 +90,13 @@ namespace Restoran
             context.SaveChanges();
 
 
-            ProductStorage ps1 = new ProductStorage { Product = p1, Value = 10, Price = 20 };            
-            ProductStorage ps2 = new ProductStorage { Product = p2, Value = 20, Price = 40 };
-            ProductStorage ps3 = new ProductStorage { Product = p3, Value = 50, Price = 100 };
-            ProductStorage ps4 = new ProductStorage { Product = p4, Value = 1, Price = 2000 };
-            ProductStorage ps5 = new ProductStorage { Product = p5, Value = 445, Price = 54 };
-            ProductStorage ps6 = new ProductStorage { Product = p6, Value = 343, Price = 10000 };
-            context.ProductStorage.AddRange(new List<ProductStorage> { ps1, ps2, ps3, ps4, ps5, ps6 });
+            ProductStorage pss1 = new ProductStorage { Product = p1, Value = 10, Price = 20 };            
+            ProductStorage pss2 = new ProductStorage { Product = p2, Value = 20, Price = 40 };
+            ProductStorage pss3 = new ProductStorage { Product = p3, Value = 50, Price = 100 };
+            ProductStorage pss4 = new ProductStorage { Product = p4, Value = 1, Price = 2000 };
+            ProductStorage pss5 = new ProductStorage { Product = p5, Value = 445, Price = 54 };
+            ProductStorage pss6 = new ProductStorage { Product = p6, Value = 343, Price = 10000 };
+            context.ProductStorage.AddRange(new List<ProductStorage> { pss1, pss2, pss3, pss4, pss5, pss6 });
             context.SaveChanges();
 
             Recipe recipe1 = new Recipe()
@@ -133,9 +125,9 @@ namespace Restoran
             Location warehouse = new Location()
             {
                 Name = "Склад Манеж",
-                Market=marker1,
+                Market=market1,
                 Products = new List<ProductStorage> {
-                ps1,ps2,ps3,ps4,ps5,ps6},
+                pss1,pss2,pss3,pss4,pss5,pss6},
                 Recipes=new List<Recipe> { recipe1}
             };
             ProductStorage ps7 = new ProductStorage { Product = p1, Value = 10, Price = 20 };
@@ -147,7 +139,7 @@ namespace Restoran
             Location warehouse2 = new Location()
             {
                 Name = "Склад Трубная",
-                Market=marker2,
+                Market=market2,
                 Products = new List<ProductStorage> { ps7,ps8,ps9,ps10,ps11,ps12 },
                 Recipes=new List<Recipe>() { recipe2}
             };
@@ -159,6 +151,9 @@ namespace Restoran
                 Market=market3,
                 Recipes=new List<Recipe>() { recipe3}
             };
+            market1.Locations.Add(warehouse);
+            market2.Locations.Add(warehouse2);
+            market3.Locations.Add(restoran1);
             context.Location.Add(restoran1);
             context.Location.Add(warehouse2);
             context.Location.Add(warehouse);
