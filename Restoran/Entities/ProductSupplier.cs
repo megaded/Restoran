@@ -9,7 +9,6 @@ namespace Restoran
     // Сущность для таблицы поставщиков
     public class ProductSupplier
     {
-        public int ProductSupplierId { get; set; }
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
         public decimal Price { get; set; }

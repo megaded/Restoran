@@ -56,10 +56,10 @@ namespace Restoran
             modelBuilder.Entity<ProductOrdered>().HasRequired(p => p.Product).WithMany(pr => pr.ProductOrdered).HasForeignKey(p => p.ProductId).WillCascadeOnDelete(true);
             modelBuilder.Entity<ProductOrdered>().HasRequired(p => p.Order).WithMany(o => o.Products).WillCascadeOnDelete(true);
 
-            modelBuilder.Entity<ProductSupplier>().HasKey(p => new { p.SupplierId, p.MarketId,p.ProductId });
+            modelBuilder.Entity<ProductSupplier>().HasKey(p => new { p.SupplierId, p.MarketId, p.ProductId });
             modelBuilder.Entity<ProductSupplier>().Property(p => p.Price).IsRequired();
-            modelBuilder.Entity<ProductSupplier>().HasRequired(p => p.Product).WithMany(pr => pr.ProductSupplier).HasForeignKey(p => p.SupplierId).WillCascadeOnDelete(true);
-            modelBuilder.Entity<ProductSupplier>().HasRequired(p => p.Supplier).WithMany(s => s.Products).HasForeignKey(p => p.ProductId).WillCascadeOnDelete(true);
+            modelBuilder.Entity<ProductSupplier>().HasRequired(p => p.Product).WithMany(pr => pr.ProductSupplier).HasForeignKey(p => p.ProductId).WillCascadeOnDelete(true);
+            modelBuilder.Entity<ProductSupplier>().HasRequired(p => p.Supplier).WithMany(s => s.Products).HasForeignKey(p => p.SupplierId).WillCascadeOnDelete(true);
             modelBuilder.Entity<ProductSupplier>().HasRequired(p => p.Market).WithMany().HasForeignKey(p => p.MarketId).WillCascadeOnDelete(true);
 
             modelBuilder.Entity<ProductStorage>().HasKey(p => p.ProductStorageId);

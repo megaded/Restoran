@@ -27,6 +27,7 @@ namespace RestoranWeb.Controllers
             var model = unitOfWork.MarketRep.Get(marketId).Suppliers.ToList();
             return View("SupplierOrder", model);
         }     
+
         [HttpGet]
         [ActionName("Order")]
         public ActionResult SupplierProducts(int? id)
@@ -104,5 +105,6 @@ namespace RestoranWeb.Controllers
             var model = unitOfWork.SupplierRep.GetAll().ToList();
             return View(model);
         }      
+      
     }
 }

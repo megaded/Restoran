@@ -20,6 +20,8 @@ namespace Restoran
             }
             context.ProductCategory.AddRange(categoryes);
 
+
+
             Unit UnitKg = new Unit() { Name = "Килограмм", Symbol = "Кг" };
             Unit UnitL = new Unit() { Name = "Литр", Symbol = "Л" };
             context.Unit.Add(UnitKg);
@@ -33,7 +35,16 @@ namespace Restoran
             context.ProductCategory.Add(cat2);
             context.ProductCategory.Add(cat3);
             context.SaveChanges();
-          
+
+            List<Product> products = new List<Product>();
+            Random random = new Random();
+            for (int i = 1; i < 10; i++)
+            {
+                int indexUnit = random.Next(1, 3);
+                int indexCat = random.Next(1, 5);
+                products.Add(new Product { Name = $"Продукт {i}", UnitId = indexUnit, ProductCategoryId = indexCat });
+            }
+            context.Product.AddRange(products);
 
             Product p1 = new Product() { Name = "Молоко",ProductCategory=cat2, Unit = UnitL, Description = "Молоко коровье" };
             Product p2 = new Product() { Name = "Сахар", ProductCategory=cat3, Unit = UnitKg, Description = "Са́хар — бытовое название сахарозы. Тростниковый и свекловичный сахар является важным пищевым продуктом. Обычный сахар относится к углеводам, которые считаются ценными питательными веществами, обеспечивающими организм необходимой энергией." };

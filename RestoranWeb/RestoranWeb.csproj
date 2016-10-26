@@ -168,8 +168,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BidSheetController.cs" />
     <Compile Include="Controllers\MarketController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
+    <Compile Include="Controllers\SettingsMenuController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -182,6 +184,10 @@
     </Compile>
     <Compile Include="Infrastructure\AjaxOnlyAttribute .cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\BidSheetViewModel\BidSheetEditViewModel.cs" />
+    <Compile Include="Models\BidSheetViewModel\BidSheetProductEditViewModel.cs" />
+    <Compile Include="Models\BidSheetViewModel\BidSheetViewModel.cs" />
+    <Compile Include="Models\BidSheetViewModel\ProductViewModel.cs" />
     <Compile Include="Models\MarketViewModel\MarketViewModel.cs" />
     <Compile Include="Models\OrderCreateViewModel.cs" />
     <Compile Include="Models\OrdersListViewModel.cs" />
@@ -293,9 +299,13 @@
     <Content Include="Views\Supplier\Detail.cshtml" />
     <Content Include="Views\Supplier\Edit.cshtml" />
     <Content Include="Views\Supplier\Create.cshtml" />
+    <Content Include="Views\BidSheet\Index.cshtml" />
+    <Content Include="Views\BidSheet\Edit.cshtml" />
+    <Content Include="Views\BidSheet\Products.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductSupplier\" />
+    <Folder Include="Views\SettingsMenu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

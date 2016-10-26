@@ -1,0 +1,17 @@
+﻿@model RestoranWeb.Models.BidSheetViewModel.BidSheetViewModel
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Выберите рынок</h3>
+    </div>
+    <div class="panel-body">
+    @using (Html.BeginForm("Select","BidSheet",FormMethod.Post))
+    {
+        @Html.Label("Рынок")
+        @Html.DropDownListFor(m => m.MarkerId, Model.Markets)
+        <button type="submit">Выбрать</button>
+    }
+    </div>
+    <div class="panel-footer">       
+    </div>
+</div>

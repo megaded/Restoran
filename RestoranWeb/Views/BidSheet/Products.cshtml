@@ -1,0 +1,23 @@
+﻿@model RestoranWeb.Models.BidSheetViewModel.BidSheetProductEditViewModel
+<table class="table">
+    <caption>Продукты поставщика</caption>
+    @foreach (var product in Model.SupplierProducts)
+    {
+        <tr>
+            <td>@product.Name</td>
+            <td>@product.Price</td>
+        </tr>
+    }
+</table>
+
+<table class="table">
+    <caption>Продукты</caption>
+    @foreach (var product in Model.Products)
+    {
+        <tr>
+            <td>@product.Id</td>
+            <td>@product.Name</td>
+            <td>@Ajax.ActionLink("AddProduct", "BidSheet", new { id = product.Id }, new AjaxOptions { UpdateTargetId = "products" })</td>
+        </tr>
+    }
+</table>
