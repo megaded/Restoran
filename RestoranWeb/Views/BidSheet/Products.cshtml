@@ -1,15 +1,31 @@
 ﻿@model RestoranWeb.Models.BidSheetViewModel.BidSheetProductEditViewModel
-<table class="table">
-    <caption>Продукты поставщика</caption>
-    @foreach (var product in Model.SupplierProducts)
-    {
-        <tr>
-            <td>@product.Name</td>
-            <td>@product.Price</td>
-        </tr>
-    }
-</table>
 
+@using (Html.BeginForm("Save", "BidSheet", FormMethod.Post))
+{
+    <table class="table">
+        <caption>Продукты поставщика</caption>
+        <thead>
+            <tr>
+                <td>Название</td>
+                <td></td>
+            </tr>
+        </thead>
+        @for (int i = 0; i < Model.SupplierProducts.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Model.SupplierProducts[@i].Name
+                    @Html.HiddenFor(m => m.SupplierProducts[@i].Id)
+                </td>
+                <td>@Model.SupplierProducts[@i].Unit</td>
+                <td>@Html.EditorFor(m => m.SupplierProducts[@i].Price)</td>
+                <td>@Ajax.ActionLink("Удалить", "RemoveProduct", new { id = Model.SupplierProducts[@i].Id }, new AjaxOptions { UpdateTargetId = "products" })
+            </tr>
+        }
+
+    </table>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+}
 <table class="table">
     <caption>Продукты</caption>
     @foreach (var product in Model.Products)
@@ -17,7 +33,7 @@
         <tr>
             <td>@product.Id</td>
             <td>@product.Name</td>
-            <td>@Ajax.ActionLink("AddProduct", "BidSheet", new { id = product.Id }, new AjaxOptions { UpdateTargetId = "products" })</td>
+            <td>@Ajax.ActionLink("Добавить", "AddProduct", new { id = product.Id }, new AjaxOptions { UpdateTargetId = "products" })</td>
         </tr>
     }
 </table>

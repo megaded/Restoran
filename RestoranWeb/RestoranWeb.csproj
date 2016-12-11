@@ -171,6 +171,7 @@
     <Compile Include="Controllers\BidSheetController.cs" />
     <Compile Include="Controllers\MarketController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
+    <Compile Include="Controllers\ProductDisposalController.cs" />
     <Compile Include="Controllers\SettingsMenuController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -188,10 +189,12 @@
     <Compile Include="Models\BidSheetViewModel\BidSheetProductEditViewModel.cs" />
     <Compile Include="Models\BidSheetViewModel\BidSheetViewModel.cs" />
     <Compile Include="Models\BidSheetViewModel\ProductViewModel.cs" />
+    <Compile Include="Models\DispocalViewModel.cs" />
     <Compile Include="Models\MarketViewModel\MarketViewModel.cs" />
     <Compile Include="Models\OrderCreateViewModel.cs" />
     <Compile Include="Models\OrdersListViewModel.cs" />
     <Compile Include="Models\ProductCategoryViewModel\ProductCategoryViewModel.cs" />
+    <Compile Include="Models\ProductDisposalViewModel.cs" />
     <Compile Include="Models\ProductViewModel\ProductViewModel.cs" />
     <Compile Include="Models\Recipe\RecipeCreateViewModel.cs" />
     <Compile Include="Models\Recipe\RecipeEditViewModel.cs" />
@@ -279,7 +282,7 @@
     <Content Include="Views\Recipe\Edit.cshtml" />
     <Content Include="Views\Recipe\EditProductsRecipe.cshtml" />
     <Content Include="Views\Recipe\EditProducts.cshtml" />
-    <Content Include="Views\Supplier\SupplierOrder.cshtml" />
+    <Content Include="Views\Supplier\SelectSupplier.cshtml" />
     <Content Include="Views\Supplier\SupplierProducts.cshtml" />
     <Content Include="Views\Location\Index.cshtml" />
     <Content Include="Views\Recipe\Locations.cshtml" />
@@ -302,6 +305,8 @@
     <Content Include="Views\BidSheet\Index.cshtml" />
     <Content Include="Views\BidSheet\Edit.cshtml" />
     <Content Include="Views\BidSheet\Products.cshtml" />
+    <Content Include="Views\ProductDisposal\Index.cshtml" />
+    <Content Include="Views\ProductDisposal\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductSupplier\" />

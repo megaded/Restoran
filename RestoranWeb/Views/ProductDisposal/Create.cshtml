@@ -1,0 +1,34 @@
+﻿@model RestoranWeb.Models.DispocalViewModel
+@using (Html.BeginForm("Create", "ProductDisposal", FormMethod.Post))
+{
+    @Html.Display("Причина списания")
+    @Html.DropDownListFor(m => m.ReasonId, Model.Reason)
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Название</td>
+                <td>Ед.изм</td>
+                <td>Остаток</td>
+                <td>Количество</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Products.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.HiddenFor(m => m.Products[i].ProductId)
+                        @Html.DisplayFor(m => m.Products[i].ProductName)
+                    </td>
+                    <td>
+                        @Html.HiddenFor(m => m.Products[i].UnitId)
+                        @Html.DisplayFor(m => m.Products[i].UnitSymbol)
+                    </td>
+                    <td>@Html.DisplayFor(m => m.Products[i].Amount)</td>
+                    <td>@Html.TextBoxFor(m => m.Products[i].AmountDispocal)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+}

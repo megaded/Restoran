@@ -19,10 +19,11 @@ namespace Restoran.Repositories
             context.Unit.Add(entity);
             context.SaveChanges();
         }
-        public Unit Get(int id)
+
+        public Unit Get(params object[] keysValue)
         {
-            return context.Unit.Find(id);
-        }
+            return context.Unit.Find(keysValue);
+        }     
         public IEnumerable<Unit> GetAll()
         {
             return context.Unit.ToList();

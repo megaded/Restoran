@@ -1,0 +1,13 @@
+﻿@model SelectList
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Список поставщиков</h3>
+        </div>
+        <div class="panel-body">
+          @using (Html.BeginForm("Select", "Supplier",FormMethod.Post))
+          {
+              @Html.DropDownList("id",Model);
+              <button type="submit" class="btn btn-primary">Выбрать</button>
+          }
+        </div>
+    </div>

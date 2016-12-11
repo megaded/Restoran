@@ -144,7 +144,6 @@ namespace RestoranWeb.Controllers
             TempData["locationRecipe"] = model;
             return PartialView("LocationsEdit", model);
         }
-
         [HttpPost]
         public ActionResult EditLocation(RecipeLocationViewModel model)
         {

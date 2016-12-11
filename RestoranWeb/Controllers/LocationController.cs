@@ -7,6 +7,7 @@ using Restoran;
 using RestoranWeb.Models;
 using Restoran.Repositories;
 
+
 namespace RestoranWeb.Controllers
 {
     public class LocationController : Controller
@@ -28,10 +29,8 @@ namespace RestoranWeb.Controllers
         {
             var model = unitOfWork.LocationRep.GetAll().ToList();
             return View(model);
-        }
-                 
+        }                 
         [HttpPost]
-        [ActionName("Select")]
         public ActionResult Menu(int? id)
         {
             HttpCookie cookie = new HttpCookie("Restoran");

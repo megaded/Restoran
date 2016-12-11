@@ -24,10 +24,11 @@ namespace Restoran.Repositories
             }
             context.Recipe.Add(entity);    
         }
-        public Recipe Get(int id)
+
+        public Recipe Get(params object[] keysValue)
         {
-            return context.Recipe.Find(id);
-        }
+            return context.Recipe.Find(keysValue);
+        }        
         public IEnumerable<Recipe> GetAll()
         {
             return context.Recipe.ToList();

@@ -1,0 +1,23 @@
+﻿@model List<Restoran.ProductDisposal>
+<table>
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Дата</td>
+            <td>Причина Списания</td>
+            <td>Просмотр</td>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => m[@i].ProductDisposalId)</td>
+                <td>@Html.DisplayFor(m => m[@i].Date)</td>
+                <td>@Html.DisplayFor(m => m[@i].Reason.Name)</td>
+                <td>@Html.ActionLink("Просмотр", "Detail", new { id = Model[i].ProductDisposalId })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.ActionLink("Создать", "Create")

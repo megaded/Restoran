@@ -18,6 +18,7 @@
                         <td>@market.MarketId</td>
                         <td>@market.Name</td>
                         <td>@Html.ActionLink("Просмотр", "Detail", "Market", new { id = market.MarketId }, new { @class = "btn btn-primary" })</td>
+                        <td>@Html.ActionLink("Поставщики", "Supplier", "Market", new { id = market.MarketId }, new { @class = "btn btn-primary" })</td>
                         <td>@Html.ActionLink("Редактировать", "Edit", "Market", new { id = market.MarketId }, new { @class = "btn btn-success" })</td>
                     </tr>
                 }

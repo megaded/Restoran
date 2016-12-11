@@ -24,12 +24,13 @@ namespace RestoranWeb.Controllers
         {
             var cookie = Request.Cookies["Restoran"];
             var marketId = int.Parse(cookie["marketId"]);
-            var model = unitOfWork.MarketRep.Get(marketId).Suppliers.ToList();
-            return View("SupplierOrder", model);
+            var suppliers = unitOfWork.MarketRep.Get(marketId).Suppliers;
+            SelectList model = new SelectList(suppliers, "SupplierId", "Name");
+            return View("SelectSupplier", model);
         }     
 
-        [HttpGet]
-        [ActionName("Order")]
+        [HttpPost]
+        [ActionName("Select")]
         public ActionResult SupplierProducts(int? id)
         {            
             var cookie = Request.Cookies["Restoran"];

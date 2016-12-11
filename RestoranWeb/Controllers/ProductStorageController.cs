@@ -18,7 +18,8 @@ namespace RestoranWeb.Controllers
 
         public ActionResult Index()
         {
-           int warehouseId = (int)Session["locationId"];
+            var cookie = Request.Cookies["Restoran"];
+            int warehouseId =int.Parse( cookie["locationId"]);
             if (warehouseId==0)
             {
                 return RedirectToAction("Index", "Location");

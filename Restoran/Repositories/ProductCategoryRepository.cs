@@ -19,10 +19,11 @@ namespace Restoran.Repositories
             context.ProductCategory.Add(entity);
         }
 
-        public ProductCategory Get(int id)
+        public ProductCategory Get(params object[] keysValue)
         {
-            return context.ProductCategory.Find(id);
+            return context.ProductCategory.Find(keysValue);
         }
+
 
         public IEnumerable<ProductCategory> GetAll()
         {

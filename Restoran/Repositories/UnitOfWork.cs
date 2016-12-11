@@ -16,8 +16,12 @@ namespace Restoran.Repositories
         public ISupplierRepository SupplierRep { get; private set; }
         public IProductCategoryRepository ProductCategoryRep { get; private set; }
         public IMarketRepository MarketRep { get; private set; }
+        public IProductSupplierRepository ProdSup { get; private set; }
+        public IReasonRepository ReasonRep { get; private set; }
+        public IDisposalProductRepository DProductRep { get; private set; }
+        public IProductDisposalRepository ProductDRep { get; private set; }
         private  RestoranContext context;
-        public UnitOfWork(RestoranContext context, IUnitRepository unitRep, IProductRepository productRep, ILocationRepository locationRep, IOrderRepository orderRep, ISupplierRepository supplierRep, IProductCategoryRepository productCategoryRep, IRecipeRepository recipeRep,IMarketRepository marketRep)
+        public UnitOfWork(RestoranContext context, IUnitRepository unitRep, IProductRepository productRep, ILocationRepository locationRep, IOrderRepository orderRep, ISupplierRepository supplierRep, IProductCategoryRepository productCategoryRep, IRecipeRepository recipeRep,IMarketRepository marketRep,IProductSupplierRepository prodSup,IReasonRepository reasonRep, IDisposalProductRepository dProductRep, IProductDisposalRepository productDRep)
         {
             this.context = context;
             UnitRep = unitRep;
@@ -28,6 +32,10 @@ namespace Restoran.Repositories
             SupplierRep = supplierRep;
             ProductCategoryRep = productCategoryRep;
             MarketRep = marketRep;
+            ProdSup = prodSup;
+            ReasonRep = reasonRep;
+            DProductRep = dProductRep;
+            ProductDRep = productDRep;
         }
         public void Dispose()
         {

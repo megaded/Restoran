@@ -18,11 +18,14 @@ namespace Restoran.Repositories
         public void Add(Location entity)
         {
             context.Location.Add(entity);
-        }       
-        public Location Get(int id)
-        {
-            return context.Location.Find(id);
         }
+
+        public Location Get(params object[] keysValue)
+        {
+            return context.Location.Find(keysValue);
+        }
+
+
         public IEnumerable<Location> GetAll()
         {
             return context.Location.ToList();

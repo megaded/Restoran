@@ -18,10 +18,11 @@ namespace Restoran.Repositories
         {
             context.ProductOrdered.Add(entity);
         }
-        public ProductOrdered Get(int id)
+
+        public ProductOrdered Get(params object[] keysValue)
         {
-            return context.ProductOrdered.Find(id);
-        }
+            return context.ProductOrdered.Find(keysValue);
+        }     
         public IEnumerable<ProductOrdered> GetAll()
         {
             return context.ProductOrdered.ToList();

@@ -20,7 +20,11 @@ namespace Restoran
             }
             context.ProductCategory.AddRange(categoryes);
 
-
+            Reason reason1 = new Reason() { Name = "Порча" };
+            Reason reason2 = new Reason() { Name = "Питание персонала" };
+            Reason reason3 = new Reason() { Name = "Проработка" };
+            context.Reason.AddRange(new List<Reason>() { reason1, reason2, reason3 });
+            context.SaveChanges();
 
             Unit UnitKg = new Unit() { Name = "Килограмм", Symbol = "Кг" };
             Unit UnitL = new Unit() { Name = "Литр", Symbol = "Л" };
@@ -67,20 +71,29 @@ namespace Restoran
             Supplier sup1 = new Supplier()
             {
                 Name = "Марр",
-                Markets=new List<Market>() { market1,market3},
+                Markets=new List<Market>() { market1,market3,market2},
                 Products = new List<ProductSupplier>()                         
 
             };
 
-            ProductSupplier ps1 = new ProductSupplier() { Product = p1, Price = 4m, Supplier = sup1, Market = market1 };
-            ProductSupplier ps2 = new ProductSupplier() { Product = p2, Price = 40m, Supplier = sup1, Market = market1 };
-            ProductSupplier ps3 = new ProductSupplier() { Product = p3, Price = 15m, Supplier = sup1, Market = market1 };
-            ProductSupplier ps4 = new ProductSupplier() { Product = p4, Price = 80m, Supplier = sup1, Market = market1 };
+            ProductSupplier ps1 = new ProductSupplier() { Product = p1, Price = 1m, Supplier = sup1, Market = market1 };
+            ProductSupplier ps2 = new ProductSupplier() { Product = p2, Price = 11m, Supplier = sup1, Market = market1 };
+            ProductSupplier ps3 = new ProductSupplier() { Product = p3, Price = 111m, Supplier = sup1, Market = market1 };
+            ProductSupplier ps4 = new ProductSupplier() { Product = p4, Price = 1111m, Supplier = sup1, Market = market1 };
+
+            ProductSupplier psp5 = new ProductSupplier() { Product = p1, Price = 2m, Supplier = sup1, Market = market2 };
+            ProductSupplier psp6 =new ProductSupplier() { Product = p2, Price = 22m, Supplier = sup1, Market = market2 };
+            ProductSupplier psp7 =new ProductSupplier() { Product = p3, Price = 222m, Supplier = sup1, Market = market2 };
+            ProductSupplier psp8 =new ProductSupplier() { Product = p4, Price = 2222m, Supplier = sup1, Market = market2 };
 
             sup1.Products.Add(ps1);
             sup1.Products.Add(ps2);
             sup1.Products.Add(ps3);
             sup1.Products.Add(ps4);
+            sup1.Products.Add(psp5);
+            sup1.Products.Add(psp6);
+            sup1.Products.Add(psp7);
+            sup1.Products.Add(psp8);
             Supplier sup2 = new Supplier()
             {
                 Name = "Уренхольт",

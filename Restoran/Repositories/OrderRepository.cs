@@ -18,10 +18,13 @@ namespace Restoran.Repositories
         {
             context.Order.Add(entity);
         }
-        public Order Get(int id)
+
+        public Order Get(params object[] keysValue)
         {
-            return context.Order.Find(id);
+            return context.Order.Find(keysValue);
         }
+
+ 
 
         public IEnumerable<Order> GetAll()
         {

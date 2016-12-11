@@ -15,16 +15,28 @@ namespace Restoran
         public DbSet<ProductCategory> ProductCategory { get; set; }
         public DbSet<ProductOrdered> ProductOrdered { get; set; }
         public DbSet<ProductRecipe> ProductRecipe { get; set; }
-        public DbSet<ProductSupplier> ProviderProduct { get; set; }
+        public DbSet<ProductSupplier> ProductSupplier { get; set; }
         public DbSet<ProductStorage> ProductStorage { get; set; }
         public DbSet<Supplier> Supplier { get; set; }
         public DbSet<Location> Location { get; set; }
         public DbSet<Recipe> Recipe { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<Market> Market { get; set; }
+        public DbSet<Reason> Reason { get; set; }
+        public DbSet<DisposalProduct> DisposalProduct { get; set; }
+        public DbSet<ProductDisposal> ProductDisposal { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ProductDisposal>().HasKey(m => m.ProductDisposalId);
+            modelBuilder.Entity<ProductDisposal>().HasRequired(m => m.Reason).WithMany(m => m.ProductDisposal).HasForeignKey(m => m.ReasonId);
+            modelBuilder.Entity<ProductDisposal>().HasRequired(m => m.Location).WithMany(m => m.ProductDisposal).HasForeignKey(m => m.LocationId);
+            modelBuilder.Entity<ProductDisposal>().HasMany(m => m.Products).WithRequired().HasForeignKey(m => m.ProductDisposalId).WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<DisposalProduct>().HasKey(m => m.DisposalProductId);
+            modelBuilder.Entity<DisposalProduct>().HasRequired(m => m.Product).WithMany(pd => pd.DisposalProduct).HasForeignKey(p => p.ProductId);
+            modelBuilder.Entity<DisposalProduct>().HasRequired(m => m.ProductDisposal).WithMany(m => m.Products).HasForeignKey(m => m.ProductDisposalId);
+
             modelBuilder.Entity<Market>().HasKey(m => m.MarketId);
             modelBuilder.Entity<Market>().Property(m => m.Name).IsRequired();
 

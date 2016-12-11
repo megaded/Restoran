@@ -18,11 +18,14 @@ namespace Restoran.Repositories
         {
             context.Product.Add(entity);
             context.SaveChanges();
-        }      
-        public Product Get(int id)
-        {
-            return context.Product.Find(id);
         }
+
+        public Product Get(params object[] keysValue)
+        {
+            return context.Product.Find(keysValue);
+        }
+
+      
         public IEnumerable<Product> GetAll()
         {
             return context.Product.ToList();

@@ -19,11 +19,10 @@ namespace Restoran.Repositories
             context.Supplier.Add(entity);
         }
 
-        public Supplier Get(int id)
+        public Supplier Get(params object[] keysValue)
         {
-            return context.Supplier.Find(id);
+            return context.Supplier.Find(keysValue);
         }
-
         public IEnumerable<Supplier> GetAll()
         {
             return context.Supplier.ToList();

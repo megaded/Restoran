@@ -20,10 +20,12 @@ namespace Restoran.Repositories
             context.Market.Add(entity);
         }
 
-        public Market Get(int id)
+        public Market Get(params object[] keysValue)
         {
-            return context.Market.Find(id);
+            return context.Market.Find(keysValue);
         }
+
+
 
         public IEnumerable<Market> GetAll()
         {

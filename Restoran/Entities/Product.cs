@@ -21,12 +21,14 @@ namespace Restoran
         public virtual List<ProductOrdered> ProductOrdered { get; set; }
         public virtual List<ProductSupplier> ProductSupplier { get; set; }
         public virtual List<ProductStorage> ProductStorage { get; set; }
+        public virtual List<DisposalProduct> DisposalProduct { get; set; }
         public Product()
         {
             ProductRecipe = new List<ProductRecipe>();
             ProductOrdered = new List<ProductOrdered>();
             ProductSupplier = new List<ProductSupplier>();
             ProductStorage = new List<ProductStorage>();
+            DisposalProduct = new List<DisposalProduct>();
         }
     }
 }
