@@ -77,7 +77,8 @@ namespace Restoran
             modelBuilder.Entity<ProductStorage>().HasKey(p => p.ProductStorageId);
             modelBuilder.Entity<ProductStorage>().Property(p => p.Price).IsRequired();
             modelBuilder.Entity<ProductStorage>().Property(p => p.Value).IsRequired();
-            modelBuilder.Entity<ProductStorage>().HasRequired(p => p.Product).WithMany(pr => pr.ProductStorage).WillCascadeOnDelete(true);
+            modelBuilder.Entity<ProductStorage>().HasRequired(p => p.Product).WithMany(ps => ps.ProductStorage).HasForeignKey(p => p.ProductId);
+            modelBuilder.Entity<ProductStorage>().HasRequired(p => p.Location).WithMany(s => s.Products).HasForeignKey(s => s.LocationID);
 
             modelBuilder.Entity<ProductRecipe>().HasKey(p => p.ProductRecipeId);
             modelBuilder.Entity<ProductRecipe>().Property(p => p.Value).IsRequired();

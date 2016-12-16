@@ -17,8 +17,7 @@ namespace RestoranWeb.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        [HttpGet]
-        
+        [HttpGet]        
         public ActionResult Detail(int id)
         {
             var products = unitOfWork.OrderRep.Get(id).Products;
@@ -27,24 +26,24 @@ namespace RestoranWeb.Controllers
 
         [HttpGet]
         [ActionName("Orders")]
-        public ActionResult Index(int? id)
+        public ActionResult Index()
         {
-            if (id == null)
+            var cookie = Request.Cookies["Restoran"];
+            var locationId = int.Parse(cookie["locationId"]);
+            if (locationId ==0)
                 return RedirectToAction("Index","Location");
-            var orders = unitOfWork.OrderRep.GetAll().Where(p => p.LocationId == id).ToList();
+            var orders = unitOfWork.OrderRep.GetAll().Where(p => p.LocationId == locationId).ToList();
             OrdersListViewModel model = new OrdersListViewModel(orders);
             return View("Index",model);
         }
-
         [HttpPost]
         public ActionResult Create(OrderCreateViewModel model)
         {
             HttpCookie cookie = Request.Cookies["Restoran"];
             int locationId = int.Parse(cookie["locationId"]);
             unitOfWork.CreateOrder(model.ProductOrdered, model.Id, locationId);
-            return View("Complete");
+            return RedirectToAction("Orders");
         }
-
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -52,7 +51,6 @@ namespace RestoranWeb.Controllers
             unitOfWork.Save();
             return RedirectToAction("Index");
         }
-
         [HttpGet]
         public ActionResult Accept(int id)
         {
@@ -75,7 +73,7 @@ namespace RestoranWeb.Controllers
                 ViewBag.ErrorMessage = "Заказ не найден";
                 return View("Error");
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Orders");
         }
     }
 }

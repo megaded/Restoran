@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Restoran
-{
-    // Поставщик
+{  
     public class Supplier
     {
         public Supplier()
@@ -18,9 +17,9 @@ namespace Restoran
         }
         public int SupplierId { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<ProductSupplier> Products { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<Market> Markets { get; set; }
+        public virtual List<ProductSupplier> Products { get; set; }
+        public virtual List<Order> Orders { get; set; }
+        public virtual List<Market> Markets { get; set; }
      
     }
 }

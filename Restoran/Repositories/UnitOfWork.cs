@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Restoran.Entities;
+using System.Data.Entity;
 
 namespace Restoran.Repositories
 {
-    public class UnitOfWork : IDisposable,IUnitOfWork
+    public class UnitOfWork : IDisposable, IUnitOfWork
     {
         public IUnitRepository UnitRep { get; private set; }
         public IProductRepository ProductRep { get; private set; }
@@ -20,8 +22,8 @@ namespace Restoran.Repositories
         public IReasonRepository ReasonRep { get; private set; }
         public IDisposalProductRepository DProductRep { get; private set; }
         public IProductDisposalRepository ProductDRep { get; private set; }
-        private  RestoranContext context;
-        public UnitOfWork(RestoranContext context, IUnitRepository unitRep, IProductRepository productRep, ILocationRepository locationRep, IOrderRepository orderRep, ISupplierRepository supplierRep, IProductCategoryRepository productCategoryRep, IRecipeRepository recipeRep,IMarketRepository marketRep,IProductSupplierRepository prodSup,IReasonRepository reasonRep, IDisposalProductRepository dProductRep, IProductDisposalRepository productDRep)
+        private RestoranContext context;
+        public UnitOfWork(RestoranContext context, IUnitRepository unitRep, IProductRepository productRep, ILocationRepository locationRep, IOrderRepository orderRep, ISupplierRepository supplierRep, IProductCategoryRepository productCategoryRep, IRecipeRepository recipeRep, IMarketRepository marketRep, IProductSupplierRepository prodSup, IReasonRepository reasonRep, IDisposalProductRepository dProductRep, IProductDisposalRepository productDRep)
         {
             this.context = context;
             UnitRep = unitRep;
@@ -49,7 +51,7 @@ namespace Restoran.Repositories
         {
             Order order = new Order();
             order.Supplier = SupplierRep.Get(supplierID);
-            order.Location= LocationRep.Get(warehouseID);
+            order.Location = LocationRep.Get(warehouseID);
             products = products.Where(x => x.Value != 0);
             foreach (var product in products)
             {
@@ -92,16 +94,16 @@ namespace Restoran.Repositories
                 }
             }
             order.Accept = true;
-            order.AcceptDate = DateTime.Today;     
-        }             
+            order.AcceptDate = DateTime.Today;
+        }
 
-        public void CreateRecipe(Recipe recipe,List<ProductRecipe> products)
+        public void CreateRecipe(Recipe recipe, List<ProductRecipe> products)
         {
-            foreach (var product in products.Where(p=>p.Value>0&&p.Value!=null))
+            foreach (var product in products.Where(p => p.Value > 0 && p.Value != null))
             {
                 recipe.Products.Add(new ProductRecipe
                 {
-                    ProductId=product.Product.ProductId,
+                    ProductId = product.Product.ProductId,
                     Value = product.Value
                 });
             }
@@ -111,9 +113,31 @@ namespace Restoran.Repositories
 
         public void CreateProduct(Product product, int UnitId, int ProductCategoryId)
         {
-            product.Unit= UnitRep.Get(UnitId);
+            product.Unit = UnitRep.Get(UnitId);
             product.ProductCategory = ProductCategoryRep.Get(ProductCategoryId);
-            ProductRep.Add(product);            
+            ProductRep.Add(product);
+        }
+
+        public void ProductDispocal(IEnumerable<DisposalProduct> disposalProducts, int locationID, int reasonID)
+        {
+            ProductDisposal productDisposal = new ProductDisposal();
+            productDisposal.Date = DateTime.Now;
+            productDisposal.LocationId = locationID;
+            productDisposal.ReasonId = reasonID;
+            productDisposal.Products = new List<DisposalProduct>();
+            foreach (var disposalProduct in disposalProducts)
+            {
+                var product = context.ProductStorage.Where(x => x.ProductId == disposalProduct.ProductId &&x.LocationID==locationID).FirstOrDefault();
+                if (product != null&& product.Value>=disposalProduct.Amount)
+                {
+                    product.Value -= disposalProduct.Amount;
+                    disposalProduct.Price = product.Price;
+                    context.Entry(product).State =EntityState.Modified;
+                    productDisposal.Products.Add(disposalProduct);
+                }
+            }
+            ProductDRep.Add(productDisposal);
+            Save();
         }
     }
 }

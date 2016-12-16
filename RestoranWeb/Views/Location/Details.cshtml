@@ -33,7 +33,7 @@
 
                         <ul class="list-group">
                             <li class="list-group-item">@Html.ActionLink("Создать заказ", "Suppliers", "Supplier")</li>
-                            <li class="list-group-item">@Html.ActionLink("Просмотр заказов", "Orders", "Order",new { id=@Model.ID},null)<br /></li>
+                            <li class="list-group-item">@Html.ActionLink("Просмотр заказов", "Orders", "Order")<br /></li>
                             <li class="list-group-item">Список заказов</li>
                             <li class="list-group-item">Что-нибудь еще</li>
                             <li class="list-group-item">Что-нибудь еще</li>
@@ -83,7 +83,7 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item">Доступые рецепты</li>
+                            <li class="list-group-item">@Html.ActionLink("Рецепты","RecipeLocation","Recipe")</li>
                             <li class="list-group-item">Себестоимость рецепта</li>
                             <li class="list-group-item">Что-нибудь еще</li>
                             <li class="list-group-item">Что-нибудь еще</li>

@@ -1,0 +1,35 @@
+﻿@model Restoran.ProductDisposal
+    <div class="panel panel-primary">
+        <div class="panel-heading">@Model.Reason.Name</div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Название</td>
+                        <td>Ед.изм.</td>
+                        <td>Количество</td>
+                        <td>Цена</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.Products)
+                    {
+                        <tr>
+                            <td>@product.Product.ProductId</td>
+                            <td>@product.Product.Name</td>
+                            <td>@product.Product.Unit.Symbol</td>
+                            <td>@product.Amount</td>
+                            <td>@product.Price</td>
+                            <td>@(product.Price*(decimal)product.Amount)</td>
+                        </tr>
+                    }                   
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+            Общая сумма списания @Model.Products.Sum(x=>(decimal)x.Amount*x.Price)
+            <br />
+            @Html.ActionLink("Назад","Index",null, new { @class = "btn btn-primary" })
+        </div>
+    </div>

@@ -9,8 +9,7 @@ namespace Restoran.Repositories
  public interface IUnitOfWork
     {
         void Save();
-        void CreateOrder(IEnumerable<ProductOrdered> products, int supplierID, int warehouseID);
-        void AcceptOrder(int orderId);     
-        void CreateProduct(Product product, int UnitId, int ProductCategoryId);
+        void ProductDispocal(IEnumerable<DisposalProduct> disposalProducts,int locationID,int reasonID);
+      
     }
 }

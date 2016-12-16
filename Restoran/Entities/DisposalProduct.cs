@@ -10,6 +10,7 @@ namespace Restoran
     {
         public int DisposalProductId { get; set; }
         public double Amount { get; set; }
+        public decimal Price { get; set; }
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
         public int ProductDisposalId { get; set; }

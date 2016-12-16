@@ -1,7 +1,7 @@
 ﻿@model RestoranWeb.Models.DispocalViewModel
 @using (Html.BeginForm("Create", "ProductDisposal", FormMethod.Post))
 {
-    @Html.Display("Причина списания")
+    @Html.DisplayText("Причина списания")
     @Html.DropDownListFor(m => m.ReasonId, Model.Reason)
     <table class="table">
         <thead>

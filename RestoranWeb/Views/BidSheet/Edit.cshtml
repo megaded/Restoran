@@ -2,14 +2,16 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">Выберите рыноу</h3>
+        <h3 class="panel-title">Выберите рынок</h3>
     </div>
     <div class="panel-body">
-        @using (Ajax.BeginForm("SelectSupplier", new AjaxOptions { UpdateTargetId = "products" }))
-        {
-            @Html.DropDownListFor(m=>m.SupplierId, Model.Suppliers, new {@class= "form-control" })
-            <button type="submit" class="btn btn-primary">Выбрать</button>
-      }        
+        <div class="form-inline">
+            @using (Ajax.BeginForm("SelectSupplier", new AjaxOptions { UpdateTargetId = "products" }))
+            {
+                @Html.DropDownListFor(m => m.SupplierId, Model.Suppliers, new { @class = "form-control" })
+                <button type="submit" class="btn btn-primary">Выбрать</button>
+            }  
+        </div>            
         <div id="products">
 
         </div>

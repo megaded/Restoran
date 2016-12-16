@@ -2,15 +2,17 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">Выберите рынок</h3>
+        <h3 class="panel-title">Прайс-листы</h3>
     </div>
     <div class="panel-body">
-    @using (Html.BeginForm("Select","BidSheet",FormMethod.Post))
-    {
-        @Html.Label("Рынок")
-        @Html.DropDownListFor(m => m.MarkerId, Model.Markets)
-        <button type="submit">Выбрать</button>
-    }
+        <div class="form-inline">
+            @using (Html.BeginForm("Select", "BidSheet", FormMethod.Post))
+            {
+                @Html.DropDownListFor(m => m.MarkerId, Model.Markets, new { @class = "form-control" })
+                <button type="submit" class="btn btn-primary">Выбрать</button>
+            }
+        </div>
+  
     </div>
     <div class="panel-footer">       
     </div>

@@ -8,6 +8,7 @@ using RestoranWeb.Models;
 using Restoran.Repositories;
 using System.Web.Mvc.Ajax;
 using RestoranWeb.Infrastructure;
+using RestoranWeb.Models.Recipe;
 
 namespace RestoranWeb.Controllers
 {
@@ -51,8 +52,23 @@ namespace RestoranWeb.Controllers
         [HttpGet]
         public ActionResult Detail(int id)
         {
-            var model = unitOfWork.RecipeRep.Get(id);
-            return View(model);
+            var model = new RecipeDetailViewModel();
+            var recipe = unitOfWork.RecipeRep.Get(id);
+            if (recipe != null)
+            {
+                model.Name = recipe.Name;
+                model.Description = recipe.Description;
+                model.Components = recipe.Products.Select(x =>
+                new RecipeComponentViewModel()
+                {
+                    Name = x.Product.Name,
+                    Unit = x.Product.Unit.Symbol,
+                    Amount = x.Value.ToString()                   
+                }).ToList();
+                model.Locations = recipe.Locations.Select(x => x.Name).ToList();
+                return View(model);
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -112,7 +128,7 @@ namespace RestoranWeb.Controllers
             }
             else
             {
-                model.NoRecipeLocation =location.Where(p => !model.RecipeLocation.Any(r =>p.ID==r.ID)).ToList();
+                model.NoRecipeLocation = location.Where(p => !model.RecipeLocation.Any(r => p.ID == r.ID)).ToList();
             }
 
             TempData["locationRecipe"] = model;

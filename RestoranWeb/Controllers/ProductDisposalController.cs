@@ -21,7 +21,7 @@ namespace RestoranWeb.Controllers
         {
             var cookie = Request.Cookies["Restoran"];
             var locationId = int.Parse(cookie["locationId"]);
-            var model = unitOfWork.ProductDRep.GetAll().Where(m=>m.LocationId==locationId).ToList();
+            var model = unitOfWork.ProductDRep.GetAll().Where(m => m.LocationId == locationId).ToList();
             return View(model);
         }
         [HttpGet]
@@ -34,7 +34,7 @@ namespace RestoranWeb.Controllers
             {
                 return RedirectToAction("List");
             }
-            var products = location.Products;
+            var products = location.Products.Where(x=>x.Value>0);
             var reason = unitOfWork.ReasonRep.GetAll();
             var model = new DispocalViewModel();
             model.Reason = new SelectList(reason, "ReasonId", "Name");
@@ -55,31 +55,28 @@ namespace RestoranWeb.Controllers
         [HttpPost]
         public ActionResult Create(DispocalViewModel model)
         {
-
-            var products = model.Products.Where(m => m.AmountDispocal > 0);
             var cookie = Request.Cookies["Restoran"];
             var locationId = int.Parse(cookie["locationId"]);
-            var productDisposal = new ProductDisposal();
-            productDisposal.Date = DateTime.Now;
-            productDisposal.LocationId = locationId;
-            productDisposal.ReasonId = model.ReasonId;
-            foreach (var product in products)
-            {
-                productDisposal.Products.Add(new DisposalProduct
+            var products = model.Products.Where(x => x.AmountDispocal > 0).
+                Select(x =>
+                new DisposalProduct
                 {
-                    ProductId = product.ProductId,
-                    Amount = product.AmountDispocal
+                    ProductId = x.ProductId,
+                    Amount = x.AmountDispocal
                 });
-            }
-            unitOfWork.ProductDRep.Add(productDisposal);
+            unitOfWork.ProductDispocal(products, locationId, model.ReasonId);
             unitOfWork.Save();
-            var location = unitOfWork.LocationRep.Get(locationId);
             return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Detail(int id)
         {
-            return View();
+            var model = unitOfWork.ProductDRep.Get(id);
+            if (model != null)
+            {
+                return View(model);
+            }
+            return RedirectToAction("Index");
         }
     }
 }

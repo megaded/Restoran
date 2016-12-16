@@ -1,4 +1,4 @@
-﻿@model Restoran.Recipe
+﻿@model RestoranWeb.Models.Recipe.RecipeDetailViewModel
 @{
     ViewBag.Title = Model.Name;
 }
@@ -16,21 +16,39 @@
                     <thead>
                         <tr>
                             <th>Продукт</th>
+                            <th>Ед.изм.</th>
                             <th>Количество</th>
                             <th></th>
                         </tr>
                     </thead>
-                    @foreach (var product in Model.Products)
+                    <tbody>@foreach (var product in Model.Components)
                     {
                         <tr>
-                            <td>@product.Product.Name</td>
-                            <td>@product.Value</td>
+                            <td>@product.Name</td>
+                            <td>@product.Unit</td>
+                            <td>@product.Amount</td>
                         </tr>
                     }
+                    </tbody>                
                 </table>
             </div>
             <div class="col-md-6">
-                Локации
+                <table class="table">
+                    <caption>Локации</caption>
+                    <thead>
+                        <tr>
+                            <th>Название</th>
+                        </tr>
+                    </thead>
+                  <tbody>
+                      @foreach (var location in Model.Locations)
+                      {
+                          <tr>
+                              <td>@location</td>
+                          </tr>
+                      }
+                  </tbody>
+                </table>
             </div>
         </div>
     </div>
