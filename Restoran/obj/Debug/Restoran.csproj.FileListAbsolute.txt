@@ -8,3 +8,12 @@ C:\Users\Евгений\documents\visual studio 2015\Projects\Restoran\Restoran\
 C:\Users\Евгений\documents\visual studio 2015\Projects\Restoran\Restoran\bin\Debug\EntityFramework.xml
 C:\Users\Евгений\documents\visual studio 2015\Projects\Restoran\Restoran\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Евгений\Documents\Visual Studio 2015\Projects\Restoran\Restoran\obj\Debug\Restoran.csprojResolveAssemblyReference.cache
+C:\Restoran\Restoran\bin\Debug\Restoran.dll.config
+C:\Restoran\Restoran\bin\Debug\Restoran.dll
+C:\Restoran\Restoran\bin\Debug\Restoran.pdb
+C:\Restoran\Restoran\bin\Debug\EntityFramework.dll
+C:\Restoran\Restoran\bin\Debug\EntityFramework.SqlServer.dll
+C:\Restoran\Restoran\bin\Debug\EntityFramework.xml
+C:\Restoran\Restoran\bin\Debug\EntityFramework.SqlServer.xml
+C:\Restoran\Restoran\obj\Debug\Restoran.dll
+C:\Restoran\Restoran\obj\Debug\Restoran.pdb

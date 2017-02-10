@@ -12,10 +12,12 @@ namespace RestoranWeb.Controllers
     public class ProductController : Controller
     {
         private readonly UnitOfWork unitOfWork;
+
         public ProductController(UnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -23,6 +25,7 @@ namespace RestoranWeb.Controllers
             return View(products);
 
         }
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -31,6 +34,7 @@ namespace RestoranWeb.Controllers
             model.ProductСategories = new SelectList(unitOfWork.ProductCategoryRep.GetAll(), "ProductCategoryId", "Name");
             return View("Create", model);
         }
+
         [HttpPost]
         public ActionResult Create(ProductViewModel model)
         {
@@ -46,6 +50,7 @@ namespace RestoranWeb.Controllers
             }
             return RedirectToAction("Index");
         }
+
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -64,6 +69,7 @@ namespace RestoranWeb.Controllers
             model.Units = new SelectList(unitOfWork.UnitRep.GetAll(), "UnitId", "Symbol");
             return View(model);
         }
+
         [HttpPost]
         public ActionResult Edit(ProductViewModel model)
         {
@@ -82,6 +88,7 @@ namespace RestoranWeb.Controllers
             }         
             return RedirectToAction("Index");
         }
+
         [HttpGet]
         public ActionResult Detail(int? id)
         {

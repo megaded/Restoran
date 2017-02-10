@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Restoran;
 using RestoranWeb.Models;
 using Restoran.Repositories;
-
+using RestoranWeb.Models.LocationViewModel;
 
 namespace RestoranWeb.Controllers
 {
@@ -17,7 +17,26 @@ namespace RestoranWeb.Controllers
         {
             this.unitOfWork = unitOfWork;
         }
-
+        [HttpGet]
+        public ActionResult Create()
+        {
+            LocationViewModel model = new LocationViewModel();
+            model.Markets = new SelectList(unitOfWork.MarketRep.GetAll(), "MarketId", "Name");
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Create(LocationViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = new Location();
+                entity.Name = model.Name;
+                entity.MarketId = model.MarketId;
+                unitOfWork.LocationRep.Add(entity);
+                unitOfWork.Save();
+            }
+            return RedirectToAction("Index");
+        }
         [HttpGet]
         public ActionResult Index()
         {

@@ -78,6 +78,7 @@ namespace RestoranWeb.Controllers
             TempData["editRecipe"] = model;
             return View("MainEdit", model);
         }
+
         [HttpPost]
         public ActionResult Edit(Recipe recipe, List<ProductRecipe> products)
         {
@@ -85,6 +86,7 @@ namespace RestoranWeb.Controllers
             unitOfWork.RecipeRep.Update(recipe);
             return RedirectToAction("Index");
         }
+
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -96,6 +98,7 @@ namespace RestoranWeb.Controllers
             }
             return RedirectToAction("Index");
         }
+
         [AjaxOnly]
         public ActionResult AddProduct(int id)
         {
@@ -134,6 +137,7 @@ namespace RestoranWeb.Controllers
             TempData["locationRecipe"] = model;
             return View("Locations", model);
         }
+
         [AjaxOnly]
         public ActionResult AddLocation(int lockid)
         {
@@ -147,6 +151,7 @@ namespace RestoranWeb.Controllers
             TempData["locationRecipe"] = model;
             return PartialView("LocationsEdit", model);
         }
+
         [AjaxOnly]
         public ActionResult RemoveLocation(int lockid)
         {
@@ -160,6 +165,7 @@ namespace RestoranWeb.Controllers
             TempData["locationRecipe"] = model;
             return PartialView("LocationsEdit", model);
         }
+
         [HttpPost]
         public ActionResult EditLocation(RecipeLocationViewModel model)
         {
@@ -174,7 +180,6 @@ namespace RestoranWeb.Controllers
                 var loc = unitOfWork.LocationRep.Get(location.ID);
                 editModel.Locations.Add(loc);
             }
-
             unitOfWork.Save();
             return RedirectToAction("Index");
         }

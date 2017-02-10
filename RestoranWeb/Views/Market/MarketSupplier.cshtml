@@ -1,0 +1,12 @@
+﻿@model List<Restoran.Supplier>
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SupplierId</td>
+            <td>@item.Name</td>
+        </tr>
+    }
+</table>
+
+

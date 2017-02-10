@@ -190,6 +190,8 @@
     <Compile Include="Models\BidSheetViewModel\BidSheetViewModel.cs" />
     <Compile Include="Models\BidSheetViewModel\ProductViewModel.cs" />
     <Compile Include="Models\DispocalViewModel.cs" />
+    <Compile Include="Models\LocationViewModel\LocationViewModel.cs" />
+    <Compile Include="Models\MarketViewModel\MarketEditViewModel.cs" />
     <Compile Include="Models\MarketViewModel\MarketViewModel.cs" />
     <Compile Include="Models\OrderCreateViewModel.cs" />
     <Compile Include="Models\OrdersListViewModel.cs" />
@@ -206,10 +208,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\RestoranContext.mdf" />
-    <Content Include="App_Data\RestoranContext_log.ldf">
-      <DependentUpon>RestoranContext.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -309,8 +307,13 @@
     <Content Include="Views\ProductDisposal\Index.cshtml" />
     <Content Include="Views\ProductDisposal\Create.cshtml" />
     <Content Include="Views\ProductDisposal\Detail.cshtml" />
+    <Content Include="Views\Location\Create.cshtml" />
+    <Content Include="Views\Market\MarketSupplier.cshtml" />
+    <Content Include="Views\Market\Suppliers.cshtml" />
+    <Content Include="Views\Market\SuppliersEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Views\ProductSupplier\" />
     <Folder Include="Views\SettingsMenu\" />
   </ItemGroup>
