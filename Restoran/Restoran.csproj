@@ -65,6 +65,7 @@
     <Compile Include="Abstract\Repositories\IUnitRepository.cs" />
     <Compile Include="Abstract\Repositories\ILocaltionRepository.cs" />
     <Compile Include="Entities\DisposalProduct.cs" />
+    <Compile Include="Entities\Invoice.cs" />
     <Compile Include="Entities\Location.cs" />
     <Compile Include="Concrete\RestoranContext.cs" />
     <Compile Include="Entities\Market.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\ProductDisposal.cs" />
     <Compile Include="Entities\ProductCategory.cs" />
+    <Compile Include="Entities\ProductInvoice.cs" />
     <Compile Include="Entities\Production.cs" />
     <Compile Include="Entities\ProductOrdered.cs" />
     <Compile Include="Entities\Product.cs" />

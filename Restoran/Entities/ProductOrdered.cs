@@ -13,6 +13,7 @@ namespace Restoran
         public int ProductId { get; set; }
         public double Value { get; set; }
         public decimal Price { get; set; }
+        public int Tax { get; set; }
         public int OrderId { get; set; }
         public Order Order { get; set; }
     }

@@ -18,7 +18,7 @@
                     <tr>
                         <td>@location.ID</td>
                         <td>@location.Name</td>
-                        <td>@Html.ActionLink("Просмотр", "Details", new { id = location.ID })</td>
+                        <td>@Html.ActionLink("Просмотр", "Detail", new { id = location.ID })</td>
                         <td>@Html.ActionLink("Редактировать", "Edit", new { id = location.ID })</td>
                     </tr>
                 }
@@ -27,6 +27,6 @@
         </table>
     </div>
     <div class="panel-footer">
-        @Html.ActionLink("Новый поставщик", "Create", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Добавить локацию", "Create", null, new { @class = "btn btn-primary" })
     </div>
 </div>

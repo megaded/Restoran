@@ -18,6 +18,7 @@ namespace RestoranWeb.Controllers
         {
             this.unitOfWork = unitOfWork;
         }
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -25,6 +26,7 @@ namespace RestoranWeb.Controllers
             model.Markets = new SelectList(unitOfWork.MarketRep.GetAll(), "MarketId", "Name");
             return View(model);
         }
+
         [HttpPost]
         public ActionResult Create(LocationViewModel model)
         {
@@ -38,18 +40,33 @@ namespace RestoranWeb.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult Detail(int id)
+        {
+            var entity = unitOfWork.LocationRep.Get(id);
+            var model = new LocationViewModel();
+            model.LocationId = entity.ID;
+            model.Name = entity.Name;
+            model.MarketId = entity.MarketId;
+            return View(model);
+        }
+
+
         [HttpGet]
         public ActionResult Index()
         {
             var model = unitOfWork.LocationRep.GetAll().ToList();
             return View(model);
         }
+
         [HttpGet]
         public ActionResult List()
         {
             var model = unitOfWork.LocationRep.GetAll().ToList();
             return View(model);
         }
+
         [HttpPost]
         public ActionResult Menu(int? id)
         {
@@ -60,6 +77,7 @@ namespace RestoranWeb.Controllers
             Response.Cookies.Add(cookie);
             return View("Details", model);
         }
+
         [ActionName("Recipes")]
         [HttpGet]
         public ActionResult CalculationCard()
@@ -110,6 +128,7 @@ namespace RestoranWeb.Controllers
             var model = location.Products.Select(x=>new ProductViewModel { Name=x.Product.Name,Id=x.ProductId}).ToList();            
             return View("ProductsDetail", model);
         }
+
         [HttpGet]
         public ActionResult ProductOperation(int id)
         {

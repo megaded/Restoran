@@ -36,6 +36,7 @@ namespace RestoranWeb.Controllers
             OrdersListViewModel model = new OrdersListViewModel(orders);
             return View("Index",model);
         }
+
         [HttpPost]
         public ActionResult Create(OrderCreateViewModel model)
         {
@@ -44,6 +45,7 @@ namespace RestoranWeb.Controllers
             unitOfWork.CreateOrder(model.ProductOrdered, model.Id, locationId);
             return RedirectToAction("Orders");
         }
+
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -51,6 +53,7 @@ namespace RestoranWeb.Controllers
             unitOfWork.Save();
             return RedirectToAction("Index");
         }
+
         [HttpGet]
         public ActionResult Accept(int id)
         {
@@ -74,6 +77,13 @@ namespace RestoranWeb.Controllers
                 return View("Error");
             }
             return RedirectToAction("Orders");
+        }
+
+        [HttpPost]
+        public ActionResult Accept()
+        {
+
+            return View();
         }
     }
 }
