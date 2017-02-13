@@ -1,0 +1,13 @@
+﻿@model List<Restoran.Operation>
+
+    <table class="table">
+        @foreach (var operation in Model)
+        {
+            <tr>
+                <td>@operation.OperationId</td>
+                <td>@operation.Name</td>
+                <td>@operation.Product.Name</td>
+                <td>@operation.Value</td>
+            </tr>
+        }       
+    </table>

@@ -68,6 +68,7 @@
     <Compile Include="Entities\Location.cs" />
     <Compile Include="Concrete\RestoranContext.cs" />
     <Compile Include="Entities\Market.cs" />
+    <Compile Include="Entities\Operation.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\ProductDisposal.cs" />
     <Compile Include="Entities\ProductCategory.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Entities\ProductOrdered.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProductRecipe.cs" />
+    <Compile Include="Entities\ProductsDetails.cs" />
     <Compile Include="Entities\ProductStorage.cs" />
     <Compile Include="Entities\Reason.cs" />
     <Compile Include="Entities\Recipe.cs" />

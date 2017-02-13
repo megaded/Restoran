@@ -17,7 +17,7 @@
                         <ul class="list-group">
                             <li class="list-group-item">@Html.ActionLink("Просмотр остатков", "Index", "ProductStorage")</li>
                             <li class="list-group-item">@Html.ActionLink("Списание продуктов", "Index", "ProductDisposal") </li>
-                            <li class="list-group-item">Движение товара</li>
+                            <li class="list-group-item">@Html.ActionLink("Движение товара", "ProductsDetail", "Location")</li>
                             <li class="list-group-item">Что-нибудь еще</li>
                             <li class="list-group-item">Что-нибудь еще</li>
                         </ul>
@@ -83,7 +83,7 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item">@Html.ActionLink("Рецепты","RecipeLocation","Recipe")</li>
+                            <li class="list-group-item">@Html.ActionLink("Рецепты","Recipes","Location")</li>
                             <li class="list-group-item">Себестоимость рецепта</li>
                             <li class="list-group-item">Что-нибудь еще</li>
                             <li class="list-group-item">Что-нибудь еще</li>

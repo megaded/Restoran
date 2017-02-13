@@ -1,0 +1,12 @@
+﻿@model List<RestoranWeb.Models.ProductViewModel>
+
+<table class="table">
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.Id</td>
+            <td>@product.Name</td>
+            <td>@Html.ActionLink("Движение", "ProductOperation", "Location",new { id=product.Id},new { @class="btn btn-primary"})</td>
+        </tr>
+    }   
+</table>

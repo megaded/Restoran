@@ -127,11 +127,17 @@ namespace Restoran.Repositories
             productDisposal.Products = new List<DisposalProduct>();
             foreach (var disposalProduct in disposalProducts)
             {
+                var operation = new Operation();
                 var product = context.ProductStorage.Where(x => x.ProductId == disposalProduct.ProductId &&x.LocationID==locationID).FirstOrDefault();
                 if (product != null&& product.Value>=disposalProduct.Amount)
                 {
+                    operation.Date = DateTime.Now;
+                    operation.Name = "Списание";
+                    operation.Value = disposalProduct.Amount * -1;
+                    operation.ProductId = disposalProduct.ProductId;
                     product.Value -= disposalProduct.Amount;
                     disposalProduct.Price = product.Price;
+                    context.Operation.Add(operation);
                     context.Entry(product).State =EntityState.Modified;
                     productDisposal.Products.Add(disposalProduct);
                 }

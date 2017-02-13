@@ -4,26 +4,37 @@
 @using (Html.BeginForm("EditLocation", "Recipe", FormMethod.Post))
 {
     @Html.HiddenFor(m => m.Id)
-    for (int i = 0; i < Model.RecipeLocation.Count; i++)
-    {
-        @Html.DisplayFor(m => m.RecipeLocation[@i].Name)
-        @Html.HiddenFor(m => m.RecipeLocation[@i].ID)
-        @Ajax.ActionLink("Удалить", "RemoveLocation", new { lockid = Model.RecipeLocation[@i].ID }, new AjaxOptions { UpdateTargetId = "edit" })
+    <table class="table">
+        @for (int i = 0; i < Model.RecipeLocation.Count; i++)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => m.RecipeLocation[@i].Name)
+                @Html.HiddenFor(m => m.RecipeLocation[@i].ID)
+            </td>
+            <td>@Ajax.ActionLink("Удалить", "RemoveLocation", new { lockid = Model.RecipeLocation[@i].ID }, new AjaxOptions { UpdateTargetId = "edit" }, new { @class = "btn btn-danger" })</td>
+        </tr>
+        }
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
 
+    <h3>Локации</h3>
+    <table class="table">
+        @for (int i = 0; i < Model.NoRecipeLocation.Count; i++)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(m => m.NoRecipeLocation[@i].Name)
+            @Html.HiddenFor(m => m.NoRecipeLocation[@i].ID)
+        </td>
+        <td>
+            @Ajax.ActionLink("Добавить", "AddLocation", new { lockid = Model.NoRecipeLocation[@i].ID }, new AjaxOptions { UpdateTargetId = "edit" }, new { @class = "btn btn-primary" })
+        </td>
+    </tr>
     }
+    </table>
     <button type="submit" class="btn btn-primary">Сохранить</button>
 }
-
-<h3>Локации</h3>
-<table>
-    @foreach (var location in Model.NoRecipeLocation)
-    {
-        <tr>
-            <td>@location.Name</td>
-            <td>
-                @Ajax.ActionLink("Добавить", "AddLocation", new { lockid = location.ID }, new AjaxOptions { UpdateTargetId = "edit" })
-            </td>
-        </tr>
-    }
-</table>
-

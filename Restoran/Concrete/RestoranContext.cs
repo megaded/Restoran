@@ -25,6 +25,7 @@ namespace Restoran
         public DbSet<Reason> Reason { get; set; }
         public DbSet<DisposalProduct> DisposalProduct { get; set; }
         public DbSet<ProductDisposal> ProductDisposal { get; set; }
+        public DbSet<Operation> Operation { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -98,6 +99,10 @@ namespace Restoran
             modelBuilder.Entity<Recipe>().Property(r => r.Name).IsRequired();
             modelBuilder.Entity<Recipe>().HasMany(r => r.Products).WithRequired().HasForeignKey(p => p.RecipeId).WillCascadeOnDelete(true);
             modelBuilder.Entity<Recipe>().HasMany(r => r.Locations).WithMany(l => l.Recipes);
+
+            modelBuilder.Entity<Operation>().HasKey(o => o.OperationId);
+            modelBuilder.Entity<Operation>().Property(o => o.Name).IsRequired();
+            modelBuilder.Entity<Operation>().HasRequired(o => o.Product).WithMany().HasForeignKey(o => o.ProductId);
 
         }
     }

@@ -1,0 +1,26 @@
+﻿@model List<RestoranWeb.Models.CalculationCardViewModel.CalculationCardViewModel>
+<div class="panel panel-primary">
+   @foreach (var recipe in Model)
+   {
+       <table class="table">
+           <caption>@recipe.RecipeName</caption>
+           <thead>
+               <tr>
+                   <td>Продукт</td>
+                   <td>Количество</td>
+                   <td>Цена</td>
+               </tr>
+           </thead>          
+           @foreach (var product in recipe.ProductsCard)
+           {
+              
+               <tr>
+                   <td>@product.ProductName</td>
+                   <td>@product.Value</td>
+                   <td>@product.Price</td>
+               </tr>               
+           }
+          @recipe.ProductsCard.Sum(p=>(p.Price*(decimal)p.Value))
+       </table>
+   }
+</div>
