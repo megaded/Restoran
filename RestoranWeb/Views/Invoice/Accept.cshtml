@@ -1,4 +1,6 @@
-﻿<div class="panel panel-primary">
+﻿@model RestoranWeb.Models.InvoiceViewModel.InvoiceViewModel
+
+<div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Накладная</h3>
     </div>
@@ -6,22 +8,23 @@
         <div class="form-group">
             @Html.Label("Номер накладной", new { @class = "col-sm-4 control-label" })
             <div class="col-sm-4">
-                @Html.TextBox("Test")
+                @Html.TextBoxFor(m => m.InvoiceNumber)
             </div>
         </div>
         <div class="form-group">
             @Html.Label("Номер счет-фактуры", new { @class = "col-sm-4 control-label" })
             <div class="col-sm-4">
-                @Html.TextBox("Test")
+                @Html.TextBoxFor(m => m.VATInvoice)
             </div>
         </div>
         <div class="form-group">
             @Html.Label("Дата", new { @class = "col-sm-4 control-label" })
             <div class="col-sm-4">
-                @Html.TextBox("Test")
+                @Html.TextBoxFor(m => m.Date)
             </div>
         </div>
         <div class="table-responsive">
+
             <table class="table">
                 <thead>
                     <tr>
@@ -35,18 +38,21 @@
                         <td>Общая цена</td>
                     </tr>
                 </thead>
-                <tr>
-                    <td>@Html.TextBox("Test")</td>
-                    <td>@Html.TextBox("Test")</td>
-                    <td>@Html.TextBox("Test")</td>
-                    <td>@Html.TextBox("Test")</td>
-                    <td>@Html.TextBox("Test")</td>
-                    <td>@Html.TextBox("Test")</td>
-                    <td>@Html.TextBox("Test")</td>
-                </tr>
+                @foreach (var item in Model.Products)
+                {
+                    <tr>
+                        <td>@Html.DisplayText(@item.ProductName)</td>
+                        <td>@Html.DisplayText(@item.Unit)</td>
+                        <td>@Html.DisplayText(@item.OrderValue.tos)</td>
+                        <td>@Html.DisplayText(@item.InvoiceValue)</td>
+                        <td>@Html.DisplayText(@item.)</td>
+                        <td>@Html.DisplayText()</td>
+                        <td>@Html.DisplayText()</td>
+                    </tr>
+                }
             </table>
         </div>
-        
+
     </div>
     <div class="panel-footer">Оприходовать накладную</div>
 </div>

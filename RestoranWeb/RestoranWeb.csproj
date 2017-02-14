@@ -192,6 +192,8 @@
     <Compile Include="Models\BidSheetViewModel\ProductViewModel.cs" />
     <Compile Include="Models\CalculationCardViewModel\CalculationCardViewModel.cs" />
     <Compile Include="Models\DispocalViewModel.cs" />
+    <Compile Include="Models\InvoiceViewModel\InvoiceViewModel.cs" />
+    <Compile Include="Models\InvoiceViewModel\ProductInvoiceViewModel.cs" />
     <Compile Include="Models\LocationViewModel\LocationViewModel.cs" />
     <Compile Include="Models\MarketViewModel\MarketEditViewModel.cs" />
     <Compile Include="Models\MarketViewModel\MarketViewModel.cs" />
@@ -360,7 +362,7 @@
     <Content Include="Views\Location\ProductsDetail.cshtml" />
     <Content Include="Views\Location\ProductOperation.cshtml" />
     <Content Include="Views\Location\Detail.cshtml" />
-    <Content Include="Views\Invoice\Detail.cshtml" />
+    <Content Include="Views\Invoice\Accept.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
