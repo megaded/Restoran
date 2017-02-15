@@ -14,6 +14,8 @@ namespace Restoran
         public DateTime Date { get; set; }
         public int SupplierId { get; set; }
         public virtual Supplier Supplier { get; set; }
+        public int LocationId { get; set; }
+        public virtual Location Location { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal TotalPriceWithTax { get; set; }
         public virtual ICollection<ProductInvoice> Products { get; set; }

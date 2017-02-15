@@ -50,8 +50,8 @@ namespace Restoran.Repositories
         public void CreateOrder(IEnumerable<ProductOrdered> products, int supplierID, int warehouseID)
         {
             Order order = new Order();
-            order.Supplier = SupplierRep.Get(supplierID);
-            order.Location = LocationRep.Get(warehouseID);
+            order.SupplierId = supplierID;
+            order.LocationId = warehouseID;
             products = products.Where(x => x.Value != 0);
             foreach (var product in products)
             {

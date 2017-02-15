@@ -363,6 +363,7 @@
     <Content Include="Views\Location\ProductOperation.cshtml" />
     <Content Include="Views\Location\Detail.cshtml" />
     <Content Include="Views\Invoice\Accept.cshtml" />
+    <Content Include="Views\Invoice\Invoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

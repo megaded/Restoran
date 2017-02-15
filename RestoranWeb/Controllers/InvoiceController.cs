@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RestoranWeb.Models.InvoiceViewModel;
+using Restoran;
 
 namespace RestoranWeb.Controllers
 {
@@ -22,12 +23,20 @@ namespace RestoranWeb.Controllers
             return View();
         }
 
+
+        public ActionResult Update(List<ProductInvoiceViewModel> model)
+        {            
+            return PartialView("Invoice", model);
+        }
+
         [HttpGet]
         public ActionResult Accept(int id)
         {
             var order = unitofWork.OrderRep.Get(id);
             InvoiceViewModel model = new InvoiceViewModel();
             model.SupplierId = order.Supplier.SupplierId;
+            model.LocationId = order.LocationId;
+            model.Date = DateTime.Now;
             model.SupplierName = order.Supplier.Name;
             model.Products = order.Products.Select(p => new ProductInvoiceViewModel
             {
@@ -37,7 +46,8 @@ namespace RestoranWeb.Controllers
                 Price = p.Price,
                 OrderValue = p.Value,
                 InvoiceValue = p.Value,
-                Tax = 18
+                Tax = 1.18,
+                PriceWithTax=p.Price*(decimal)1.18
             }).ToList();
             return View(model);
         }
@@ -45,7 +55,25 @@ namespace RestoranWeb.Controllers
         [HttpPost]
         public ActionResult Accept(InvoiceViewModel model)
         {
-            int c
+            var entity = new Invoice();
+            RestoranContext context = new RestoranContext();
+            entity.Date = model.Date;
+            entity.InvoiceNumber = model.InvoiceNumber;
+            entity.VATInvoice = model.VATInvoice;
+            entity.SupplierId = model.SupplierId;
+            entity.LocationId = model.LocationId;
+            foreach (var product in model.Products)
+            {
+                entity.Products.Add(new ProductInvoice
+                {
+                    ProductId = product.ProductId,
+                    Tax = product.Tax,
+                    Price = product.Price,
+                    Value=product.InvoiceValue
+                });
+            }
+            context.Invoice.Add(entity);
+            context.SaveChanges();
             return View();
         }
     }

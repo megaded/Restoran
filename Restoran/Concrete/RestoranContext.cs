@@ -26,9 +26,23 @@ namespace Restoran
         public DbSet<DisposalProduct> DisposalProduct { get; set; }
         public DbSet<ProductDisposal> ProductDisposal { get; set; }
         public DbSet<Operation> Operation { get; set; }
+        public DbSet<Invoice> Invoice { get; set; }
+        public DbSet<ProductInvoice> ProductsInvoice { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Invoice>().HasKey(i => i.InvoiceId);
+            modelBuilder.Entity<Invoice>().Property(i => i.InvoiceNumber).IsRequired();
+            modelBuilder.Entity<Invoice>().Property(i => i.VATInvoice).IsRequired();
+            modelBuilder.Entity<Invoice>().HasRequired(i => i.Supplier).WithMany().HasForeignKey(i => i.SupplierId);
+            modelBuilder.Entity<Invoice>().HasRequired(i => i.Location).WithMany().HasForeignKey(i => i.LocationId);
+            modelBuilder.Entity<Invoice>().HasMany(p => p.Products).WithRequired().HasForeignKey(p => p.InvoiceId);
+
+
+            modelBuilder.Entity<ProductInvoice>().HasKey(p => p.ProductInvoiceId);
+            modelBuilder.Entity<ProductInvoice>().HasRequired(p => p.Product).WithMany().HasForeignKey(p => p.ProductId);
+            modelBuilder.Entity<ProductInvoice>().HasRequired(p => p.Invoice).WithMany().HasForeignKey(p => p.InvoiceId);
+
             modelBuilder.Entity<ProductDisposal>().HasKey(m => m.ProductDisposalId);
             modelBuilder.Entity<ProductDisposal>().HasRequired(m => m.Reason).WithMany(m => m.ProductDisposal).HasForeignKey(m => m.ReasonId);
             modelBuilder.Entity<ProductDisposal>().HasRequired(m => m.Location).WithMany(m => m.ProductDisposal).HasForeignKey(m => m.LocationId);
@@ -84,7 +98,7 @@ namespace Restoran
 
             modelBuilder.Entity<ProductRecipe>().HasKey(p => p.ProductRecipeId);
             modelBuilder.Entity<ProductRecipe>().Property(p => p.Value).IsRequired();
-            modelBuilder.Entity<ProductRecipe>().HasRequired(p => p.Product).WithMany(ps=>ps.ProductRecipe).HasForeignKey(p => p.ProductId);
+            modelBuilder.Entity<ProductRecipe>().HasRequired(p => p.Product).WithMany(ps => ps.ProductRecipe).HasForeignKey(p => p.ProductId);
             modelBuilder.Entity<ProductRecipe>().HasRequired(p => p.Recipe).WithMany(r => r.Products).HasForeignKey(p => p.RecipeId).WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Order>().HasKey(o => o.OrderID);
@@ -92,8 +106,8 @@ namespace Restoran
             modelBuilder.Entity<Order>().Property(o => o.OrderDate).IsRequired();
             modelBuilder.Entity<Order>().Property(o => o.AcceptDate).IsOptional();
             modelBuilder.Entity<Order>().HasMany(o => o.Products).WithRequired(p => p.Order).WillCascadeOnDelete(true);
-            modelBuilder.Entity<Order>().HasRequired(o => o.Supplier).WithMany(s => s.Orders).WillCascadeOnDelete(true);
-            modelBuilder.Entity<Order>().HasRequired(o => o.Location).WithMany(l => l.Orders).WillCascadeOnDelete(true);
+            modelBuilder.Entity<Order>().HasRequired(o => o.Supplier).WithMany(s => s.Orders).HasForeignKey(o => o.SupplierId);
+            modelBuilder.Entity<Order>().HasRequired(o => o.Location).WithMany(l => l.Orders).HasForeignKey(o => o.LocationId);
 
             modelBuilder.Entity<Recipe>().HasKey(r => r.RecipeId);
             modelBuilder.Entity<Recipe>().Property(r => r.Name).IsRequired();

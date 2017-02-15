@@ -8,6 +8,7 @@ namespace Restoran
 {
     public class Order
     {
+        public int SupplierId { get; set; }
         public virtual Supplier Supplier { get; set; }
         public int OrderID { get; set; }
         public DateTime OrderDate { get; set; }

@@ -15,6 +15,6 @@ namespace Restoran
         public virtual Product Product { get; set; }
         public decimal Price { get; set; }
         public double Value { get; set; }
-        public int Tax { get; set; }
+        public double Tax { get; set; }
     }
 }

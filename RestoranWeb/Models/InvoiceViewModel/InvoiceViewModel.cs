@@ -13,6 +13,7 @@ namespace RestoranWeb.Models.InvoiceViewModel
         public string VATInvoice { get; set; }
         public DateTime Date { get; set; }
         public int SupplierId { get; set; }
+        public int LocationId { get; set; }
         public string SupplierName { get; set;}
         public decimal TotalPrice { get; set; }
         public decimal TotalPriceWithTax { get; set; }

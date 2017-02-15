@@ -1,0 +1,44 @@
+﻿@model List<RestoranWeb.Models.InvoiceViewModel.ProductInvoiceViewModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Название</td>
+            <td>Ед.изм</td>
+            <td>Количество заказанное </td>
+            <td>Количество по накладной</td>
+            <td>Цена</td>
+            <td>НДС</td>
+            <td>Цена с НДС</td>
+            <td>Общая цена</td>
+        </tr>
+    </thead>
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => m[@i].ProductName)
+                @Html.HiddenFor(m => m[@i].ProductId)
+                @Html.HiddenFor(m=>m[@i].ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => m[@i].Unit)
+                @Html.HiddenFor(m => m[@i].Unit)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m[@i].OrderValue)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m[@i].InvoiceValue)
+            </td>
+            <td>@Html.TextBoxFor(m => m[@i].Price)</td>
+            <td>@Html.TextBoxFor(m => m[@i].Tax)</td>
+            <td>
+                @Html.DisplayFor(m => m[@i].PriceWithTax)
+                @Html.HiddenFor(m => m[@i].PriceWithTax)
+            </td>
+            <td>@(Model[i].PriceWithTax * (decimal)Model[i].InvoiceValue)</td>
+        </tr>
+    }
+
+</table>

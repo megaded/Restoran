@@ -13,6 +13,7 @@ namespace RestoranWeb.Models.InvoiceViewModel
         public double OrderValue { get; set; }
         public double InvoiceValue { get; set; }
         public decimal Price { get; set; }
-        public int Tax { get; set; }        
+        public double Tax { get; set; }
+        public decimal PriceWithTax { get; set; }
     }
 }

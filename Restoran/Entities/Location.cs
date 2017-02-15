@@ -17,12 +17,14 @@ namespace Restoran
         public virtual ICollection<Order> Orders { get; set; }   
         public virtual ICollection<Recipe> Recipes { get; set; }  
         public virtual ICollection<ProductDisposal> ProductDisposal { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
         public Location()
         {
             Products = new List<ProductStorage>();
             Orders = new List<Order>();
             Recipes = new List<Recipe>();
             ProductDisposal = new List<ProductDisposal>();
+            Invoices = new List<Invoice>();
         }
     }
 }

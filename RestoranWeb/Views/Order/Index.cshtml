@@ -21,7 +21,7 @@
                     <td>@item.OrderDate.ToShortDateString()</td>
                     <td>@item.Supplier.Name</td>
                     <td>@Html.ActionLink("Просмотр", "Detail", new { id = @item.OrderID })</td>
-                    <td>@Html.ActionLink("Принять", "Accept", new { id = @item.OrderID })</td>
+                    <td>@Html.ActionLink("Принять", "Accept", "Invoice", new { id = @item.OrderID },null)</td>
                     <td>@Html.ActionLink("Удалить", "Delete", new { id = item.OrderID })</td>
                 </tr>
             }
