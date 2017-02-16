@@ -1,7 +1,7 @@
 ﻿@model RestoranWeb.Models.OrderCreateViewModel
 @using (Html.BeginForm("Create", "Order", FormMethod.Post))
 {
-    @Html.HiddenFor(m=>m.Id)
+    @Html.HiddenFor(m=>m.SupplierId)
     <table class="table">
         <thead>
             <tr>
@@ -16,8 +16,8 @@
             {
                 <tr>
                     @Html.HiddenFor(m => m.ProductOrdered[@i].ProductId)
-                    @Html.HiddenFor(m=>m.ProductOrdered[@i].Price)
-                    <td>@Model.ProductOrdered[@i].Product.Name</td>
+                    @Html.HiddenFor(m=>m.ProductOrdered[@i].)
+                    <td>@Model.ProductOrdered[@i].ProductName</td>
                     <td>@Model.ProductOrdered[@i].Product.Unit.Symbol</td>
                     <td>@Model.ProductOrdered[@i].Price</td>
                     <td>@Html.TextBoxFor(p => p.ProductOrdered[@i].Value)</td>

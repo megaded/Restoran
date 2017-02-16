@@ -7,6 +7,7 @@ using Restoran.Repositories;
 using RestoranWeb.Models;
 using RestoranWeb.Models.SupplierViewModel;
 using Restoran;
+using RestoranWeb.Models.OrderViewModel;
 
 namespace RestoranWeb.Controllers
 {
@@ -35,8 +36,18 @@ namespace RestoranWeb.Controllers
         {            
             var cookie = Request.Cookies["Restoran"];
             var marketId = int.Parse(cookie["marketId"]);
-            var productSupplier = unitOfWork.MarketRep.Get(marketId).Suppliers.Where(s=>s.SupplierId==id).FirstOrDefault().Products.ToList();
-            OrderCreateViewModel model = new OrderCreateViewModel(productSupplier,(int)id);
+            var model = new OrderCreateViewModel();
+            model.SupplierId = (int)id;
+            model.ProductOrdered = unitOfWork.LocationRep.Get(marketId).
+                Market.Suppliers
+                .Where(x => x.SupplierId == id).FirstOrDefault().
+                Products.Select(x => new ProductOrderedViewModel
+                {
+                    ProductId = x.ProductId,
+                    ProductName = x.Product.Name,
+                    Unit=x.Product.Unit.Symbol,
+                    Value = 0
+                }).ToList();
             return View("SupplierProducts", model);
         }
 

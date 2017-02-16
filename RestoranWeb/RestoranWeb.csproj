@@ -197,8 +197,9 @@
     <Compile Include="Models\LocationViewModel\LocationViewModel.cs" />
     <Compile Include="Models\MarketViewModel\MarketEditViewModel.cs" />
     <Compile Include="Models\MarketViewModel\MarketViewModel.cs" />
-    <Compile Include="Models\OrderCreateViewModel.cs" />
-    <Compile Include="Models\OrdersListViewModel.cs" />
+    <Compile Include="Models\OrderViewModel\OrderCreateViewModel.cs" />
+    <Compile Include="Models\OrderViewModel\OrdersListViewModel.cs" />
+    <Compile Include="Models\OrderViewModel\ProductOrderedViewModel.cs" />
     <Compile Include="Models\ProductCategoryViewModel\ProductCategoryViewModel.cs" />
     <Compile Include="Models\ProductDisposalViewModel.cs" />
     <Compile Include="Models\ProductViewModel\ProductViewModel.cs" />

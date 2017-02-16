@@ -42,7 +42,7 @@ namespace RestoranWeb.Controllers
         {
             HttpCookie cookie = Request.Cookies["Restoran"];
             int locationId = int.Parse(cookie["locationId"]);
-            unitOfWork.CreateOrder(model.ProductOrdered, model.Id, locationId);
+            unitOfWork.CreateOrder(model.ProductOrdered, model.SupplierId, locationId);
             return RedirectToAction("Orders");
         }
 

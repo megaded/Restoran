@@ -60,6 +60,7 @@ namespace Restoran
             modelBuilder.Entity<Location>().Property(l => l.Name);
             modelBuilder.Entity<Location>().HasRequired(l => l.Market).WithMany(p => p.Locations).HasForeignKey(l => l.MarketId).WillCascadeOnDelete(false);
             modelBuilder.Entity<Location>().HasMany(l => l.Recipes).WithMany(r => r.Locations);
+            modelBuilder.Entity<Location>().HasMany(l => l.Orders).WithRequired(p => p.Location).HasForeignKey(p => p.LocationId);
 
             modelBuilder.Entity<Supplier>().HasKey(s => s.SupplierId);
             modelBuilder.Entity<Supplier>().Property(s => s.Name).IsRequired();
