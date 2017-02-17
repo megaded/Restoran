@@ -1,19 +1,18 @@
 ﻿@model RestoranWeb.Models.InvoiceViewModel.InvoiceViewModel
 
-<div id="loading" style="display:none; color:Red; font-weight:bold;">
-    <p>Идет загрузка...</p>
-</div>
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Накладная</h3>
     </div>
-    <div class="panel-body">
-        @using (Html.BeginForm("Accept", "Invoice", FormMethod.Post))
-        {
+    @using (Html.BeginForm("Accept", "Invoice", FormMethod.Post))
+    {
+        <div class="panel-body">
+
             <div class="form-group">
                 @Html.Label("Номер накладной", new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-4">
                     @Html.TextBoxFor(m => m.InvoiceNumber)
+                    @Html.HiddenFor(m => m.LocationId)
                     @Html.HiddenFor(m => m.SupplierId)
                 </div>
             </div>
@@ -29,16 +28,58 @@
                     @Html.TextBoxFor(m => m.Date)
                 </div>
             </div>
-            using (Ajax.BeginForm("Update", "Invoice", new AjaxOptions { UpdateTargetId = "invoice", LoadingElementId = "loading", LoadingElementDuration = 1000 }))
-            {
-                <div id="invoice">
-                    @Html.Partial("Invoice", Model.Products)
-                </div>
-                <input type="submit" value="Обновить" />
-            }
-        }
-    </div>
-    <div class="panel-footer">
-    <input type="submit"  value="Оприходовать накладную">
-    </div>
+
+            <div id="invoice">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Название</td>
+                            <td>Ед.изм</td>
+                            <td>Количество заказанное </td>
+                            <td>Количество по накладной</td>
+                            <td>Цена</td>
+                            <td>НДС</td>
+                            <td>Цена с НДС</td>
+                            <td>Общая цена</td>
+                        </tr>
+                    </thead>
+                    @for (int i = 0; i < Model.Products.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => m.Products[@i].ProductName)
+                                @Html.HiddenFor(m => m.Products[@i].ProductId)
+                                @Html.HiddenFor(m => m.Products[@i].ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => m.Products[@i].Unit)
+                                @Html.HiddenFor(m => m.Products[@i].Unit)
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.Products[@i].OrderValue)
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.Products[@i].InvoiceValue)
+                            </td>
+                            <td>@Html.TextBoxFor(m => m.Products[@i].Price)</td>
+                            <td>@Html.TextBoxFor(m => m.Products[@i].Tax)</td>
+                            <td>
+                                @Html.DisplayFor(m => m.Products[@i].PriceWithTax)
+                                @Html.HiddenFor(m => m.Products[@i].PriceWithTax)
+                            </td>
+                            <td>@(Model.Products[i].PriceWithTax * (decimal)Model.Products[i].InvoiceValue)</td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+
+
+
+
+
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Оприходовать накладную">
+        </div>}
 </div>

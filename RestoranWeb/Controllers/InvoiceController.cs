@@ -72,8 +72,8 @@ namespace RestoranWeb.Controllers
                     Value=product.InvoiceValue
                 });
             }
-            context.Invoice.Add(entity);
-            context.SaveChanges();
+            unitofWork.LocationRep.Get(model.LocationId).Invoices.Add(entity);
+            unitofWork.Save();
             return View();
         }
     }

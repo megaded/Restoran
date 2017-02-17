@@ -17,7 +17,7 @@ namespace RestoranWeb.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        [HttpGet]        
+        [HttpGet]
         public ActionResult Detail(int id)
         {
             var products = unitOfWork.OrderRep.Get(id).Products;
@@ -30,11 +30,11 @@ namespace RestoranWeb.Controllers
         {
             var cookie = Request.Cookies["Restoran"];
             var locationId = int.Parse(cookie["locationId"]);
-            if (locationId ==0)
-                return RedirectToAction("Index","Location");
+            if (locationId == 0)
+                return RedirectToAction("Index", "Location");
             var orders = unitOfWork.OrderRep.GetAll().Where(p => p.LocationId == locationId).ToList();
             OrdersListViewModel model = new OrdersListViewModel(orders);
-            return View("Index",model);
+            return View("Index", model);
         }
 
         [HttpPost]
@@ -42,7 +42,18 @@ namespace RestoranWeb.Controllers
         {
             HttpCookie cookie = Request.Cookies["Restoran"];
             int locationId = int.Parse(cookie["locationId"]);
-            unitOfWork.CreateOrder(model.ProductOrdered, model.SupplierId, locationId);
+            Order entity = new Order();
+            entity.Accept = false;
+            entity.LocationId = locationId;
+            entity.SupplierId = model.SupplierId;
+            entity.Products = model.ProductOrdered.Select(x => new ProductOrdered()
+            {
+                ProductId=x.ProductId,
+                Price=x.Price,
+                Value=x.Value,              
+            }).ToList();
+            unitOfWork.OrderRep.Add(entity);
+            unitOfWork.Save();
             return RedirectToAction("Orders");
         }
 

@@ -46,6 +46,7 @@ namespace RestoranWeb.Controllers
                     ProductId = x.ProductId,
                     ProductName = x.Product.Name,
                     Unit=x.Product.Unit.Symbol,
+                    Price=x.Price,
                     Value = 0
                 }).ToList();
             return View("SupplierProducts", model);
