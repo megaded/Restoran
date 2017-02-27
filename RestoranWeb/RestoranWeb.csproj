@@ -180,6 +180,7 @@
     <Compile Include="Controllers\ProductStorageController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\TransferController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -363,13 +364,14 @@
     <Content Include="Views\Location\ProductsDetail.cshtml" />
     <Content Include="Views\Location\ProductOperation.cshtml" />
     <Content Include="Views\Location\Detail.cshtml" />
-    <Content Include="Views\Invoice\Accept.cshtml" />
+    <Content Include="Views\Invoice\Detail.cshtml" />
     <Content Include="Views\Invoice\Invoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\ProductSupplier\" />
     <Folder Include="Views\SettingsMenu\" />
+    <Folder Include="Views\Transfer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

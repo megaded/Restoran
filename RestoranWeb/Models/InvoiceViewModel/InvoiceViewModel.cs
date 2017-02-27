@@ -8,6 +8,7 @@ namespace RestoranWeb.Models.InvoiceViewModel
 {
     public class InvoiceViewModel
     {
+        public int OrderId { get; set; }
         public int InvoiceId { get; set; }
         public string InvoiceNumber { get; set; }
         public string VATInvoice { get; set; }

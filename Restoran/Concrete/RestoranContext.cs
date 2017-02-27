@@ -28,14 +28,26 @@ namespace Restoran
         public DbSet<Operation> Operation { get; set; }
         public DbSet<Invoice> Invoice { get; set; }
         public DbSet<ProductInvoice> ProductsInvoice { get; set; }
+        public DbSet<Transfer> Transfer { get; set; }
+        public DbSet<ProductTransfer> ProductTransfer { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ProductTransfer>().HasKey(i => i.ProductTransferId);
+            modelBuilder.Entity<ProductTransfer>().HasRequired(i => i.Product).WithMany().HasForeignKey(i => i.ProductId);
+
+            modelBuilder.Entity<Transfer>().HasKey(i => i.TransferId);
+            modelBuilder.Entity<Transfer>().HasRequired(i => i.From).WithMany().HasForeignKey(i => i.FromId);
+            modelBuilder.Entity<Transfer>().HasRequired(i => i.To).WithMany().HasForeignKey(i => i.ToId);
+            modelBuilder.Entity<Transfer>().HasMany(i => i.Products);
+
+
             modelBuilder.Entity<Invoice>().HasKey(i => i.InvoiceId);
             modelBuilder.Entity<Invoice>().Property(i => i.InvoiceNumber).IsRequired();
             modelBuilder.Entity<Invoice>().Property(i => i.VATInvoice).IsRequired();
             modelBuilder.Entity<Invoice>().HasRequired(i => i.Supplier).WithMany().HasForeignKey(i => i.SupplierId);
             modelBuilder.Entity<Invoice>().HasMany(p => p.Products).WithRequired().HasForeignKey(p => p.InvoiceId);
+            modelBuilder.Entity<Invoice>().HasRequired(i => i.Order).WithMany().HasForeignKey(i => i.OrderId);
 
             modelBuilder.Entity<ProductInvoice>().HasKey(p => p.ProductInvoiceId);
             modelBuilder.Entity<ProductInvoice>().HasRequired(p => p.Product).WithMany().HasForeignKey(p => p.ProductId);

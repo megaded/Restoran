@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Restoran
 {
     public class Invoice
-    {
+    {        
         public int InvoiceId { get; set; }
         public string InvoiceNumber { get; set; }
         public string VATInvoice { get; set; }
@@ -18,6 +18,8 @@ namespace Restoran
         public virtual Location Location { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal TotalPriceWithTax { get; set; }
+        public int OrderId { get; set; }
+        public virtual Order Order { get; set; }
         public virtual ICollection<ProductInvoice> Products { get; set; }
         public Invoice()
         {

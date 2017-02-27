@@ -30,7 +30,7 @@ namespace RestoranWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult Accept(int id)
+        public ActionResult Detail(int id)
         {
             var order = unitofWork.OrderRep.Get(id);
             InvoiceViewModel model = new InvoiceViewModel();
@@ -49,7 +49,7 @@ namespace RestoranWeb.Controllers
                 Tax = 1.18,
                 PriceWithTax=p.Price*(decimal)1.18
             }).ToList();
-            return View(model);
+            return View("Detail", model);
         }
 
         [HttpPost]
@@ -62,6 +62,7 @@ namespace RestoranWeb.Controllers
             entity.VATInvoice = model.VATInvoice;
             entity.SupplierId = model.SupplierId;
             entity.LocationId = model.LocationId;
+            entity.OrderId = model.OrderId;
             foreach (var product in model.Products)
             {
                 entity.Products.Add(new ProductInvoice
@@ -73,6 +74,10 @@ namespace RestoranWeb.Controllers
                 });
             }
             unitofWork.LocationRep.Get(model.LocationId).Invoices.Add(entity);
+            var order = unitofWork.OrderRep.Get(model.OrderId);
+            order.Accept = true;
+            order.AcceptDate = DateTime.Now;
+            unitofWork.OrderRep.Update(order);
             unitofWork.Save();
             return View();
         }

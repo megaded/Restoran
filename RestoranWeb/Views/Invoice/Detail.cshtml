@@ -6,7 +6,8 @@
     </div>
     @using (Html.BeginForm("Accept", "Invoice", FormMethod.Post))
     {
-        <div class="panel-body">
+      @Html.HiddenFor(m=>m.OrderId)
+          <div class="panel-body">
 
             <div class="form-group">
                 @Html.Label("Номер накладной", new { @class = "col-sm-4 control-label" })
