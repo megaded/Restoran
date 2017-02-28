@@ -37,17 +37,10 @@ namespace Restoran
             modelBuilder.Entity<ProductTransfer>().HasRequired(i => i.Product).WithMany().HasForeignKey(i => i.ProductId);
 
             modelBuilder.Entity<Transfer>().HasKey(i => i.TransferId);
-            modelBuilder.Entity<Transfer>().HasRequired(i => i.From).WithMany().HasForeignKey(i => i.FromId);
-            modelBuilder.Entity<Transfer>().HasRequired(i => i.To).WithMany().HasForeignKey(i => i.ToId);
+            modelBuilder.Entity<Transfer>().HasRequired(i => i.From).WithMany().HasForeignKey(i => i.FromId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Transfer>().HasRequired(i => i.To).WithMany().HasForeignKey(i => i.ToId).WillCascadeOnDelete(false);
             modelBuilder.Entity<Transfer>().HasMany(i => i.Products);
 
-
-            modelBuilder.Entity<Invoice>().HasKey(i => i.InvoiceId);
-            modelBuilder.Entity<Invoice>().Property(i => i.InvoiceNumber).IsRequired();
-            modelBuilder.Entity<Invoice>().Property(i => i.VATInvoice).IsRequired();
-            modelBuilder.Entity<Invoice>().HasRequired(i => i.Supplier).WithMany().HasForeignKey(i => i.SupplierId);
-            modelBuilder.Entity<Invoice>().HasMany(p => p.Products).WithRequired().HasForeignKey(p => p.InvoiceId);
-            modelBuilder.Entity<Invoice>().HasRequired(i => i.Order).WithMany().HasForeignKey(i => i.OrderId);
 
             modelBuilder.Entity<ProductInvoice>().HasKey(p => p.ProductInvoiceId);
             modelBuilder.Entity<ProductInvoice>().HasRequired(p => p.Product).WithMany().HasForeignKey(p => p.ProductId);
@@ -72,7 +65,7 @@ namespace Restoran
             modelBuilder.Entity<Location>().HasRequired(l => l.Market).WithMany(p => p.Locations).HasForeignKey(l => l.MarketId).WillCascadeOnDelete(false);
             modelBuilder.Entity<Location>().HasMany(l => l.Recipes).WithMany(r => r.Locations);
             modelBuilder.Entity<Location>().HasMany(l => l.Orders).WithRequired(o => o.Location).HasForeignKey(o => o.LocationId);
-            modelBuilder.Entity<Location>().HasMany(l => l.Invoices).WithRequired(i => i.Location).HasForeignKey(o => o.LocationId);
+            modelBuilder.Entity<Location>().HasMany(l => l.Invoices).WithRequired().HasForeignKey(o => o.LocationId).WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Supplier>().HasKey(s => s.SupplierId);
             modelBuilder.Entity<Supplier>().Property(s => s.Name).IsRequired();
@@ -130,6 +123,12 @@ namespace Restoran
             modelBuilder.Entity<Operation>().Property(o => o.Name).IsRequired();
             modelBuilder.Entity<Operation>().HasRequired(o => o.Product).WithMany().HasForeignKey(o => o.ProductId);
 
+            modelBuilder.Entity<Invoice>().HasKey(i => i.InvoiceId);
+            modelBuilder.Entity<Invoice>().Property(i => i.InvoiceNumber).IsRequired();
+            modelBuilder.Entity<Invoice>().Property(i => i.VATInvoice).IsRequired();
+            modelBuilder.Entity<Invoice>().HasRequired(i => i.Supplier).WithMany().HasForeignKey(i => i.SupplierId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Invoice>().HasMany(p => p.Products).WithRequired().HasForeignKey(p => p.InvoiceId);
+            modelBuilder.Entity<Invoice>().HasRequired(i => i.Order).WithMany().HasForeignKey(i => i.OrderId);
         }
     }
 }

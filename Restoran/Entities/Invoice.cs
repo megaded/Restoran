@@ -15,7 +15,6 @@ namespace Restoran
         public int SupplierId { get; set; }
         public virtual Supplier Supplier { get; set; }
         public int LocationId { get; set; }
-        public virtual Location Location { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal TotalPriceWithTax { get; set; }
         public int OrderId { get; set; }
