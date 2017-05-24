@@ -18,3 +18,13 @@ C:\Restoran\Restoran\bin\Debug\EntityFramework.SqlServer.xml
 C:\Restoran\Restoran\obj\Debug\Restoran.dll
 C:\Restoran\Restoran\obj\Debug\Restoran.pdb
 C:\Restoran\Restoran\obj\Debug\Restoran.csprojResolveAssemblyReference.cache
+D:\Restoran\Restoran\bin\Debug\Restoran.dll.config
+D:\Restoran\Restoran\bin\Debug\Restoran.dll
+D:\Restoran\Restoran\bin\Debug\Restoran.pdb
+D:\Restoran\Restoran\bin\Debug\EntityFramework.dll
+D:\Restoran\Restoran\bin\Debug\EntityFramework.SqlServer.dll
+D:\Restoran\Restoran\bin\Debug\EntityFramework.xml
+D:\Restoran\Restoran\bin\Debug\EntityFramework.SqlServer.xml
+D:\Restoran\Restoran\obj\Debug\Restoran.csprojResolveAssemblyReference.cache
+D:\Restoran\Restoran\obj\Debug\Restoran.dll
+D:\Restoran\Restoran\obj\Debug\Restoran.pdb
