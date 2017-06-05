@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -44,7 +45,24 @@ namespace RestoranWeb.Controllers
             newRecipe.Description = model.Description;
             newRecipe.Products = model.Products;
             unitOfWork.RecipeRep.Add(newRecipe);
-            unitOfWork.Save();
+            try
+            {
+
+                unitOfWork.Save();
+
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                {
+                    Response.Write("Object: " + validationError.Entry.Entity.ToString());
+                    Response.Write("");
+                        foreach (DbValidationError err in validationError.ValidationErrors)
+                    {
+                        Response.Write(err.ErrorMessage + "");
+                        }
+                }
+            }         
 
             return RedirectToAction("Index");
         }
