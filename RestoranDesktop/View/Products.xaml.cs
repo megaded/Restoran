@@ -22,7 +22,6 @@ namespace RestoranDesktop.View
     {
         public Products()
         {
-            this.DataContext=new ProductViewModel();
             InitializeComponent();
         }
     }

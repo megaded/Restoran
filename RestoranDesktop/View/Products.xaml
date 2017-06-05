@@ -4,12 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RestoranDesktop.View"
+        xmlns:viewModel="clr-namespace:RestoranDesktop.ViewModel"
         mc:Ignorable="d"
-        Title="Продукты" Height="300" Width="300">
+        Title="Продукты" Height="300" Width="300"
+        SizeToContent="WidthAndHeight">
+    <Window.DataContext>
+        <viewModel:ProductViewModel></viewModel:ProductViewModel>
+    </Window.DataContext>
     <Grid>
-
         <ListBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Products}" Grid.IsSharedSizeScope="True"
-         HorizontalContentAlignment="Stretch" >
+         HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="10,0,10,10">
@@ -19,7 +23,6 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Name}" Margin="10,10,10,10"></TextBlock>
                         <Button Grid.Column="1" Grid.Row="0" Command="{Binding Detail}" CommandParameter="{Binding ProductId}">Просмотр</Button>
                         <Button Grid.Column="2" Grid.Row="0" Command="{Binding Edit}" CommandParameter="{Binding ProductId}">Редактировать</Button>
@@ -30,3 +33,4 @@
         </ListBox>
     </Grid>
 </Window>
+

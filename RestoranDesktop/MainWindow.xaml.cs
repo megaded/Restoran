@@ -22,8 +22,7 @@ namespace RestoranDesktop
     public partial class MainWindow : Window
     {
         public MainWindow()
-        {
-            this.DataContext=new MainMenuViewModel();
+        {           
             InitializeComponent();
             
         }

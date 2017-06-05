@@ -4,17 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RestoranDesktop"
+        xmlns:viewModel="clr-namespace:RestoranDesktop.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525"
+        SizeToContent="WidthAndHeight">
+    <Window.DataContext>
+        <viewModel:MainMenuViewModel></viewModel:MainMenuViewModel>
+    </Window.DataContext>
     <Grid>
-        <ListBox ItemsSource="{Binding Menu}">
+        <ListBox ItemsSource="{Binding Menu}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                   <Button Command="{Binding Open}">
-                       <TextBlock Text="{Binding Name}"></TextBlock>
-                   </Button>
-                </DataTemplate>
+                    <Grid>
+                        <Button Command="{Binding Open}" >
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </Button>
+                        </Grid>
+               </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
     </Grid>
 </Window>
+
