@@ -7,15 +7,24 @@
         mc:Ignorable="d"
         Title="Продукты" Height="300" Width="300">
     <Grid>
-        <ListBox ItemsSource="{Binding Products}">
+
+        <ListBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Products}" Grid.IsSharedSizeScope="True"
+         HorizontalContentAlignment="Stretch" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding Name}"></TextBlock>
-                        <TextBlock Text="{Binding Description}"></TextBlock>
-                        <TextBlock Text="{Binding Unit}"></TextBlock>
-                        <TextBlock Text="{Binding Category}"></TextBlock>
-                    </StackPanel>
+                    <Grid Margin="10,0,10,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Key"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Name}" Margin="10,10,10,10"></TextBlock>
+                        <Button Grid.Column="1" Grid.Row="0" Command="{Binding Detail}" CommandParameter="{Binding ProductId}">Просмотр</Button>
+                        <Button Grid.Column="2" Grid.Row="0" Command="{Binding Edit}" CommandParameter="{Binding ProductId}">Редактировать</Button>
+                        <Button Grid.Column="3" Grid.Row="0" Command="{Binding Delete}" CommandParameter="{Binding ProductId}">Удалить</Button>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

@@ -19,6 +19,16 @@ namespace RestoranDesktop.Model
         public void Execute(object parameter)
         {
             Action();
+
+        }
+
+        public Command()
+        {
+            
+        }
+        public Command(Action action)
+        {
+            this.Action = action;
         }
     }
 }

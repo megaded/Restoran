@@ -70,6 +70,9 @@
     <Compile Include="Model\Product.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
+    <Compile Include="View\Product.xaml.cs">
+      <DependentUpon>Product.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Products.xaml.cs">
       <DependentUpon>Products.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Products.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
