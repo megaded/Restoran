@@ -68,6 +68,7 @@
     <Compile Include="Model\Command.cs" />
     <Compile Include="Model\ItemMenu.cs" />
     <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\Unit.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="View\Product.xaml.cs">
@@ -126,6 +127,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RestoranSDK\RestoranSDK.csproj">
+      <Project>{2a3f6089-59c7-4fc0-aba5-17258f432f77}</Project>
+      <Name>RestoranSDK</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Restoran\Restoran.csproj">
       <Project>{9f0f9fae-f6d7-422f-ad44-ef2eb3a45f9c}</Project>
       <Name>Restoran</Name>

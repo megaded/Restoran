@@ -12,22 +12,82 @@ namespace RestoranApi.Controllers
     [RoutePrefix("unit")]
     public class UnitController : ApiController
     {
-        private RestoranContext context;
+        private readonly RestoranContext context;
         public UnitController()
         {
-            context = new RestoranContext();
+            this.context = new RestoranContext();
         }
-
-        public IEnumerable<UnitViewModel> GetAllUnits()
+        /// <summary>
+        /// Получение списка единиц измерений
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("units")]
+        public HttpResponseMessage GetAllUnits()
         {
             var units = context.Unit.ToList();
             var model = units.Select(x => new UnitViewModel
             {
-                Id=x.UnitId,
-                Name=x.Name,
-                Symbol=x.Symbol,
+                Id = x.UnitId,
+                Name = x.Name,
+                Symbol = x.Symbol,
             });
-            return model;
+            return Request.CreateResponse(HttpStatusCode.OK, model);
         }
+        /// <summary>
+        /// Получение единицы измерения по Id
+        /// </summary>
+        /// <param name="unitId">Id единицы измерения</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{unitId:int}")]
+        public HttpResponseMessage GetUnit(int unitId)
+        {
+            var entity = context.Unit.Find(unitId);
+            if (entity == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, "Единица измерения не найдена");
+            }
+            var model = new UnitViewModel();
+            model.Name = entity.Name;
+            model.Id = entity.UnitId;
+            model.Symbol = entity.Symbol;
+            return Request.CreateResponse(HttpStatusCode.OK, model);
+        }
+        /// <summary>
+        /// Создание единицы измерения
+        /// </summary>
+        /// <param name="unit">Модель единицы измерения</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("create")]
+        public HttpResponseMessage Create(UnitViewModel unit)
+        {
+            var entity=new Unit();
+            entity.Name = unit.Name;
+            entity.Symbol = unit.Symbol;
+            context.Unit.Add(entity);
+            context.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
+        /// <summary>
+        /// Удаление единицы измерения по Id
+        /// </summary>
+        /// <param name="unitId">Id единицы измерения</param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("delete/{unitId:int}")]
+        public HttpResponseMessage Delete(int unitId)
+        {
+            var entity = context.Unit.Find(unitId);
+            if (entity == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            context.Unit.Remove(entity);
+            context.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+        
     }
 }

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoranDesktop", "Restoran
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoranApi", "RestoranWebApi\RestoranApi.csproj", "{FD7FBF48-0BB4-4912-A9F0-B8281E933A6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoranSDK", "RestoranSDK\RestoranSDK.csproj", "{2A3F6089-59C7-4FC0-ABA5-17258F432F77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{FD7FBF48-0BB4-4912-A9F0-B8281E933A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD7FBF48-0BB4-4912-A9F0-B8281E933A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD7FBF48-0BB4-4912-A9F0-B8281E933A6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A3F6089-59C7-4FC0-ABA5-17258F432F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A3F6089-59C7-4FC0-ABA5-17258F432F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A3F6089-59C7-4FC0-ABA5-17258F432F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A3F6089-59C7-4FC0-ABA5-17258F432F77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

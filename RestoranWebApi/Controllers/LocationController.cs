@@ -16,7 +16,7 @@ namespace RestoranApi.Controllers
     [RoutePrefix("location")]
     public class LocationController : ApiController
     {
-        private RestoranContext context;
+        private readonly RestoranContext context;
         public LocationController()
         {
             context = new RestoranContext();
