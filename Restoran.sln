@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoranWeb", "RestoranWeb\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoranDesktop", "RestoranDesktop\RestoranDesktop.csproj", "{C83342EA-8568-4988-8CA1-8AC0934B84CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoranApi", "RestoranWebApi\RestoranApi\RestoranApi.csproj", "{FD7FBF48-0BB4-4912-A9F0-B8281E933A6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoranApi", "RestoranWebApi\RestoranApi.csproj", "{FD7FBF48-0BB4-4912-A9F0-B8281E933A6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
