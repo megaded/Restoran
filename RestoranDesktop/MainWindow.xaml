@@ -12,7 +12,7 @@
         <viewModel:MainMenuViewModel></viewModel:MainMenuViewModel>
     </Window.DataContext>
     <Grid>
-        <ListBox ItemsSource="{Binding Menu}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+        <ListBox ItemsSource="{Binding Menu ,Mode=OneWay}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>

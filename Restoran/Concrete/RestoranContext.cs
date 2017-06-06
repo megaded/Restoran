@@ -10,6 +10,7 @@ namespace Restoran
 {
     public class RestoranContext : DbContext
     {
+
         public DbSet<Product> Product { get; set; }
         public DbSet<Unit> Unit { get; set; }
         public DbSet<ProductCategory> ProductCategory { get; set; }
@@ -31,6 +32,10 @@ namespace Restoran
         public DbSet<Transfer> Transfer { get; set; }
         public DbSet<ProductTransfer> ProductTransfer { get; set; }
 
+        public RestoranContext()
+        {
+            Database.SetInitializer<RestoranContext>(new RestoranInitializer());
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductTransfer>().HasKey(i => i.ProductTransferId);
