@@ -16,7 +16,8 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <ListBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Products}" Grid.IsSharedSizeScope="True"
+        <Button Grid.Row="0" Command="{Binding Create}">Добавить продукт</Button>
+        <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Products}" Grid.IsSharedSizeScope="True"
          HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -35,23 +36,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Label>Название</Label>
-            <TextBox Width="100" Text="{Binding Name}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-            <Label>Единица измерения</Label>
-            <ComboBox ItemsSource="{Binding Units}" SelectedItem="{Binding UnitSelected}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding UnitName}"></TextBlock>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <Label>Категория</Label>
-            <TextBox Width="100" Text="{Binding CategoryId}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-            <Label>Описание</Label>
-            <TextBox Width="100" Text="{Binding Description}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-            <Button Command="{Binding Create }">Создать</Button>
-        </StackPanel>
     </Grid>
 </Window>
 

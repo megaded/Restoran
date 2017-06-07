@@ -17,9 +17,9 @@ namespace RestoranDesktop.View
     /// <summary>
     /// Interaction logic for Product.xaml
     /// </summary>
-    public partial class Product : Window
+    public partial class ProductDetail : Window
     {
-        public Product()
+        public ProductDetail()
         {
             InitializeComponent();
         }

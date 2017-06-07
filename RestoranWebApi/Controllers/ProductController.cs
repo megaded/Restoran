@@ -43,6 +43,7 @@ namespace RestoranApi.Controllers
             });
             return Request.CreateResponse(HttpStatusCode.OK,model);
         }
+
         /// <summary>
         /// Получение информации о продукте по ключу
         /// </summary>
@@ -66,6 +67,7 @@ namespace RestoranApi.Controllers
             model.Unit = entity.Unit.Symbol;
             return Request.CreateResponse(HttpStatusCode.OK,model);
         }
+
         /// <summary>
         /// Создание продукта
         /// </summary>
@@ -84,6 +86,7 @@ namespace RestoranApi.Controllers
             context.SaveChanges();
             return Request.CreateResponse<ProductViewModel>(HttpStatusCode.Created,product);
         }
+
         /// <summary>
         /// Удаление продукта по ключу
         /// </summary>
@@ -101,6 +104,28 @@ namespace RestoranApi.Controllers
             context.Product.Remove(entity);
             context.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK, "Продукт удален");
+        }
+
+        /// <summary>
+        /// Обновление инфомарции о продукте
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("update")]
+        public HttpResponseMessage Update([FromBody]ProductViewModel product)
+        {
+            var entity = context.Product.Find(product.Id);
+            if (entity == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            entity.Name = product.Name;
+            entity.UnitId = product.UnitId;
+            entity.ProductCategoryId = product.ProductCategoryId;
+            entity.Description = product.Description;
+            context.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     
     }

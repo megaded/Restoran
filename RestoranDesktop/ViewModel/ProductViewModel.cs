@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Input;
 using Restoran;
 using RestoranDesktop.Model;
+using RestoranDesktop.View.Product;
 using RestoranSDK;
 using RestoranSDK.DTO;
 using Unit = RestoranDesktop.Model.Unit;
@@ -19,8 +20,13 @@ namespace RestoranDesktop.ViewModel
 {
     public class ProductViewModel : INotifyPropertyChanged
     {
+        /// <summary>
+        /// View model представления продуктов.
+        /// </summary>
         #region Private Property
         private readonly ProductsAPI ProductsAPI;
+        private readonly UnitAPI UnitAPI;
+        private readonly ProductCategoryAPI ProductCategoryAPI;
         private string name { get; set; }
         private int unitID { get; set; }
         private int categoryID { get; set; }
@@ -38,6 +44,7 @@ namespace RestoranDesktop.ViewModel
 
         public Unit UnitSelected { get; set; }
 
+        public Model.ProductCategory ProductCategorySelected { get; set; }
 
         public string Name
         {
@@ -92,33 +99,28 @@ namespace RestoranDesktop.ViewModel
 
         public ObservableCollection<Model.Product> Products { get; set; }
         public List<Model.Unit> Units { get; set; }
+        public List<Model.ProductCategory> ProductCategory { get; set; }
         #endregion
 
         #region Constructor
-
         public ProductViewModel()
         {
             Create = new Command(() =>
             {
-                var dto = new ProductDTO();
-                dto.Name = Name;
-                dto.UnitId = UnitSelected.UnitId;
-                dto.ProductCategoryId = CategoryId;
-                dto.Description = Description;
-                var result = ProductsAPI.Create(dto);
-                if (result)
-                {
-                    MessageBox.Show("Продукт создан");
-                }
+                CreateProduct();
             });
             ProductsAPI = new ProductsAPI();
-            var products = ProductsAPI.Get();
+            UnitAPI = new UnitAPI();
+            ProductCategoryAPI = new ProductCategoryAPI();
+            var products = ProductsAPI.GetAll();
             var productviewModel = products.Select(x => new Model.Product()
             {
                 ProductId = x.Id,
                 Name = x.Name,
                 Description = x.Description,
+                UnitId =x.UnitId,
                 Unit = x.Unit,
+                CategoryId =x.ProductCategoryId,
                 Category = x.ProductCategory,
                 Detail = new Command(() =>
                 {
@@ -128,34 +130,43 @@ namespace RestoranDesktop.ViewModel
                 Delete = new Command(() =>
                 {
                     Detele(x.Id);
+                }),
+                Edit = new Command(() =>
+                {
+                    Edit(x.Id);
                 })
             });
             Products = new ObservableCollection<Model.Product>(productviewModel);
-
-            Units = new List<Unit>() {
-                new Unit()
-            {
-                UnitName="Кг",
-                UnitId = 1
-            } ,
-            new Unit()
-            {
-                UnitName ="Л",
-                UnitId =2
-            } };
+          
         }
 
         #endregion
 
         #region Private Methods
+
+        private void CreateProduct()
+        {
+           var view=new ProductCreate();
+          var viewmodel=new ProductCreateViewModel();
+            view.DataContext = viewmodel;
+            view.ShowDialog();
+        }
         private void DetailShow(int productId)
         {
             var productDetail = Products.Where(x => x.ProductId == productId).FirstOrDefault();
-            var view = new View.Product();
+            var view = new View.ProductDetail();
             view.DataContext = productDetail;
             view.ShowDialog();
         }
 
+        private void Edit(int productId)
+        {
+            var view = new ProductEdit();          
+            var entity = Products.Single(x => x.ProductId == productId);
+            var viewModel = new ProductEditViewModel(entity);           
+            view.DataContext = viewModel;
+            view.ShowDialog();
+        }
         private void Detele(int productId)
         {
             var result = MessageBox.Show("Вы уверены", "Подтвердите удаление", MessageBoxButton.YesNoCancel);
