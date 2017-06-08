@@ -71,20 +71,35 @@
     <Compile Include="Model\ProductCategory.cs" />
     <Compile Include="Model\Unit.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
-    <Compile Include="ViewModel\ProductCreateViewModel.cs" />
-    <Compile Include="ViewModel\ProductEditViewModel.cs" />
-    <Compile Include="ViewModel\ProductViewModel.cs" />
-    <Compile Include="View\Product\ProductCreate.xaml.cs">
-      <DependentUpon>ProductCreate.xaml</DependentUpon>
+    <Compile Include="ViewModel\Product\ProductCreateViewModel.cs" />
+    <Compile Include="ViewModel\Product\ProductEditViewModel.cs" />
+    <Compile Include="ViewModel\Product\ProductViewModel.cs" />
+    <Compile Include="ViewModel\Unit\UnitCreateViewModel.cs" />
+    <Compile Include="ViewModel\Unit\UnitEditViewModel.cs" />
+    <Compile Include="ViewModel\Unit\UnitViewModel.cs" />
+    <Compile Include="View\Product\ProductCreateView.xaml.cs">
+      <DependentUpon>ProductCreateView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Product\ProductDetail.xaml.cs">
-      <DependentUpon>ProductDetail.xaml</DependentUpon>
+    <Compile Include="View\Product\ProductDetailView.xaml.cs">
+      <DependentUpon>ProductDetailView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Product\ProductEdit.xaml.cs">
-      <DependentUpon>ProductEdit.xaml</DependentUpon>
+    <Compile Include="View\Product\ProductEditView.xaml.cs">
+      <DependentUpon>ProductEditView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Product\Products.xaml.cs">
-      <DependentUpon>Products.xaml</DependentUpon>
+    <Compile Include="View\Product\ProductsView.xaml.cs">
+      <DependentUpon>ProductsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Unit\UnitCreateView.xaml.cs">
+      <DependentUpon>UnitCreateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Unit\UnitDetailView.xaml.cs">
+      <DependentUpon>UnitDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Unit\UnitEditView.xaml.cs">
+      <DependentUpon>UnitEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Unit\UnitsView.xaml.cs">
+      <DependentUpon>UnitsView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -98,19 +113,35 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Product\ProductCreate.xaml">
+    <Page Include="View\Product\ProductCreateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Product\ProductDetail.xaml">
+    <Page Include="View\Product\ProductDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Product\ProductEdit.xaml">
+    <Page Include="View\Product\ProductEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Product\Products.xaml">
+    <Page Include="View\Product\ProductsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Unit\UnitCreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Unit\UnitDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Unit\UnitEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Unit\UnitsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,6 +183,10 @@
       <Project>{9f0f9fae-f6d7-422f-ad44-ef2eb3a45f9c}</Project>
       <Name>Restoran</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\ProductCategory\" />
+    <Folder Include="View\Recipe\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

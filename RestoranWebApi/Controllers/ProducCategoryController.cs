@@ -19,7 +19,10 @@ namespace RestoranApi.Controllers
         {
             this.context = new RestoranContext();
         }
-
+        /// <summary>
+        /// Получение списка категорий продуктов.
+        /// </summary>
+        /// <returns></returns>
         [Route("categories")]
         public HttpResponseMessage GetAllProductCategories()
         {

@@ -24,7 +24,7 @@ namespace RestoranDesktop.ViewModel
         #endregion
 
         #region Property
-        public Unit SelectedUnit { get; set; }
+        public Model.Unit SelectedUnit { get; set; }
         public ProductCategory SelectedCategory { get; set; }
         public List<Model.Unit> Units { get; set; }
 
@@ -76,10 +76,10 @@ namespace RestoranDesktop.ViewModel
             this.id = product.ProductId;
             this.name = product.Name;
             this.description = product.Description;
-            this.Units = UnitAPI.GetAll().Select(x => new Unit()
+            this.Units = UnitAPI.GetAll().Select(x => new Model.Unit()
             {
                 UnitId = x.Id,
-                UnitName = x.Name
+                Name = x.Name
             }).ToList();
             this.SelectedUnit = Units.Single(x => x.UnitId == product.UnitId);
             this.ProductCategory = ProductCategoryAPI.GetAll().Select(x => new ProductCategory()

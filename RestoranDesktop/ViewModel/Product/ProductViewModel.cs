@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Input;
 using Restoran;
 using RestoranDesktop.Model;
+using RestoranDesktop.View;
 using RestoranDesktop.View.Product;
 using RestoranSDK;
 using RestoranSDK.DTO;
@@ -42,7 +43,7 @@ namespace RestoranDesktop.ViewModel
 
         #region Property
 
-        public Unit UnitSelected { get; set; }
+        public Model.Unit UnitSelected { get; set; }
 
         public Model.ProductCategory ProductCategorySelected { get; set; }
 
@@ -118,9 +119,9 @@ namespace RestoranDesktop.ViewModel
                 ProductId = x.Id,
                 Name = x.Name,
                 Description = x.Description,
-                UnitId =x.UnitId,
+                UnitId = x.UnitId,
                 Unit = x.Unit,
-                CategoryId =x.ProductCategoryId,
+                CategoryId = x.ProductCategoryId,
                 Category = x.ProductCategory,
                 Detail = new Command(() =>
                 {
@@ -137,7 +138,7 @@ namespace RestoranDesktop.ViewModel
                 })
             });
             Products = new ObservableCollection<Model.Product>(productviewModel);
-          
+
         }
 
         #endregion
@@ -146,24 +147,24 @@ namespace RestoranDesktop.ViewModel
 
         private void CreateProduct()
         {
-           var view=new ProductCreate();
-          var viewmodel=new ProductCreateViewModel();
+            var view = new ProductCreateView();
+            var viewmodel = new ProductCreateViewModel();
             view.DataContext = viewmodel;
             view.ShowDialog();
         }
         private void DetailShow(int productId)
         {
-            var productDetail = Products.Where(x => x.ProductId == productId).FirstOrDefault();
-            var view = new View.ProductDetail();
+            var productDetail = Products.Single(x => x.ProductId == productId);
+            var view = new ProductDetailView();
             view.DataContext = productDetail;
             view.ShowDialog();
         }
 
         private void Edit(int productId)
         {
-            var view = new ProductEdit();          
+            var view = new ProductEditView();
             var entity = Products.Single(x => x.ProductId == productId);
-            var viewModel = new ProductEditViewModel(entity);           
+            var viewModel = new ProductEditViewModel(entity);
             view.DataContext = viewModel;
             view.ShowDialog();
         }
@@ -173,7 +174,7 @@ namespace RestoranDesktop.ViewModel
             if (result == MessageBoxResult.Yes)
             {
                 ProductsAPI.Delete(productId);
-                Products.Remove(Products.Where(y => y.ProductId == productId).FirstOrDefault());
+                Products.Remove(Products.Single(y => y.ProductId == productId));
             }
         }
         #endregion

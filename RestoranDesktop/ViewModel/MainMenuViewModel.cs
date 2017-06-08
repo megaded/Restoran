@@ -2,29 +2,49 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Restoran;
 using RestoranDesktop.View;
+using RestoranDesktop.View.Unit;
 
 namespace RestoranDesktop.ViewModel
 {
- public class MainMenuViewModel
+ public class MainMenuViewModel:INotifyPropertyChanged
     {
+        private UserControl currentPage { get; set; }
+        private void NotifyPropertyChanged(string propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         public ObservableCollection<ItemMenu> Menu { get; set; }
+
+        public UserControl CurrentPage
+        {
+            get { return this.currentPage; }
+            set
+            {
+                this.currentPage = value;
+                NotifyPropertyChanged("CurrentPage");
+            }
+        }
         public MainMenuViewModel()
         {
             Menu=new ObservableCollection<ItemMenu>();
-
             ItemMenu product=new ItemMenu();
             product.Name = "Продукт";
             Command command = new Command();
             command.Action+=()=>
             {
-                Products view=new Products();
-                view.ShowDialog();
+                ProductsView view=new ProductsView();
+                CurrentPage = view;
             };
             product.Open = command;
 
@@ -33,8 +53,8 @@ namespace RestoranDesktop.ViewModel
             command = new Command();
             command.Action += () =>
             {
-                Products view = new Products();
-                view.ShowDialog();
+                UnitsView view = new UnitsView();
+                CurrentPage = view;
             };
             unit.Open = command;
 
@@ -43,8 +63,8 @@ namespace RestoranDesktop.ViewModel
             command = new Command();
             command.Action += () =>
             {
-                Products view = new Products();
-                view.ShowDialog();
+                ProductsView view = new ProductsView();
+                
             };
             recipe.Open = command;
 
@@ -53,8 +73,8 @@ namespace RestoranDesktop.ViewModel
             command = new Command();
             command.Action += () =>
             {
-                Products view = new Products();
-                view.ShowDialog();
+                ProductsView view = new ProductsView();
+                
             };
             provider.Open = command;
 
@@ -63,5 +83,7 @@ namespace RestoranDesktop.ViewModel
             Menu.Add(recipe);
             Menu.Add(provider);
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

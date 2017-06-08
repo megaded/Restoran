@@ -12,17 +12,27 @@
         <viewModel:MainMenuViewModel></viewModel:MainMenuViewModel>
     </Window.DataContext>
     <Grid>
-        <ListBox ItemsSource="{Binding Menu ,Mode=OneWay}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Button Command="{Binding Open}" >
-                            <TextBlock Text="{Binding Name}"></TextBlock>
-                        </Button>
-                        </Grid>
-               </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <ContentControl Grid.Column="1" Content="{Binding CurrentPage}" HorizontalAlignment="Stretch"></ContentControl>
+                       
+        
+        <Menu Grid.Column="0" ItemsSource="{Binding Menu}" >
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <Menu.ItemTemplate>
+                <DataTemplate >
+                    <Button Content="{Binding Name}" Command="{Binding Open}"></Button>
+                </DataTemplate>
+            </Menu.ItemTemplate>
+        </Menu>
     </Grid>
 </Window>
 

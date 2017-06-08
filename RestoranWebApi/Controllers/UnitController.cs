@@ -88,6 +88,25 @@ namespace RestoranApi.Controllers
             context.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
-        
+
+        /// <summary>
+        /// Обновление информации о единице измерения
+        /// </summary>
+        /// <param name="unit">Модель единицы измерения</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("update")]
+        public HttpResponseMessage Update(UnitViewModel unit)
+        {
+            var entity = context.Unit.Find(unit.Id);
+            if(entity == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            entity.Name = unit.Name;
+            entity.Symbol = unit.Symbol;
+            context.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
     }
 }

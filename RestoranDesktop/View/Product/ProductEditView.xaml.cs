@@ -11,16 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using RestoranDesktop.ViewModel;
 
-namespace RestoranDesktop.View
+namespace RestoranDesktop.View.Product
 {
     /// <summary>
-    /// Interaction logic for Products.xaml
+    /// Interaction logic for ProductEdit.xaml
     /// </summary>
-    public partial class Products : Window
+    public partial class ProductEditView : Window
     {
-        public Products()
+        public ProductEditView()
         {
             InitializeComponent();
         }

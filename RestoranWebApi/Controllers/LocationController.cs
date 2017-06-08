@@ -17,11 +17,15 @@ namespace RestoranApi.Controllers
     public class LocationController : ApiController
     {
         private readonly RestoranContext context;
+
         public LocationController()
         {
             context = new RestoranContext();
         }
-
+        /// <summary>
+        /// Получение списка всех локаций.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("locations")]
         public IEnumerable<LocationViewModel> GetAllLocation()
@@ -37,6 +41,11 @@ namespace RestoranApi.Controllers
             return model;
         }
 
+        /// <summary>
+        /// Получение списка всех продуктов привязанных указанной локации.
+        /// </summary>
+        /// <param name="location">Id локации.</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{location:int}/products")]
         public HttpResponseMessage GetProductsLocation(int location)
@@ -56,6 +65,11 @@ namespace RestoranApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, model);
         }
 
+        /// <summary>
+        /// Получение всех рецептов в указанной локации.
+        /// </summary>
+        /// <param name="location">Id локации.</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{location:int}/recipes")]
         public HttpResponseMessage GetRecipeLocation(int location)
@@ -74,6 +88,11 @@ namespace RestoranApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, model);
         }
 
+        /// <summary>
+        /// Получение списка всех поставщиков указанной локации.
+        /// </summary>
+        /// <param name="location">Id локации.</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{location:int}/supplier")]
         public HttpResponseMessage GetSupplierLocation(int location)
@@ -93,6 +112,12 @@ namespace RestoranApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        /// <summary>
+        /// Получение списка продуктов доступных у поставщика в указанной локации.
+        /// </summary>
+        /// <param name="location">Id лоокации</param>
+        /// <param name="supplier">Id поставщика</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{location:int}/supplier/{supplier:int}/products")]
         public HttpResponseMessage GetSupplierProducts(int location, int supplier)
@@ -102,7 +127,7 @@ namespace RestoranApi.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, "Локации нет");
             }
-            var products = context.Market.Find(location).Suppliers.Where(x => x.SupplierId == supplier).FirstOrDefault().Products.Select(x => new ProductSupplierViewModel
+            var products = context.Market.Find(location).Suppliers.Single(x => x.SupplierId == supplier).Products.Select(x => new ProductSupplierViewModel
             {
                 Id=x.ProductId,
                 Name=x.Product.Name,

@@ -115,8 +115,7 @@ namespace RestoranSDK
         /// <returns></returns>
         public bool Delete(int productId)
         {
-            var urlString = string.Format($"http://localhost:51155/product/delete/{productId}");
-            var url = new Uri(urlString);
+            var url = new Uri($"{this.url}/product/delete/{productId}");
             var request = WebRequest.Create(url);
             request.Method = "Delete";
             var response =(HttpWebResponse) request.GetResponse();           

@@ -56,10 +56,10 @@ namespace RestoranDesktop.ViewModel
                 }
             }
         }
-        public Unit SelectedUnit { get; set; }
+        public Model.Unit SelectedUnit { get; set; }
         public ProductCategory SelectProductCategory { get; set; }
         #endregion
-        public List<Unit> Units { get; set; }
+        public List<Model.Unit> Units { get; set; }
         public List<ProductCategory> ProductCategories { get; set; }
         public ICommand Create { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -71,9 +71,9 @@ namespace RestoranDesktop.ViewModel
             unitAPI=new UnitAPI();
             productCategoryAPI = new ProductCategoryAPI();
             productsAPI = new ProductsAPI();
-            Units = unitAPI.GetAll().Select(x => new Unit()
+            Units = unitAPI.GetAll().Select(x => new Model.Unit()
             {
-                UnitName =x.Symbol,
+                Name =x.Symbol,
                 UnitId =x.Id
             }).ToList();
             ProductCategories = productCategoryAPI.GetAll().Select(x => new ProductCategory()

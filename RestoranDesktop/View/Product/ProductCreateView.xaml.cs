@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace RestoranDesktop.View.Product
 {
     /// <summary>
-    /// Interaction logic for ProductEdit.xaml
+    /// Interaction logic for ProductCreate.xaml
     /// </summary>
-    public partial class ProductEdit : Window
+    public partial class ProductCreateView : Window
     {
-        public ProductEdit()
+        public ProductCreateView()
         {
             InitializeComponent();
         }

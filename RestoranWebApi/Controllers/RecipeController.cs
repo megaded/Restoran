@@ -17,25 +17,29 @@ namespace RestoranApi.Controllers
         {
             context = new RestoranContext();
         }
-
-        [HttpGet]    
-        [Route("all")]      
+        /// <summary>
+        /// Получение списка всех рецептов.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("recipes")]
         public HttpResponseMessage GetAllRecipe()
         {
             var recipes = context.Recipe.ToList();
-            if(recipes == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound, "Рецептов нет");
-            }
             var model = recipes.Select(x => new RecipeViewModel
             {
                 Id = x.RecipeId,
-                Name =x.Name,
-                Description=x.Description
+                Name = x.Name,
+                Description = x.Description
             });
             return Request.CreateResponse(HttpStatusCode.OK, model);
         }
 
+        /// <summary>
+        /// Получение детальной информарции о рецепте.
+        /// </summary>
+        /// <param name="id">Id рецепта.</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id:int}")]
         public HttpResponseMessage GetRecipe(int id)
@@ -51,12 +55,34 @@ namespace RestoranApi.Controllers
             model.Description = recipe.Description;
             model.Product = recipe.Products.Select(x => new ProductRecipeViewModel
             {
-                ProductRecipeId=x.ProductRecipeId,
-                Value=(double)x.Value,
-                ProductName=x.Product.Name
+                ProductRecipeId = x.ProductRecipeId,
+                Value = (double)(x.Value.HasValue ? x.Value : 0),
+                ProductId =x.ProductId,
+                ProductName = x.Product.Name
             }).ToList();
 
             return Request.CreateResponse(HttpStatusCode.OK, model);
+        }
+
+        /// <summary>
+        /// Создание рецепта.
+        /// </summary>
+        /// <param name="model">Модель рецепта</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("create")]
+        public HttpResponseMessage Create(RecipeDetailViewModel model)
+        {
+            var entity = new Recipe();
+            entity.Name = model.Name;
+            entity.Description = model.Description;
+            foreach (var product in model.Product)
+            {
+                entity.Products.Add(new ProductRecipe { ProductId =product.ProductId, Value = product.Value });
+            }
+            context.Recipe.Add(entity);
+            context.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.Created);
         }
 
     }
