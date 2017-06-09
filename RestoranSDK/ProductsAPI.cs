@@ -21,8 +21,9 @@ namespace RestoranSDK
         public List<ProductDTO> GetAll()
         {
             var result = new List<ProductDTO>();
-            var url = new Uri($"{this.url}/product/products");
-            var request = WebRequest.Create(url);
+            var url = new Uri($"{this.url}/products");
+            var request =(HttpWebRequest) WebRequest.Create(url);
+            request.Method = "Get";
             var response = request.GetResponse();
             using (var stream = response.GetResponseStream())
             {
@@ -41,8 +42,8 @@ namespace RestoranSDK
         public ProductDTO Get(int productId)
         {
             var result = new ProductDTO();
-            var url = new Uri($"{this.url}/product/{productId}");
-            var request = WebRequest.Create(url);
+            var url = new Uri($"{this.url}/products/{productId}");
+            var request =(HttpWebRequest) WebRequest.Create(url);
             var response = request.GetResponse();
             using (var stream = response.GetResponseStream())
             {
@@ -62,7 +63,7 @@ namespace RestoranSDK
         {
             var json = JsonConvert.SerializeObject(product);
             var byteContent = Encoding.UTF8.GetBytes(json);
-            var url = new Uri(@"http://localhost:51155/product/create");
+            var url = new Uri($"{this.url}/products");
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "POST";
             request.ContentType = "application/json";
@@ -90,9 +91,9 @@ namespace RestoranSDK
         {
             var json = JsonConvert.SerializeObject(product);
             var byteContent = Encoding.UTF8.GetBytes(json);
-            var url = new Uri($"{this.url}/product/update");
+            var url = new Uri($"{this.url}/products/{product.Id}");
             var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "POST";
+            request.Method = "Put";
             request.ContentType = "application/json";
             using (var dataStream = new StreamWriter(request.GetRequestStream()))
             {
@@ -115,7 +116,7 @@ namespace RestoranSDK
         /// <returns></returns>
         public bool Delete(int productId)
         {
-            var url = new Uri($"{this.url}/product/delete/{productId}");
+            var url = new Uri($"{this.url}/products/{productId}");
             var request = WebRequest.Create(url);
             request.Method = "Delete";
             var response =(HttpWebResponse) request.GetResponse();           

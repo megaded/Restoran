@@ -16,7 +16,7 @@
             <ItemsControl ItemsSource="{Binding Suppliers}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding}" Command="{Binding }"> </Button>
+                        <Button Content="{Binding Name}" Command="{Binding OpenCommand}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

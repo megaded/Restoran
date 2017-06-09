@@ -33,13 +33,19 @@ namespace RestoranDesktop.ViewModel.Location
             recipeItemMenu.NameMenu = "Рецепты";
             recipeItemMenu.Open = new Command((() =>
             {
-               
+                var view = new LocationRecipesView();
+                var viewmodel = new LocationRecipeViewModel(locationId);
+                view.DataContext = viewmodel;
+                view.Show();
             }));
             LocationItemMenu supplierItemMenu = new LocationItemMenu();
             supplierItemMenu.NameMenu = "Поставщики";
             supplierItemMenu.Open = new Command((() =>
               {
-
+                  var view=new LocationSuppliersView();
+                  var viewmodel=new LocationSuppliersViewModel(this.locationId);
+                  view.DataContext = viewmodel;
+                  view.Show();
               }));
             LocationItemMenu orderItemMenu = new LocationItemMenu();
             orderItemMenu.NameMenu = "Заказать продукты";

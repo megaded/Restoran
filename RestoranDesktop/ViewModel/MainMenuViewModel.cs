@@ -11,6 +11,7 @@ using System.Windows.Input;
 using Restoran;
 using RestoranDesktop.View;
 using RestoranDesktop.View.Location;
+using RestoranDesktop.View.Recipe;
 using RestoranDesktop.View.Unit;
 
 namespace RestoranDesktop.ViewModel
@@ -64,8 +65,8 @@ namespace RestoranDesktop.ViewModel
             command = new Command();
             command.Action += () =>
             {
-                ProductsView view = new ProductsView();
-                
+                RecipeView view = new RecipeView();
+                view.Show();
             };
             recipe.Open = command;
 

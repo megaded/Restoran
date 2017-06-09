@@ -8,20 +8,18 @@
         Title="LocationDetail" Height="300" Width="300">
     <Grid>
         <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">Название локации</Label>
-            <ScrollViewer Grid.Row="1">
-           <ItemsControl ItemsSource="{Binding Menu}">
-               <ItemsControl.ItemTemplate>
-                   <DataTemplate>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">Название локации</Label>
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Menu}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
                         <Button Content="{Binding NameMenu}" Command="{Binding Open}"></Button>
-                   </DataTemplate>
-               </ItemsControl.ItemTemplate>
-           </ItemsControl>
-            </ScrollViewer>
-        </Grid>
-      
-    
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
 </Window>

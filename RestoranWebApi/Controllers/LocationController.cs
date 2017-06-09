@@ -13,6 +13,7 @@ using RestoranApi.ViewModel.ProductSupplierViewModel;
 
 namespace RestoranApi.Controllers
 {
+    
     [RoutePrefix("location")]
     public class LocationController : ApiController
     {
@@ -109,7 +110,7 @@ namespace RestoranApi.Controllers
                 Id=x.SupplierId,
                 Name=x.Name
             });
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK,model);
         }
 
         /// <summary>

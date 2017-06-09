@@ -12,7 +12,7 @@ using System.Text;
 
 namespace RestoranApi.Controllers
 {
-    [RoutePrefix("product")]
+    [RoutePrefix("products")]
     public class ProductController : ApiController
     {
         private RestoranContext context;
@@ -27,7 +27,7 @@ namespace RestoranApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("products")]
+        [Route("")]
         public HttpResponseMessage GetAllProducts()
         {
             var products = context.Product.ToList();
@@ -74,8 +74,8 @@ namespace RestoranApi.Controllers
         /// <param name="product">Модель продукта</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("create")]
-        public HttpResponseMessage CreateProduct([FromBody]ProductViewModel product)
+        [Route("")]
+        public HttpResponseMessage CreateProduct( [FromBody]ProductViewModel product)
         {           
             var model=new Product();
             model.Name = product.Name;
@@ -93,7 +93,7 @@ namespace RestoranApi.Controllers
         /// <param name="productId">Id продукта</param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("delete/{productId:int}")]
+        [Route("{productId:int}")]
         public HttpResponseMessage Delete(int productId)
         {
             var entity = context.Product.Find(productId);
@@ -107,15 +107,16 @@ namespace RestoranApi.Controllers
         }
 
         /// <summary>
-        /// Обновление инфомарции о продукте
+        /// Обновление информации о продукте
         /// </summary>
-        /// <param name="product"></param>
+        /// <param name="productId">Данные о продукте</param>
+        /// <param name="product">Id продукта</param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("update")]
-        public HttpResponseMessage Update([FromBody]ProductViewModel product)
+        [HttpPut]
+        [Route("{productId:int}")]
+        public HttpResponseMessage Update(int productId, [FromBody]ProductViewModel product)
         {
-            var entity = context.Product.Find(product.Id);
+            var entity = context.Product.Find(productId);
             if (entity == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);

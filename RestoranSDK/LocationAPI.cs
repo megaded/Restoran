@@ -61,7 +61,7 @@ namespace RestoranSDK
         public List<RecipeDTO> GetLocationRecipes(int locationId)
         {
             var result = new List<RecipeDTO>();
-            Uri url = new Uri($"{this.url}/{locationId}/recipes");
+            Uri url = new Uri($"{this.url}/location/{locationId}/recipes");
             var request = (HttpWebRequest)WebRequest.Create(url);
             var response = request.GetResponse();
             using (var stream = new StreamReader(response.GetResponseStream()))
@@ -80,7 +80,7 @@ namespace RestoranSDK
         public List<SupplierDTO> GetLocationSupplier(int locationId)
         {
             var result=new List<SupplierDTO>();
-            Uri url=new Uri($"{this.url}/{locationId}/supplier");
+            Uri url=new Uri($"{this.url}/location/{locationId}/supplier");
             var request =(HttpWebRequest) WebRequest.Create(url);
             request.Method = "Get";
             var response = request.GetResponse();

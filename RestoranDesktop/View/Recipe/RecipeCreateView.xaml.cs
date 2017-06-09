@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace RestoranDesktop.View.Order
+namespace RestoranDesktop.View.Recipe
 {
     /// <summary>
-    /// Interaction logic for OrderDetailViewModel.xaml
+    /// Interaction logic for RecipeCreateViewModel.xaml
     /// </summary>
-    public partial class OrderDetailView : Window
+    public partial class RecipeCreateView : Window
     {
-        public OrderDetailView()
+        public RecipeCreateView()
         {
             InitializeComponent();
         }

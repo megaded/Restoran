@@ -70,6 +70,7 @@
     <Compile Include="Model\Location.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductCategory.cs" />
+    <Compile Include="Model\ProductOrdered.cs" />
     <Compile Include="Model\ProductStorage.cs" />
     <Compile Include="Model\Recipe.cs" />
     <Compile Include="Model\Supplier.cs" />
@@ -78,11 +79,14 @@
     <Compile Include="ViewModel\Location\LocationItemMenu.cs" />
     <Compile Include="ViewModel\Location\LocationProductsViewModel.cs" />
     <Compile Include="ViewModel\Location\LocationRecipeViewModel.cs" />
+    <Compile Include="ViewModel\Location\LocationSuppliersViewModel.cs" />
     <Compile Include="ViewModel\Location\LocationsViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
+    <Compile Include="ViewModel\Order\OrderCreateViewModel.cs" />
     <Compile Include="ViewModel\Product\ProductCreateViewModel.cs" />
     <Compile Include="ViewModel\Product\ProductEditViewModel.cs" />
     <Compile Include="ViewModel\Product\ProductViewModel.cs" />
+    <Compile Include="ViewModel\Recipe\RecipeViewModel.cs" />
     <Compile Include="ViewModel\Unit\UnitCreateViewModel.cs" />
     <Compile Include="ViewModel\Unit\UnitEditViewModel.cs" />
     <Compile Include="ViewModel\Unit\UnitViewModel.cs" />
@@ -100,6 +104,9 @@
     </Compile>
     <Compile Include="View\Location\LocationView.xaml.cs">
       <DependentUpon>LocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Order\OrderCreateView.xaml.cs">
+      <DependentUpon>OrderCreateView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Order\OrderDetailViewModel.xaml.cs">
       <DependentUpon>OrderDetailViewModel.xaml</DependentUpon>
@@ -119,8 +126,17 @@
     <Compile Include="View\Product\ProductsView.xaml.cs">
       <DependentUpon>ProductsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Recipe\RecipeCreateViewModel.xaml.cs">
-      <DependentUpon>RecipeCreateViewModel.xaml</DependentUpon>
+    <Compile Include="View\Recipe\RecipeCreateView.xaml.cs">
+      <DependentUpon>RecipeCreateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipe\RecipeDetailView.xaml.cs">
+      <DependentUpon>RecipeDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipe\RecipeEditView.xaml.cs">
+      <DependentUpon>RecipeEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipe\RecipeView.xaml.cs">
+      <DependentUpon>RecipeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Unit\UnitCreateView.xaml.cs">
       <DependentUpon>UnitCreateView.xaml</DependentUpon>
@@ -166,6 +182,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Order\OrderCreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Order\OrderDetailViewModel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,7 +210,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Recipe\RecipeCreateViewModel.xaml">
+    <Page Include="View\Recipe\RecipeCreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Recipe\RecipeDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Recipe\RecipeEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Recipe\RecipeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
