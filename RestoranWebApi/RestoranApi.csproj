@@ -184,6 +184,7 @@
     <Compile Include="ViewModel\ProductViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\RecipeViewModel\ProductRecipeViewModel.cs" />
     <Compile Include="ViewModel\RecipeViewModel\RecipeDetailViewModel.cs" />
+    <Compile Include="ViewModel\RecipeViewModel\RecipeLocationViewModel.cs" />
     <Compile Include="ViewModel\RecipeViewModel\RecipeViewModel.cs" />
     <Compile Include="ViewModel\SupplierViewModel\SupplierViewModel.cs" />
     <Compile Include="ViewModel\UnitViewModel\UnitViewModel.cs" />

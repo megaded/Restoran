@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Restoran;
 using RestoranDesktop.View;
+using RestoranDesktop.View.Location;
 using RestoranDesktop.View.Unit;
 
 namespace RestoranDesktop.ViewModel
@@ -74,14 +75,26 @@ namespace RestoranDesktop.ViewModel
             command.Action += () =>
             {
                 ProductsView view = new ProductsView();
-                
+                CurrentPage = view;
+
             };
-            provider.Open = command;
+            ItemMenu location = new ItemMenu();
+            location.Name = "Локации";
+            command = new Command();
+            command.Action += () =>
+            {
+                LocationView view = new LocationView();
+                CurrentPage = view;
+
+            };
+            location.Open = command;
 
             Menu.Add(product);
             Menu.Add(unit);
+            Menu.Add(location);
             Menu.Add(recipe);
             Menu.Add(provider);
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

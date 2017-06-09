@@ -19,10 +19,12 @@ namespace RestoranApi.Controllers
         {
             this.context = new RestoranContext();
         }
+
         /// <summary>
         /// Получение списка категорий продуктов.
         /// </summary>
-        /// <returns></returns>
+        /// <returns></returns>       
+        [HttpGet]
         [Route("categories")]
         public HttpResponseMessage GetAllProductCategories()
         {
@@ -32,6 +34,80 @@ namespace RestoranApi.Controllers
                 Id=x.ProductCategoryId
             }).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, model);
+        }
+
+        /// <summary>
+        /// Получение категории продукта по Id
+        /// </summary>
+        /// <param name="categoryId">Id категории продукта.</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{categoryId:int}")]
+        public HttpResponseMessage GetProductCategory(int categoryId)
+        {
+            var entity = context.ProductCategory.Find(categoryId);
+            if (entity == null)
+            {
+                Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            var model=new ProductCategoryViewModel();
+            model.Id = entity.ProductCategoryId;
+            model.Name = entity.Name;
+            return Request.CreateResponse(HttpStatusCode.OK, model);
+        }
+
+        /// <summary>
+        /// Создание новой категории продукта 
+        /// </summary>
+        /// <param name="model">Модель категории продукта</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("create")]
+        public HttpResponseMessage Create(ProductViewModel model)
+        {
+            var entity=new ProductCategory();
+            entity.Name = model.Name;
+            context.ProductCategory.Add(entity);
+            context.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
+
+        /// <summary>
+        /// Удаление категории продукта по Id
+        /// </summary>
+        /// <param name="categoryId">Id категории продукта</param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("delete/{categoryId:int}")]
+        public HttpResponseMessage Delete(int categoryId)
+        {
+            var entity = context.ProductCategory.Find(categoryId);
+            if (entity == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            context.ProductCategory.Remove(entity);
+            context.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        /// <summary>
+        /// Обновление информации о категории продукта
+        /// </summary>
+        /// <param name="model">Модель категории продукта</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("update")]
+        public HttpResponseMessage Update(ProductCategoryViewModel model)
+        {
+            var entity = context.ProductCategory.Find(model.Id);
+            if (entity == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            entity.Name = model.Name;
+            context.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

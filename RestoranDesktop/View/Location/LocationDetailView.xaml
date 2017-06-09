@@ -1,0 +1,27 @@
+﻿<Window x:Class="RestoranDesktop.View.Location.LocationDetailView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RestoranDesktop.View.Location"
+        mc:Ignorable="d"
+        Title="LocationDetail" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">Название локации</Label>
+            <ScrollViewer Grid.Row="1">
+           <ItemsControl ItemsSource="{Binding Menu}">
+               <ItemsControl.ItemTemplate>
+                   <DataTemplate>
+                        <Button Content="{Binding NameMenu}" Command="{Binding Open}"></Button>
+                   </DataTemplate>
+               </ItemsControl.ItemTemplate>
+           </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+      
+    
+</Window>

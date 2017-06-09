@@ -15,7 +15,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Button Command="{Binding Create}">Создать</Button>
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer Grid.Row="1" CanContentScroll="True">
             <ItemsControl ItemsSource="{Binding Units}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>

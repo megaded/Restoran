@@ -17,6 +17,7 @@ namespace RestoranApi.Controllers
         {
             this.context = new RestoranContext();
         }
+
         /// <summary>
         /// Получение списка единиц измерений
         /// </summary>
@@ -34,6 +35,7 @@ namespace RestoranApi.Controllers
             });
             return Request.CreateResponse(HttpStatusCode.OK, model);
         }
+
         /// <summary>
         /// Получение единицы измерения по Id
         /// </summary>
@@ -54,6 +56,7 @@ namespace RestoranApi.Controllers
             model.Symbol = entity.Symbol;
             return Request.CreateResponse(HttpStatusCode.OK, model);
         }
+
         /// <summary>
         /// Создание единицы измерения
         /// </summary>
@@ -70,6 +73,7 @@ namespace RestoranApi.Controllers
             context.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.Created);
         }
+
         /// <summary>
         /// Удаление единицы измерения по Id
         /// </summary>

@@ -28,7 +28,7 @@ namespace RestoranApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("locations")]
-        public IEnumerable<LocationViewModel> GetAllLocation()
+        public HttpResponseMessage GetAllLocation()
         {
             var locations = context.Location.ToList();
             var model = locations.Select(x => new LocationViewModel
@@ -38,7 +38,7 @@ namespace RestoranApi.Controllers
                 MarketId = x.MarketId,
                 Market = x.Market.Name,
             });
-            return model;
+            return Request.CreateResponse(HttpStatusCode.OK,model);
         }
 
         /// <summary>

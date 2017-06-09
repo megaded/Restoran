@@ -12,7 +12,7 @@ namespace RestoranApi.Controllers
     [RoutePrefix("supplier")]
     public class SupplierController : ApiController
     {
-        private RestoranContext context;
+        private readonly RestoranContext context;
         public SupplierController()
         {
             context = new RestoranContext();
@@ -22,11 +22,7 @@ namespace RestoranApi.Controllers
         [Route("all")]
         public HttpResponseMessage GetAllSupplier()
         {
-            var supplier = context.Supplier.ToList();
-            if (supplier == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound, "Поставщиков нет");
-            }
+            var supplier = context.Supplier.ToList();           
             var model = supplier.Select(x => new SupplierViewModel
             {
                 Id=x.SupplierId,

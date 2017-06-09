@@ -16,11 +16,7 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
-
         <ContentControl Grid.Column="1" Content="{Binding CurrentPage}" HorizontalAlignment="Stretch"></ContentControl>
-                       
-        
         <Menu Grid.Column="0" ItemsSource="{Binding Menu}" >
             <Menu.ItemsPanel>
                 <ItemsPanelTemplate>

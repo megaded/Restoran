@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Restoran;
+using RestoranApi.ViewModel.LocationViewModel;
 using RestoranApi.ViewModel.RecipeViewModel;
 
 namespace RestoranApi.Controllers
@@ -85,5 +87,84 @@ namespace RestoranApi.Controllers
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 
+        /// <summary>
+        /// Получение списка локации у текущего рецепта.
+        /// </summary>
+        /// <param name="recipeId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("locations/{recipeId:int}")]
+        public HttpResponseMessage GetRecipeLocation(int recipeId)
+        {
+            var entity = context.Recipe.Find(recipeId);
+            if (entity == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            var model=new RecipeLocationViewModel();
+            model.Id = entity.RecipeId;
+            model.Name = entity.Name;
+            model.Location = entity.Locations.Select(x => new LocationViewModel()
+            {
+                Id = x.ID,
+                MarketId =x.MarketId,
+                Market = x.Market.Name,
+                Name = x.Name
+            }).ToList();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        /// <summary>
+        /// Редактирование списка локации в рецепте.
+        /// </summary>
+        /// <param name="model">Модель</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("locations")]
+        public HttpResponseMessage UpdateRecipeLocation(RecipeLocationViewModel model)
+        {
+            var entity = context.Recipe.Find(model.Id);
+            if (entity == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            entity.Locations.Clear();
+            context.SaveChanges();
+            foreach (var location in model.Location)
+            {
+                var loc = context.Location.Find(location.Id);
+                if (loc != null)
+                {
+                    entity.Locations.Add(loc);
+                }             
+            }
+            context.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        /// <summary>
+        /// Редактирование продуктов в рецепте.
+        /// </summary>
+        /// <param name="model">Модель</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("product")]
+        public HttpResponseMessage UpdateRecipeProduct(RecipeDetailViewModel model)
+        {
+            var entity = context.Recipe.Find(model.Id);
+            if (entity == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            context.ProductRecipe.RemoveRange(entity.Products);
+            entity.Products = model.Product.Where(y=>y.Value>0).Select(x => new ProductRecipe()
+            {
+               ProductId = x.ProductId,
+               Value = x.Value,
+               RecipeId =model.Id
+            }).ToList();
+            context.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
     }
 }

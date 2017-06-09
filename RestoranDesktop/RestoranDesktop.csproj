@@ -67,9 +67,18 @@
     </ApplicationDefinition>
     <Compile Include="Model\Command.cs" />
     <Compile Include="Model\ItemMenu.cs" />
+    <Compile Include="Model\Location.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductCategory.cs" />
+    <Compile Include="Model\ProductStorage.cs" />
+    <Compile Include="Model\Recipe.cs" />
+    <Compile Include="Model\Supplier.cs" />
     <Compile Include="Model\Unit.cs" />
+    <Compile Include="ViewModel\Location\LocationDetailViewModel.cs" />
+    <Compile Include="ViewModel\Location\LocationItemMenu.cs" />
+    <Compile Include="ViewModel\Location\LocationProductsViewModel.cs" />
+    <Compile Include="ViewModel\Location\LocationRecipeViewModel.cs" />
+    <Compile Include="ViewModel\Location\LocationsViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\Product\ProductCreateViewModel.cs" />
     <Compile Include="ViewModel\Product\ProductEditViewModel.cs" />
@@ -77,6 +86,27 @@
     <Compile Include="ViewModel\Unit\UnitCreateViewModel.cs" />
     <Compile Include="ViewModel\Unit\UnitEditViewModel.cs" />
     <Compile Include="ViewModel\Unit\UnitViewModel.cs" />
+    <Compile Include="View\Location\LocationDetailView.xaml.cs">
+      <DependentUpon>LocationDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Location\LocationProductsView.xaml.cs">
+      <DependentUpon>LocationProductsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Location\LocationRecipesView.xaml.cs">
+      <DependentUpon>LocationRecipesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Location\LocationSuppliersView.xaml.cs">
+      <DependentUpon>LocationSuppliersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Location\LocationView.xaml.cs">
+      <DependentUpon>LocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Order\OrderDetailViewModel.xaml.cs">
+      <DependentUpon>OrderDetailViewModel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Order\OrderView.xaml.cs">
+      <DependentUpon>OrderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Product\ProductCreateView.xaml.cs">
       <DependentUpon>ProductCreateView.xaml</DependentUpon>
     </Compile>
@@ -88,6 +118,9 @@
     </Compile>
     <Compile Include="View\Product\ProductsView.xaml.cs">
       <DependentUpon>ProductsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipe\RecipeCreateViewModel.xaml.cs">
+      <DependentUpon>RecipeCreateViewModel.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Unit\UnitCreateView.xaml.cs">
       <DependentUpon>UnitCreateView.xaml</DependentUpon>
@@ -113,6 +146,34 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Location\LocationDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Location\LocationProductsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Location\LocationRecipesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Location\LocationSuppliersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Location\LocationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Order\OrderDetailViewModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Order\OrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Product\ProductCreateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Product\ProductsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Recipe\RecipeCreateViewModel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,7 +251,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="View\ProductCategory\" />
-    <Folder Include="View\Recipe\" />
+    <Folder Include="View\Supplier\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
