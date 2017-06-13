@@ -7,14 +7,11 @@ using System.Windows.Input;
 
 namespace RestoranDesktop.Model
 {
-  public  class Location
+    public class ProductRecipe
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public ICommand Detail { get; set; }
-        public ICommand Edit { get; set; }
-        public ICommand Delete { get; set; }
-
+        public double Value { get; set; }
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand RemoveCommand { get; set; }
     }

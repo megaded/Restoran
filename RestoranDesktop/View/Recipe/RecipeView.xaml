@@ -3,17 +3,58 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RestoranDesktop.View.Recipe"
+        xmlns:local="clr-namespace:RestoranDesktop.ViewModel.Recipe"
+       xmlns:view="clr-namespace:RestoranDesktop.View.Recipe"
         mc:Ignorable="d"
-        Title="RecipeViewModel" Height="300" Width="300">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Label Grid.Row="0" HorizontalContentAlignment="Center">Рецепты</Label>
-        <ScrollViewer Grid.Row="1">
-            
-        </ScrollViewer>
-    </Grid>
+        Title="RecipeViewModel" SizeToContent="WidthAndHeight">
+    <Window.DataContext>
+        <local:RecipeViewModel></local:RecipeViewModel>
+    </Window.DataContext>
+    <TabControl>
+        <TabItem>
+            <TabItem.Header>
+                <Label>Рецепты</Label>
+            </TabItem.Header>
+            <TabItem.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" HorizontalContentAlignment="Center">Рецепты</Label>
+                    <Button Grid.Row="1" Command="{Binding CreateCommand}">Создать</Button>
+                    <ScrollViewer Grid.Row="2">
+                        <ItemsControl ItemsSource="{Binding Recipes}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Content="{Binding Name}"></Label>
+                                        <Button Grid.Column="1" Command="{Binding Detail}">Просмотр</Button>
+                                        <Button Grid.Column="2" Command="{Binding Edit}">Изменить</Button>
+                                        <Button Grid.Column="3" Command="{Binding Delete}">Удалить</Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <Label>Новый рецепт</Label>
+            </TabItem.Header>
+            <TabItem.Content>
+                <view:RecipeCreateView></view:RecipeCreateView>
+            </TabItem.Content>
+        </TabItem>
+    </TabControl>
+    
 </Window>

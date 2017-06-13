@@ -6,6 +6,6 @@ namespace RestoranApi.ViewModel.RecipeViewModel
     {
         public string Name { get; set; }
         public int Id { get; set; }
-        public List<LocationViewModel.LocationViewModel> Location { get; set; }
+        public List<LocationViewModel.LocationViewModel> Locations { get; set; }
     }
 }

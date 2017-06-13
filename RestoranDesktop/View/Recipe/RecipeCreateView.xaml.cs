@@ -17,7 +17,7 @@ namespace RestoranDesktop.View.Recipe
     /// <summary>
     /// Interaction logic for RecipeCreateViewModel.xaml
     /// </summary>
-    public partial class RecipeCreateView : Window
+    public partial class RecipeCreateView : UserControl
     {
         public RecipeCreateView()
         {

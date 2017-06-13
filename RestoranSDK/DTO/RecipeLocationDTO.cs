@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace RestoranSDK.DTO
 {
-   public class RecipeDTO
+  public  class RecipeLocationDTO
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public List<ProductRecipeDTO> Products { get; set; }
+        public int Id { get; set; }
+        public List<LocationDTO> Locations { get; set; }
+
+        
     }
 }

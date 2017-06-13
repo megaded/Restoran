@@ -19,6 +19,7 @@ namespace RestoranApi.Controllers
         {
             context = new RestoranContext();
         }
+
         /// <summary>
         /// Получение списка всех рецептов.
         /// </summary>
@@ -55,7 +56,7 @@ namespace RestoranApi.Controllers
             model.Id = recipe.RecipeId;
             model.Name = recipe.Name;
             model.Description = recipe.Description;
-            model.Product = recipe.Products.Select(x => new ProductRecipeViewModel
+            model.Products = recipe.Products.Select(x => new ProductRecipeViewModel
             {
                 ProductRecipeId = x.ProductRecipeId,
                 Value = (double)(x.Value.HasValue ? x.Value : 0),
@@ -78,13 +79,17 @@ namespace RestoranApi.Controllers
             var entity = new Recipe();
             entity.Name = model.Name;
             entity.Description = model.Description;
-            foreach (var product in model.Product)
+            foreach (var product in model.Products)
             {
                 entity.Products.Add(new ProductRecipe { ProductId =product.ProductId, Value = product.Value });
             }
-            context.Recipe.Add(entity);
+            entity=context.Recipe.Add(entity);
             context.SaveChanges();
-            return Request.CreateResponse(HttpStatusCode.Created);
+            var recipe=new RecipeViewModel();
+            recipe.Name = entity.Name;
+            recipe.Id = entity.RecipeId;
+            recipe.Description = entity.Description;            
+            return Request.CreateResponse(HttpStatusCode.Created,recipe);
         }
 
         /// <summary>
@@ -104,14 +109,14 @@ namespace RestoranApi.Controllers
             var model=new RecipeLocationViewModel();
             model.Id = entity.RecipeId;
             model.Name = entity.Name;
-            model.Location = entity.Locations.Select(x => new LocationViewModel()
+            model.Locations = entity.Locations.Select(x => new LocationViewModel()
             {
                 Id = x.ID,
                 MarketId =x.MarketId,
                 Market = x.Market.Name,
                 Name = x.Name
             }).ToList();
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK,model);
         }
 
         /// <summary>
@@ -130,7 +135,7 @@ namespace RestoranApi.Controllers
             }
             entity.Locations.Clear();
             context.SaveChanges();
-            foreach (var location in model.Location)
+            foreach (var location in model.Locations)
             {
                 var loc = context.Location.Find(location.Id);
                 if (loc != null)
@@ -157,7 +162,7 @@ namespace RestoranApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
             context.ProductRecipe.RemoveRange(entity.Products);
-            entity.Products = model.Product.Where(y=>y.Value>0).Select(x => new ProductRecipe()
+            entity.Products = model.Products.Where(y=>y.Value>0).Select(x => new ProductRecipe()
             {
                ProductId = x.ProductId,
                Value = x.Value,

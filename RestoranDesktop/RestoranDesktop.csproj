@@ -71,10 +71,12 @@
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductCategory.cs" />
     <Compile Include="Model\ProductOrdered.cs" />
+    <Compile Include="Model\ProductRecipe.cs" />
     <Compile Include="Model\ProductStorage.cs" />
     <Compile Include="Model\Recipe.cs" />
     <Compile Include="Model\Supplier.cs" />
     <Compile Include="Model\Unit.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Location\LocationDetailViewModel.cs" />
     <Compile Include="ViewModel\Location\LocationItemMenu.cs" />
     <Compile Include="ViewModel\Location\LocationProductsViewModel.cs" />
@@ -86,6 +88,9 @@
     <Compile Include="ViewModel\Product\ProductCreateViewModel.cs" />
     <Compile Include="ViewModel\Product\ProductEditViewModel.cs" />
     <Compile Include="ViewModel\Product\ProductViewModel.cs" />
+    <Compile Include="ViewModel\Recipe\RecipeCreateViewModel.cs" />
+    <Compile Include="ViewModel\Recipe\RecipeDetailViewModel.cs" />
+    <Compile Include="ViewModel\Recipe\RecipeEditViewModel.cs" />
     <Compile Include="ViewModel\Recipe\RecipeViewModel.cs" />
     <Compile Include="ViewModel\Unit\UnitCreateViewModel.cs" />
     <Compile Include="ViewModel\Unit\UnitEditViewModel.cs" />
