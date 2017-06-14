@@ -16,18 +16,11 @@ using RestoranDesktop.View.Unit;
 
 namespace RestoranDesktop.ViewModel
 {
- public class MainMenuViewModel:INotifyPropertyChanged
+    public class MainMenuViewModel : BaseViewModel
     {
-        private UserControl currentPage { get; set; }
-        private void NotifyPropertyChanged(string propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        public ObservableCollection<ItemMenu> Menu { get; set; }
 
+        private UserControl currentPage;
+        public ObservableCollection<ItemMenu> Menu { get; set; }
         public UserControl CurrentPage
         {
             get { return this.currentPage; }
@@ -39,65 +32,66 @@ namespace RestoranDesktop.ViewModel
         }
         public MainMenuViewModel()
         {
-            Menu=new ObservableCollection<ItemMenu>();
-            ItemMenu product=new ItemMenu();
-            product.Name = "Продукт";
-            Command command = new Command();
-            command.Action+=()=>
-            {
-                ProductsView view=new ProductsView();
-                CurrentPage = view;
-            };
-            product.Open = command;
+            Menu = new ObservableCollection<ItemMenu>();
 
-            ItemMenu unit = new ItemMenu();
-            unit.Name = "Единицы измерения";
-            command = new Command();
-            command.Action += () =>
+            var product = new ItemMenu()
             {
-                UnitsView view = new UnitsView();
-                CurrentPage = view;
+                Name = "Продукт",
+                Open = new Command((() =>
+                {
+                    var view = new ProductsView();
+                    CurrentPage = view;
+                }))
             };
-            unit.Open = command;
 
-            ItemMenu recipe = new ItemMenu();
-            recipe.Name = "Рецепты";
-            command = new Command();
-            command.Action += () =>
+            var unit = new ItemMenu()
             {
-                RecipeView view = new RecipeView();
-                view.Show();
+                Name = "Единицы измерения",
+                Open = new Command((() =>
+                {
+                    var view = new UnitsView();
+                    CurrentPage = view;
+                }))
             };
-            recipe.Open = command;
 
-            ItemMenu provider = new ItemMenu();
-            provider.Name = "Поставщики";
-            command = new Command();
-            command.Action += () =>
+            var recipe = new ItemMenu()
             {
-                ProductsView view = new ProductsView();
-                CurrentPage = view;
-
+                Name = "Рецепты",
+                Open = new Command((() =>
+                {
+                    var view = new RecipeView();
+                    CurrentPage = view;
+                }))
             };
-            ItemMenu location = new ItemMenu();
-            location.Name = "Локации";
-            command = new Command();
-            command.Action += () =>
+
+            var provider = new ItemMenu()
             {
-                LocationView view = new LocationView();
-                CurrentPage = view;
-
+                Name = "Поставщики",
+                Open = new Command((() =>
+                {
+                    var view = new ProductsView();
+                    CurrentPage = view;
+                }))
             };
-            location.Open = command;
+
+            var location = new ItemMenu()
+            {
+                Name = "Локации",
+                Open = new Command((() =>
+                {
+                    var view = new LocationView();
+                    CurrentPage = view;
+                }))
+            };
 
             Menu.Add(product);
             Menu.Add(unit);
             Menu.Add(location);
             Menu.Add(recipe);
             Menu.Add(provider);
-            
+
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+
     }
 }

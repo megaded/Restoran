@@ -12,20 +12,13 @@ using RestoranSDK.DTO;
 
 namespace RestoranDesktop.ViewModel.Unit
 {
-    public class UnitEditViewModel : INotifyPropertyChanged
+    public class UnitEditViewModel : BaseViewModel
     {
         private int id { get; set; }
         private string name { get; set; }
         private string symbol { get; set; }
         private UnitAPI unitApi;
-        private void NotifyPropertyChanged(string propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
+
 
         public string Name
         {

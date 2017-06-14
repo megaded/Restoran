@@ -45,20 +45,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\LocationDTO.cs" />
+    <Compile Include="DTO\OrderDetailDTO.cs" />
+    <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="DTO\ProductCategoryDTO.cs" />
     <Compile Include="DTO\ProductDTO.cs" />
     <Compile Include="DTO\ProductOrderedDTO.cs" />
     <Compile Include="DTO\ProductRecipeDTO.cs" />
     <Compile Include="DTO\ProductStorageDTO.cs" />
+    <Compile Include="DTO\ProductSupplierDTO.cs" />
     <Compile Include="DTO\RecipeDTO.cs" />
     <Compile Include="DTO\RecipeLocationDTO.cs" />
     <Compile Include="DTO\SupplierDTO.cs" />
     <Compile Include="DTO\UnitDTO.cs" />
     <Compile Include="LocationAPI.cs" />
+    <Compile Include="OrderAPI.cs" />
     <Compile Include="ProductCategoryAPI.cs" />
     <Compile Include="ProductsAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeAPI.cs" />
+    <Compile Include="SupplierAPI.cs" />
     <Compile Include="UnitAPI.cs" />
   </ItemGroup>
   <ItemGroup>

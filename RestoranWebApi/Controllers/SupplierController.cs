@@ -17,9 +17,12 @@ namespace RestoranApi.Controllers
         {
             context = new RestoranContext();
         }
-
+        /// <summary>
+        /// Получение списка всех поставщиков.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        [Route("all")]
+        [Route("")]
         public HttpResponseMessage GetAllSupplier()
         {
             var supplier = context.Supplier.ToList();           
@@ -28,6 +31,19 @@ namespace RestoranApi.Controllers
                 Id=x.SupplierId,
                 Name=x.Name
             });
+            return Request.CreateResponse(HttpStatusCode.OK, model);
+        }
+
+        /// <summary>
+        /// Получение информации о поставщике
+        /// </summary>
+        /// <param name="supplierId">Id поставщика</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{supplierId:int}")]
+        public HttpResponseMessage Get(int supplierId)
+        {
+            var model=new SupplierViewModel();
             return Request.CreateResponse(HttpStatusCode.OK, model);
         }
     }

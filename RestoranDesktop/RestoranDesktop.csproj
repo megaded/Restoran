@@ -68,16 +68,18 @@
     <Compile Include="Model\Command.cs" />
     <Compile Include="Model\ItemMenu.cs" />
     <Compile Include="Model\Location.cs" />
+    <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductCategory.cs" />
     <Compile Include="Model\ProductOrdered.cs" />
     <Compile Include="Model\ProductRecipe.cs" />
     <Compile Include="Model\ProductStorage.cs" />
+    <Compile Include="Model\ProductSupplier.cs" />
     <Compile Include="Model\Recipe.cs" />
     <Compile Include="Model\Supplier.cs" />
     <Compile Include="Model\Unit.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\Location\LocationDetailViewModel.cs" />
+    <Compile Include="ViewModel\Location\LocationMenuViewModel.cs" />
     <Compile Include="ViewModel\Location\LocationItemMenu.cs" />
     <Compile Include="ViewModel\Location\LocationProductsViewModel.cs" />
     <Compile Include="ViewModel\Location\LocationRecipeViewModel.cs" />
@@ -85,6 +87,8 @@
     <Compile Include="ViewModel\Location\LocationsViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\Order\OrderCreateViewModel.cs" />
+    <Compile Include="ViewModel\Order\OrderDetailViewModel.cs" />
+    <Compile Include="ViewModel\Order\OrderViewModel.cs" />
     <Compile Include="ViewModel\Product\ProductCreateViewModel.cs" />
     <Compile Include="ViewModel\Product\ProductEditViewModel.cs" />
     <Compile Include="ViewModel\Product\ProductViewModel.cs" />
@@ -95,8 +99,8 @@
     <Compile Include="ViewModel\Unit\UnitCreateViewModel.cs" />
     <Compile Include="ViewModel\Unit\UnitEditViewModel.cs" />
     <Compile Include="ViewModel\Unit\UnitViewModel.cs" />
-    <Compile Include="View\Location\LocationDetailView.xaml.cs">
-      <DependentUpon>LocationDetailView.xaml</DependentUpon>
+    <Compile Include="View\Location\LocationMenuView.xaml.cs">
+      <DependentUpon>LocationMenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Location\LocationProductsView.xaml.cs">
       <DependentUpon>LocationProductsView.xaml</DependentUpon>
@@ -167,7 +171,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Location\LocationDetailView.xaml">
+    <Page Include="View\Location\LocationMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

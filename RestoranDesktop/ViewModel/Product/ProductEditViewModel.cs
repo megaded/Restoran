@@ -12,7 +12,7 @@ using RestoranSDK.DTO;
 
 namespace RestoranDesktop.ViewModel
 {
-    public class ProductEditViewModel : INotifyPropertyChanged
+    public class ProductEditViewModel : BaseViewModel
     {
         #region Private
         private int id { get; set; }
@@ -58,14 +58,8 @@ namespace RestoranDesktop.ViewModel
         }
 
         #endregion
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        
+       
 
         #region Constructor
 

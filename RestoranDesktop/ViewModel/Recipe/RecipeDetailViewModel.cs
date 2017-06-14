@@ -23,6 +23,7 @@ namespace RestoranDesktop.ViewModel.Recipe
         public ICommand EditCommand { get; set; }
 
         public ObservableCollection<ProductRecipe> Products { get; set; }
+
         public ObservableCollection<Model.Location> Locations { get; set; }
 
         public RecipeDetailViewModel(int recipeId)

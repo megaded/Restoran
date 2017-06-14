@@ -21,8 +21,8 @@
                 <TabItem.Content>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" ></RowDefinition>
@@ -33,15 +33,15 @@
                         <Label Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center">Рецепт</Label>
                         <Label Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center">Продукты</Label>
                         <ScrollViewer Grid.Column="0" Grid.Row="2">
-                            <DataGrid ItemsSource="{Binding ProductsRecipe}" AutoGenerateColumns="False"  HorizontalContentAlignment="Center">
+                            <DataGrid ItemsSource="{Binding ProductsRecipe}" AutoGenerateColumns="False" GridLinesVisibility="None"  HorizontalContentAlignment="Center">
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGrid.ColumnHeaderStyle>
                                 <DataGrid.Columns >
-                                    <DataGridTextColumn IsReadOnly="True" Width="*"  Header="Название" Binding="{Binding ProductName}"/>
-                                    <DataGridTextColumn Width="*"  Header="Количество" Binding="{Binding Value}"  />
+                                    <DataGridTextColumn IsReadOnly="True" Width="Auto"  Header="Название" Binding="{Binding ProductName}"/>
+                                    <DataGridTextColumn Width="Auto"  Header="Количество" Binding="{Binding Value}"  />
                                     <DataGridTemplateColumn>
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
@@ -78,8 +78,8 @@
                 <TabItem.Content>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" ></RowDefinition>
@@ -88,36 +88,42 @@
                         <Label Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center">Локации</Label>
                         <Label Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center">Все локации</Label>
                         <ScrollViewer Grid.Column="0" Grid.Row="1">
-                            <ItemsControl ItemsSource="{Binding LocationsRecipe}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Label Grid.Column="0" Content="{Binding Name}"></Label>
-                                            <Button Grid.Column="1" Command="{Binding RemoveCommand}">Удалить</Button>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+                            <DataGrid ItemsSource="{Binding LocationsRecipe}" AutoGenerateColumns="False" GridLinesVisibility="None">
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+                                <DataGrid.Columns >
+                                    <DataGridTextColumn IsReadOnly="True" Width="Auto"  Header="Название" Binding="{Binding Name}"/>
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button  Command="{Binding RemoveCommand}">Удалить</Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
                         </ScrollViewer>
                         <ScrollViewer Grid.Column="1" Grid.Row="1">
-                            <ItemsControl ItemsSource="{Binding Locations}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="2*"></ColumnDefinition>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Label Grid.Column="0" Content="{Binding Name}"></Label>
-                                            <Button Grid.Column="1" Command="{Binding AddCommand}">Добавить</Button>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+                            <DataGrid ItemsSource="{Binding Locations}" AutoGenerateColumns="False" GridLinesVisibility="None">
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+                                <DataGrid.Columns >
+                                    <DataGridTextColumn IsReadOnly="True" Width="Auto"  Header="Название" Binding="{Binding Name}"/>
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button  Command="{Binding AddCommand}">Добавить</Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
                         </ScrollViewer>
                     </Grid>
                 </TabItem.Content>
@@ -142,7 +148,7 @@
             <Label Grid.Column="0" Grid.Row="0">Название</Label>
             <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name}"></TextBox>
             <Label Grid.Column="0" Grid.Row="1">Описание</Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Description}"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Description}"></TextBox>
             <Button Grid.Row="0" Grid.Column="2" Command="{Binding SaveCommand}" HorizontalAlignment="Right">Сохранить</Button>
         </Grid>
     </Grid>

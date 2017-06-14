@@ -17,7 +17,7 @@ namespace RestoranDesktop.View.Recipe
     /// <summary>
     /// Interaction logic for RecipeViewModel.xaml
     /// </summary>
-    public partial class RecipeView : Window
+    public partial class RecipeView : UserControl
     {
         public RecipeView()
         {

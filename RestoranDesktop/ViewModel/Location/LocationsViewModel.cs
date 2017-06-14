@@ -38,8 +38,8 @@ namespace RestoranDesktop.ViewModel.Location
 
         private void Detail(int locationId)
         {
-            var view=new LocationDetailView();
-            var viewmodel=new LocationDetailViewModel(locationId);
+            var view=new LocationMenuView();
+            var viewmodel=new LocationMenuViewModel(locationId);
             view.DataContext = viewmodel;
             view.Show();
         }

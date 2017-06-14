@@ -5,8 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RestoranDesktop.View.Order"
         mc:Ignorable="d"
-        Title="OrdersView" Height="300" Width="300">
+        Title="Заказы" SizeToContent="Width">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center">Новые заказы</Label>
+        <Label Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center">Оприходованные заказы</Label>
+        <ScrollViewer Grid.Row="1" Grid.Column="0">
+            <DataGrid GridLinesVisibility="None" ItemsSource="{Binding NewOrders}" AutoGenerateColumns="False">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns >
+                    <DataGridTextColumn IsReadOnly="True" Width="Auto"  Header="№" Binding="{Binding OrderId}"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="Auto"  Header="Поставщик" Binding="{Binding SupplierName}"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="Auto"  Header="Дата заказа" Binding="{Binding OrderDate}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button>Просмотр</Button>
+                                    <Button>Оприходовать</Button>
+                                    <Button>Редактировать</Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <ScrollViewer Grid.Row="1" Grid.Column="1" >
+            <DataGrid GridLinesVisibility="None" ItemsSource="{Binding AcceptedOrders}" AutoGenerateColumns="False">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Width="Auto"   Header="№" Binding="{Binding OrderId}"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="Auto"   Header="Номер накладной" Binding="{Binding OrderId}"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="Auto"  Header="Поставщик" Binding="{Binding SupplierName}"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="Auto"  Header="Дата заказа" Binding="{Binding OrderDate}"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="Auto"  Header="Дата оприходования" Binding="{Binding AcceptDate}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                    <Button>Просмотр</Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
     </Grid>
 </Window>

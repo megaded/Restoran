@@ -5,31 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RestoranDesktop.View.Recipe"
         mc:Ignorable="d"
-        Title="RecipeDetailViewModel" SizeToContent="WidthAndHeight">
+        Title="{Binding Name}" SizeToContent="Manual">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Column="0" Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0">Название</Label>
-            <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding Name}"></TextBlock>
-            <Label Grid.Column="2">Описание</Label>
-            <TextBlock Grid.Column="3" VerticalAlignment="Center" Text="{Binding Description}"></TextBlock>
-            <Button Grid.Column="4" HorizontalAlignment="Right">Изменить</Button>
+            <StackPanel>
+                <Button >Изменить</Button>
+                <Label >Название</Label>
+                <TextBlock VerticalAlignment="Center" Text="{Binding Name}"></TextBlock>
+                <Label >Описание</Label>
+                <TextBlock  VerticalAlignment="Center" Text="{Binding Description}"></TextBlock>
+            </StackPanel>
         </Grid>
         <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Продукты</Label>
-        <Label Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center">Локации</Label>
+        <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center">Локации</Label>
         <ScrollViewer Grid.Column="0" Grid.Row="2">
             <ItemsControl ItemsSource="{Binding Products}">
                 <ItemsControl.ItemTemplate>

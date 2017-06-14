@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RestoranDesktop.Model
+namespace RestoranSDK.DTO
 {
-    public class ProductOrdered
+  public  class ProductSupplierDTO
     {
-        public string ProductName { get; set; }
-        public int ProductId { get; set; }
-        public double Value { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public decimal Price { get; set; }
         public int Tax { get; set; }
-
     }
 }

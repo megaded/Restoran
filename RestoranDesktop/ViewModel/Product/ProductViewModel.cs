@@ -19,7 +19,7 @@ using Unit = RestoranDesktop.Model.Unit;
 
 namespace RestoranDesktop.ViewModel
 {
-    public class ProductViewModel : INotifyPropertyChanged
+    public class ProductViewModel : BaseViewModel
     {
         /// <summary>
         /// View model представления продуктов.
@@ -32,13 +32,7 @@ namespace RestoranDesktop.ViewModel
         private int unitID { get; set; }
         private int categoryID { get; set; }
         private string description { get; set; }
-        private void NotifyPropertyChanged(string propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+       
         #endregion
 
         #region Property
@@ -95,7 +89,7 @@ namespace RestoranDesktop.ViewModel
                 }
             }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
+        
         public ICommand Create { get; set; }
 
         public ObservableCollection<Model.Product> Products { get; set; }
@@ -106,10 +100,7 @@ namespace RestoranDesktop.ViewModel
         #region Constructor
         public ProductViewModel()
         {
-            Create = new Command(() =>
-            {
-                CreateProduct();
-            });
+            Create = new Command(CreateProduct);
             ProductsAPI = new ProductsAPI();
             UnitAPI = new UnitAPI();
             ProductCategoryAPI = new ProductCategoryAPI();
@@ -155,8 +146,10 @@ namespace RestoranDesktop.ViewModel
         private void DetailShow(int productId)
         {
             var productDetail = Products.Single(x => x.ProductId == productId);
-            var view = new ProductDetailView();
-            view.DataContext = productDetail;
+            var view = new ProductDetailView()
+            {
+                DataContext = productDetail
+            };
             view.ShowDialog();
         }
 

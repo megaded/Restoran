@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -21,7 +22,7 @@ namespace RestoranSDK
         public List<LocationDTO> GetAll()
         {
             var result = new List<LocationDTO>();
-            Uri url = new Uri($"{this.url}/location/locations");
+            var url = new Uri($"{this.url}/location/locations");
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "Get";
             var response = request.GetResponse();
@@ -38,10 +39,10 @@ namespace RestoranSDK
         /// </summary>
         /// <param name="locationId">Id локации.</param>
         /// <returns></returns>
-        public List<ProductStorageDTO> GetLocationProduct(int locationId)
+        public List<ProductStorageDTO> GetProduct(int locationId)
         {
             var result = new List<ProductStorageDTO>();
-            Uri url = new Uri($"{this.url}/location/{locationId}/products");
+            var url = new Uri($"{this.url}/location/{locationId}/products");
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "Get";
             var response = request.GetResponse();
@@ -58,10 +59,10 @@ namespace RestoranSDK
         /// </summary>
         /// <param name="locationId">Id локации</param>
         /// <returns></returns>
-        public List<RecipeDTO> GetLocationRecipes(int locationId)
+        public List<RecipeDTO> GetRecipes(int locationId)
         {
             var result = new List<RecipeDTO>();
-            Uri url = new Uri($"{this.url}/location/{locationId}/recipes");
+            var url = new Uri($"{this.url}/location/{locationId}/recipes");
             var request = (HttpWebRequest)WebRequest.Create(url);
             var response = request.GetResponse();
             using (var stream = new StreamReader(response.GetResponseStream()))
@@ -77,19 +78,60 @@ namespace RestoranSDK
         /// </summary>
         /// <param name="locationId">Id локации</param>
         /// <returns></returns>
-        public List<SupplierDTO> GetLocationSupplier(int locationId)
+        public List<SupplierDTO> GetSupplier(int locationId)
         {
-            var result=new List<SupplierDTO>();
-            Uri url=new Uri($"{this.url}/location/{locationId}/supplier");
-            var request =(HttpWebRequest) WebRequest.Create(url);
+            var result = new List<SupplierDTO>();
+            var url = new Uri($"{this.url}/location/{locationId}/supplier");
+            var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "Get";
             var response = request.GetResponse();
-            using (var stream=new StreamReader(response.GetResponseStream()))
+            using (var stream = new StreamReader(response.GetResponseStream()))
             {
                 var json = stream.ReadToEnd();
                 result = JsonConvert.DeserializeObject<List<SupplierDTO>>(json);
             }
             return result;
+        }
+
+        /// <summary>
+        /// Получение списка продуктов поставщика для локации
+        /// </summary>
+        /// <param name="locationId">Id локации</param>
+        /// <param name="supplierId">Id поставщика</param>
+        /// <returns></returns>        
+        public List<ProductSupplierDTO> GetProductSupplier(int locationId, int supplierId)
+        {
+            var model = new List<ProductSupplierDTO>();
+            var url = new Uri($"{this.url}/location/{locationId}/supplier/{supplierId}/products");
+            var request = WebRequest.Create(url);
+            request.Method = "Get";
+            var response = request.GetResponse();
+            using (var stream = new StreamReader(response.GetResponseStream()))
+            {
+                var json = stream.ReadToEnd();
+                model = JsonConvert.DeserializeObject<List<ProductSupplierDTO>>(json);
+            }
+            return model;
+        }
+
+        /// <summary>
+        /// Получение списка заказов локации
+        /// </summary>
+        /// <param name="locationId">Id локации</param>
+        /// <returns></returns>
+        public List<OrderDTO> GetOrders(int locationId)
+        {
+            var model = new List<OrderDTO>();
+            var url=new Uri($"{this.url}/location/{locationId}/orders");
+            var request = WebRequest.Create(url);
+            request.Method = "Get";
+            var response = request.GetResponse();
+            using (var stream=new StreamReader(response.GetResponseStream()))
+            {
+                var json = stream.ReadToEnd();
+                model = JsonConvert.DeserializeObject<List<OrderDTO>>(json);
+            }
+            return model;
         }
     }
 }

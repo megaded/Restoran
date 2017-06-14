@@ -4,8 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.Ajax.Utilities;
 using Restoran;
 using RestoranApi.ViewModel.LocationViewModel;
+using RestoranApi.ViewModel.OrderViewModel;
 using RestoranApi.ViewModel.ProductStorageViewModel;
 using RestoranApi.ViewModel.RecipeViewModel;
 using RestoranApi.ViewModel.SupplierViewModel;
@@ -120,22 +122,54 @@ namespace RestoranApi.Controllers
         /// <param name="supplier">Id поставщика</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{location:int}/supplier/{supplier:int}/products")]
-        public HttpResponseMessage GetSupplierProducts(int location, int supplier)
+        [Route("{locationId:int}/supplier/{supplierId:int}/products")]
+        public HttpResponseMessage GetSupplierProducts(int locationId, int supplierId)
         {
-            var entity = context.Location.Find(location);
-            if (entity == null)
+            var locationEntity = context.Location.Find(locationId);
+            if (locationEntity == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, "Локации нет");
             }
-            var products = context.Market.Find(location).Suppliers.Single(x => x.SupplierId == supplier).Products.Select(x => new ProductSupplierViewModel
+            var supplierEntity = context.Supplier.Find(supplierId);
+            if (supplierEntity == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, "Поставщик не найден");
+            }
+            var model =context.ProductSupplier.Where(x=>(x.MarketId==locationEntity.MarketId && x.SupplierId==supplierEntity.SupplierId)).Select(x=>new ProductSupplierViewModel()
             {
                 Id=x.ProductId,
                 Name=x.Product.Name,
                 Price=x.Price,
                 Tax=x.Tax
-            });
-            return Request.CreateResponse(HttpStatusCode.OK);
+            }).ToList();
+            return Request.CreateResponse(HttpStatusCode.OK, model);
+        }
+
+        /// <summary>
+        /// Получение списка заказов локации
+        /// </summary>
+        /// <param name="locationId">Id локации</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{locationId:int}/orders")]
+        public HttpResponseMessage GetOrders(int locationId)
+        {      
+            var location = context.Location.Find(locationId);
+            if (location == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            var model = context.Order.Where(x => x.LocationId == location.ID).Select(x => new OrderViewModel()
+            {
+                SupplierId = x.SupplierId,
+                SupplierName = x.Supplier.Name,
+                OrderId = x.OrderID,
+                OrderDate = x.OrderDate,
+                AcceptDate = x.AcceptDate,
+                Accept = x.Accept,
+            }).ToList();
+   
+            return Request.CreateResponse(HttpStatusCode.OK,model);
         }
     }
 }

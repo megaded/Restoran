@@ -1,15 +1,14 @@
-﻿<Window x:Class="RestoranDesktop.View.Recipe.RecipeView"
+﻿<UserControl x:Class="RestoranDesktop.View.Recipe.RecipeView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RestoranDesktop.ViewModel.Recipe"
        xmlns:view="clr-namespace:RestoranDesktop.View.Recipe"
-        mc:Ignorable="d"
-        Title="RecipeViewModel" SizeToContent="WidthAndHeight">
-    <Window.DataContext>
+        mc:Ignorable="d">
+    <UserControl.DataContext>
         <local:RecipeViewModel></local:RecipeViewModel>
-    </Window.DataContext>
+    </UserControl.DataContext>
     <TabControl>
         <TabItem>
             <TabItem.Header>
@@ -20,11 +19,9 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" HorizontalContentAlignment="Center">Рецепты</Label>
-                    <Button Grid.Row="1" Command="{Binding CreateCommand}">Создать</Button>
-                    <ScrollViewer Grid.Row="2">
+                    <ScrollViewer Grid.Row="1">
                         <ItemsControl ItemsSource="{Binding Recipes}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -57,4 +54,4 @@
         </TabItem>
     </TabControl>
     
-</Window>
+</UserControl>

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace RestoranDesktop.Model
 {
-    public class ProductOrdered
+ public   class ProductSupplier
     {
-        public string ProductName { get; set; }
         public int ProductId { get; set; }
-        public double Value { get; set; }
+        public string ProductName  { get; set; }
         public decimal Price { get; set; }
         public int Tax { get; set; }
+        public int SupplierId { get; set; }
 
     }
 }

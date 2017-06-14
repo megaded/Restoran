@@ -18,7 +18,7 @@ namespace RestoranDesktop.ViewModel.Location
         public LocationProductsViewModel(int locationId)
         {
             locationApi = new LocationAPI();
-            var products = locationApi.GetLocationProduct(locationId).Select(x => new ProductStorage()
+            var products = locationApi.GetProduct(locationId).Select(x => new ProductStorage()
             {
                 ProductName = x.Name,
                 Price = x.Price,

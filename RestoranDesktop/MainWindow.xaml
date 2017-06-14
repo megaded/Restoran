@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:RestoranDesktop"
         xmlns:viewModel="clr-namespace:RestoranDesktop.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
-        SizeToContent="Manual">
+        Title="Ресторан" 
+        SizeToContent="Manual" >
     <Window.DataContext>
         <viewModel:MainMenuViewModel></viewModel:MainMenuViewModel>
     </Window.DataContext>
@@ -17,18 +17,13 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <ContentControl Grid.Column="1" Content="{Binding CurrentPage}" HorizontalAlignment="Stretch"></ContentControl>
-        <Menu Grid.Column="0" ItemsSource="{Binding Menu}" >
-            <Menu.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </Menu.ItemsPanel>
-            <Menu.ItemTemplate>
-                <DataTemplate >
+        <ListBox Grid.Column="0" ItemsSource="{Binding Menu}" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
                     <Button Content="{Binding Name}" Command="{Binding Open}"></Button>
                 </DataTemplate>
-            </Menu.ItemTemplate>
-        </Menu>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
 

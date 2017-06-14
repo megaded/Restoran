@@ -17,7 +17,7 @@ namespace RestoranDesktop.ViewModel.Location
         {
             this.locatioId = locationId;
             locationAPI =new LocationAPI();
-            var recipes = locationAPI.GetLocationRecipes(locationId).Select(x=>new Model.Recipe()
+            var recipes = locationAPI.GetRecipes(locationId).Select(x=>new Model.Recipe()
             {
                 Name = x.Name,
                 Id = x.Id

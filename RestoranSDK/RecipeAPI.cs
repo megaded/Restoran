@@ -143,7 +143,5 @@ namespace RestoranSDK
             return response.StatusCode == HttpStatusCode.OK ? true : false;
         }
 
-
-
     }
 }

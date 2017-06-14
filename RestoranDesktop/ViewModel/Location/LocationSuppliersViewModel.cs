@@ -20,7 +20,7 @@ namespace RestoranDesktop.ViewModel.Location
         {
             this.locationId = locatonId;
             locationApi=new LocationAPI();
-            var suppliers = locationApi.GetLocationSupplier(this.locationId).Select(x=>new Supplier()
+            var suppliers = locationApi.GetSupplier(this.locationId).Select(x=>new Supplier()
             {
                 Id=x.Id,
                 Name = x.Name,

@@ -12,7 +12,7 @@ using RestoranSDK.DTO;
 
 namespace RestoranDesktop.ViewModel
 {
-    public class ProductCreateViewModel : INotifyPropertyChanged
+    public class ProductCreateViewModel : BaseViewModel
     {
         #region Private
         private string name { get; set; }
@@ -21,16 +21,11 @@ namespace RestoranDesktop.ViewModel
         private readonly ProductCategoryAPI productCategoryAPI;
         private readonly ProductsAPI productsAPI;
 
-        private void NotifyPropertyChanged(string propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+       
         #endregion
 
         #region Property
+
         public string Name
         {
             get { return this.name; }
@@ -43,7 +38,6 @@ namespace RestoranDesktop.ViewModel
                 }
             }
         }
-
         public string Description
         {
             get { return this.description; }
@@ -58,11 +52,12 @@ namespace RestoranDesktop.ViewModel
         }
         public Model.Unit SelectedUnit { get; set; }
         public ProductCategory SelectProductCategory { get; set; }
+
         #endregion
         public List<Model.Unit> Units { get; set; }
         public List<ProductCategory> ProductCategories { get; set; }
         public ICommand Create { get; set; }
-        public event PropertyChangedEventHandler PropertyChanged;
+       
 
         #region Constructor
 

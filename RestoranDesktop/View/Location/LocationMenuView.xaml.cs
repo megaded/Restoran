@@ -14,12 +14,10 @@ using System.Windows.Shapes;
 
 namespace RestoranDesktop.View.Location
 {
-    /// <summary>
-    /// Interaction logic for LocationDetail.xaml
-    /// </summary>
-    public partial class LocationDetailView : Window
+  
+    public partial class LocationMenuView : Window
     {
-        public LocationDetailView()
+        public LocationMenuView()
         {
             InitializeComponent();
         }
