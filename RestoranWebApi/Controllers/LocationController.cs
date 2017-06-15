@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Ajax.Utilities;
 using Restoran;
+using RestoranApi.ViewModel.InvoiceViewModel;
 using RestoranApi.ViewModel.LocationViewModel;
 using RestoranApi.ViewModel.OrderViewModel;
 using RestoranApi.ViewModel.ProductStorageViewModel;
@@ -171,5 +172,31 @@ namespace RestoranApi.Controllers
    
             return Request.CreateResponse(HttpStatusCode.OK,model);
         }
+        /// <summary>
+        /// Получение списка всех накладных
+        /// </summary>
+        /// <param name="locationId">Id локации</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{locationId:int}/invoice")]
+        public HttpResponseMessage GetInvoices(int locationId)
+        {
+            var invoices = context.Invoice.Where(x => x.LocationId == locationId);
+            var model = invoices.Select(x => new InvoiceViewModel()
+            {
+                OrderId = x.OrderId,
+                InvoiceId = x.InvoiceId,
+                InvoiceNumber = x.InvoiceNumber,
+                VATInvoice = x.VATInvoice,
+                Date = x.Date,
+                LocationId = x.LocationId,
+                SupplierId = x.SupplierId,
+                SupplierName = x.Supplier.Name,
+                TotalPrice = x.TotalPrice,
+                TotalPriceWithTax = x.TotalPriceWithTax
+            }).ToList();
+            return Request.CreateResponse(HttpStatusCode.OK,model);
+        }
+
     }
 }

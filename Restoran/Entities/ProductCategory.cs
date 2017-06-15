@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Restoran
 {
-   public class ProductCategory
+    /// <summary>
+    /// Категория продукта
+    /// </summary>
+    public class ProductCategory
     {
 
         public int ProductCategoryId { get; set; }

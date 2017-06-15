@@ -49,19 +49,17 @@ namespace RestoranDesktop.ViewModel.Unit
 
         public UnitCreateViewModel()
         {
-         Create=new Command(() =>
-         {
-             CreateUnit();
-         });
+            Create = new Command(CreateUnit);        
         }
-
 
         private void CreateUnit()
         {
             unitApi = new UnitAPI();
-            var model = new UnitDTO();
-            model.Name = this.name;
-            model.Symbol = this.symbol;
+            var model = new UnitDTO()
+            {
+                Name =this.name,
+                Symbol = this.symbol
+            };
             var resultFlag = unitApi.Create(model);
             if (resultFlag)
             {

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RestoranDesktop.View"
         xmlns:viewModel="clr-namespace:RestoranDesktop.ViewModel"
+        xmlns:userControl="clr-namespace:RestoranDesktop.View.Product"     
         mc:Ignorable="d"             
              HorizontalAlignment="Stretch"
              HorizontalContentAlignment="Stretch"
@@ -12,32 +13,40 @@
     <UserControl.DataContext>
         <viewModel:ProductViewModel></viewModel:ProductViewModel>
     </UserControl.DataContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Button Grid.Row="0" Command="{Binding Create}">Создать</Button>
-        <ScrollViewer Grid.Row="1" CanContentScroll="True">
-            <ItemsControl ItemsSource="{Binding Products}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions >
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Label  Grid.Column="0" Content="{Binding Name}"></Label>
-                            <Button Grid.Column="1" Command="{Binding Detail}">Просмотр</Button>
-                            <Button Grid.Column="2" Command="{Binding Edit}">Изменить</Button>
-                            <Button Grid.Column="3" Command="{Binding Delete}">Удалить</Button>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-    </Grid>
+    <TabControl>
+        <TabItem>
+            <TabItem.Header>Продукты</TabItem.Header>
+            <TabItem.Content>
+                <Grid>
+                    <ScrollViewer Grid.Row="0" CanContentScroll="True">
+                        <ItemsControl ItemsSource="{Binding Products}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions >
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label  Grid.Column="0" Content="{Binding Name}"></Label>
+                                        <Button Grid.Column="1" Command="{Binding Detail}">Просмотр</Button>
+                                        <Button Grid.Column="2" Command="{Binding Edit}">Изменить</Button>
+                                        <Button Grid.Column="3" Command="{Binding Delete}">Удалить</Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>Новый продукт</TabItem.Header>
+            <TabItem.Content>
+                <userControl:ProductCreateView></userControl:ProductCreateView>
+            </TabItem.Content>
+        </TabItem>
+    </TabControl>
 </UserControl>
 

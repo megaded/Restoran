@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace Restoran
 {
-    
+    /// <summary>
+    /// Рецепт
+    /// </summary>
     public class Recipe
     {
         public int RecipeId { get; set; }

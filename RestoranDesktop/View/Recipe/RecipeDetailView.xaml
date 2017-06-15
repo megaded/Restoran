@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Column="0" Grid.Row="0">
             <StackPanel>
-                <Button >Изменить</Button>
+                <Button Command="{Binding EditCommand}">Изменить</Button>
                 <Label >Название</Label>
                 <TextBlock VerticalAlignment="Center" Text="{Binding Name}"></TextBlock>
                 <Label >Описание</Label>

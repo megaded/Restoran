@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Restoran
 {
+    /// <summary>
+    /// Заказ
+    /// </summary>
     public class Order
     {
         public int SupplierId { get; set; }

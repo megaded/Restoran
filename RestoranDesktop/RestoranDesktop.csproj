@@ -66,11 +66,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Command.cs" />
+    <Compile Include="Model\Invoice.cs" />
     <Compile Include="Model\ItemMenu.cs" />
     <Compile Include="Model\Location.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductCategory.cs" />
+    <Compile Include="Model\ProductInvoice.cs" />
     <Compile Include="Model\ProductOrdered.cs" />
     <Compile Include="Model\ProductRecipe.cs" />
     <Compile Include="Model\ProductStorage.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Model\Supplier.cs" />
     <Compile Include="Model\Unit.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Invoice\InvoiceCreateViewModel.cs" />
     <Compile Include="ViewModel\Location\LocationMenuViewModel.cs" />
     <Compile Include="ViewModel\Location\LocationItemMenu.cs" />
     <Compile Include="ViewModel\Location\LocationProductsViewModel.cs" />
@@ -99,6 +102,9 @@
     <Compile Include="ViewModel\Unit\UnitCreateViewModel.cs" />
     <Compile Include="ViewModel\Unit\UnitEditViewModel.cs" />
     <Compile Include="ViewModel\Unit\UnitViewModel.cs" />
+    <Compile Include="View\Invoice\InvoiceCreateView.xaml.cs">
+      <DependentUpon>InvoiceCreateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Location\LocationMenuView.xaml.cs">
       <DependentUpon>LocationMenuView.xaml</DependentUpon>
     </Compile>
@@ -171,6 +177,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Invoice\InvoiceCreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Location\LocationMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

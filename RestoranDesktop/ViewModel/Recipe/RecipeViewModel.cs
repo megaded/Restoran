@@ -30,11 +30,11 @@ namespace RestoranDesktop.ViewModel.Recipe
                 })),
                 Edit =new Command((() =>
                 {
-                    this.Edit();
+                    this.Edit(x.Id);
                 })),
                 Delete = new Command((() =>
                 {
-                    this.Detele();
+                    this.Delete();
                 }))
             });
             Recipes = new ObservableCollection<Model.Recipe>(recipes);
@@ -49,12 +49,15 @@ namespace RestoranDesktop.ViewModel.Recipe
             view.Show();
         }
 
-        private void Edit()
+        private void Edit(int recipeId)
         {
-            
+            var view=new RecipeEditView();
+            var viewmodel=new RecipeEditViewModel(recipeId);
+            view.DataContext = viewmodel;
+            view.Show();
         }
 
-        private void Detele()
+        private void Delete()
         {
             
         }

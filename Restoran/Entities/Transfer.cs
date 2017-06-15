@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Restoran
 {
+   /// <summary>
+   /// Передача продуктов между локациями
+   /// </summary>
    public class Transfer
     {
         public int TransferId { get; set; }

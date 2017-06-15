@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Restoran
 {
+    /// <summary>
+    /// Списанный продукт
+    /// </summary>
   public class DisposalProduct
     {
         public int DisposalProductId { get; set; }

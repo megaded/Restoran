@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Restoran
 {
+    /// <summary>
+    /// Рынок
+    /// </summary>
    public class Market
     {
         public int MarketId { get; set; }

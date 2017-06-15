@@ -7,7 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Restoran
 {
-    // Базовый продукт
+   /// <summary>
+   /// Базовый продукт
+   /// </summary>
     public class Product  
     {
         public int ProductId { get; set; }

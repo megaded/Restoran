@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Restoran
 {  
+    /// <summary>
+    /// Поставщик
+    /// </summary>
     public class Supplier
     {
         public Supplier()

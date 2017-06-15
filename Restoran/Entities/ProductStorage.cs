@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Restoran
 {
-   public class ProductStorage:IComponent
+    /// <summary>
+    /// Продукт хранения в локации
+    /// </summary>
+    public class ProductStorage:IComponent
     {
         public int ProductStorageId { get; set; }
         public double Value { get; set; }      

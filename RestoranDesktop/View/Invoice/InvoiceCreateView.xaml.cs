@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace RestoranDesktop.View.Product
+namespace RestoranDesktop.View.Invoice
 {
     /// <summary>
-    /// Interaction logic for ProductCreate.xaml
+    /// Interaction logic for InvoiceCreateView.xaml
     /// </summary>
-    public partial class ProductCreateView : UserControl
+    public partial class InvoiceCreateView : Window
     {
-        public ProductCreateView()
+        public InvoiceCreateView()
         {
             InitializeComponent();
         }

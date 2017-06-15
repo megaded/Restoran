@@ -161,6 +161,8 @@ namespace RestoranApi.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
+            entity.Name = model.Name;
+            entity.Description = model.Description;
             context.ProductRecipe.RemoveRange(entity.Products);
             entity.Products = model.Products.Where(y=>y.Value>0).Select(x => new ProductRecipe()
             {

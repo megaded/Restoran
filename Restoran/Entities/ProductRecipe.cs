@@ -7,6 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Restoran
 {
+    /// <summary>
+    /// Продукт в рецепте
+    /// </summary>
   public  class ProductRecipe:IComponent
     {
         [Range(0,100000,ErrorMessage ="Количество должно быть больше 0")]

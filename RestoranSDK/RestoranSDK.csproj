@@ -44,19 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\Invoice\InvoiceDTO.cs" />
+    <Compile Include="DTO\Invoice\InvoiceProductDTO.cs" />
+    <Compile Include="DTO\Invoice\ProductInvoiceDTO.cs" />
     <Compile Include="DTO\LocationDTO.cs" />
-    <Compile Include="DTO\OrderDetailDTO.cs" />
-    <Compile Include="DTO\OrderDTO.cs" />
+    <Compile Include="DTO\Order\OrderDetailDTO.cs" />
+    <Compile Include="DTO\Order\OrderDTO.cs" />
     <Compile Include="DTO\ProductCategoryDTO.cs" />
     <Compile Include="DTO\ProductDTO.cs" />
-    <Compile Include="DTO\ProductOrderedDTO.cs" />
-    <Compile Include="DTO\ProductRecipeDTO.cs" />
+    <Compile Include="DTO\Order\ProductOrderedDTO.cs" />
+    <Compile Include="DTO\Recipe\ProductRecipeDTO.cs" />
     <Compile Include="DTO\ProductStorageDTO.cs" />
     <Compile Include="DTO\ProductSupplierDTO.cs" />
-    <Compile Include="DTO\RecipeDTO.cs" />
-    <Compile Include="DTO\RecipeLocationDTO.cs" />
+    <Compile Include="DTO\Recipe\RecipeDTO.cs" />
+    <Compile Include="DTO\Recipe\RecipeLocationDTO.cs" />
     <Compile Include="DTO\SupplierDTO.cs" />
     <Compile Include="DTO\UnitDTO.cs" />
+    <Compile Include="InvoiceAPI.cs" />
     <Compile Include="LocationAPI.cs" />
     <Compile Include="OrderAPI.cs" />
     <Compile Include="ProductCategoryAPI.cs" />

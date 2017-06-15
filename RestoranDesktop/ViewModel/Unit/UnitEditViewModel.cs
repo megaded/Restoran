@@ -14,12 +14,17 @@ namespace RestoranDesktop.ViewModel.Unit
 {
     public class UnitEditViewModel : BaseViewModel
     {
+        #region Private
+
         private int id { get; set; }
         private string name { get; set; }
         private string symbol { get; set; }
         private UnitAPI unitApi;
 
 
+        #endregion
+
+        #region Property
         public string Name
         {
             get { return this.name; }
@@ -48,25 +53,26 @@ namespace RestoranDesktop.ViewModel.Unit
 
         public ICommand Edit { get; set; }
 
+
+        #endregion
+
         public UnitEditViewModel(Model.Unit unit)
         {
             this.id = unit.UnitId;
             this.name = unit.Name;
             this.symbol = unit.Symbol;
-            Edit=new Command((() =>
-            {
-                EditUnit();
-            }));
+            Edit = new Command(EditUnit);
         }
-
 
         private void EditUnit()
         {
             unitApi = new UnitAPI();
-            var model = new UnitDTO();
-            model.Id = this.id;
-            model.Name = this.name;
-            model.Symbol = this.symbol;
+            var model = new UnitDTO()
+            {
+                Id = this.id,
+                Name = this.name,
+                Symbol = this.symbol
+            };
             var resultFlag = unitApi.Update(model);
             if (resultFlag)
             {

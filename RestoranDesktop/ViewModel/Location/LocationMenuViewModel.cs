@@ -83,11 +83,31 @@ namespace RestoranDesktop.ViewModel.Location
                 }))
             };
 
+            var transferProductItemMenu = new LocationItemMenu()
+            {
+                NameMenu = "Трансфер",
+                Open = new Command()
+            };
+            var disposalProductItemMenu = new LocationItemMenu()
+            {
+                NameMenu = "Списание продуктов",
+                Open = new Command()
+            };
+
+            var salesProductItemMenu = new LocationItemMenu()
+            {
+                NameMenu = "Продажи блюд",
+                Open = new Command()
+            };
+
             Menu.Add(productItemMenu);
             Menu.Add(recipeItemMenu);
             Menu.Add(supplierItemMenu);
             Menu.Add(orderCreateItemMenu);
             Menu.Add(orderItemMenu);
+            Menu.Add(transferProductItemMenu);
+            Menu.Add(disposalProductItemMenu);
+            Menu.Add(salesProductItemMenu);
 
             #endregion
         }

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Restoran
 {
-    // Сущность для таблицы поставщиков
+    /// <summary>
+    /// Продукт поставщика
+    /// </summary>
     public class ProductSupplier
     {
         public int ProductId { get; set; }

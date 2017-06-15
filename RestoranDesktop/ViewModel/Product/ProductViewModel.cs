@@ -100,7 +100,6 @@ namespace RestoranDesktop.ViewModel
         #region Constructor
         public ProductViewModel()
         {
-            Create = new Command(CreateProduct);
             ProductsAPI = new ProductsAPI();
             UnitAPI = new UnitAPI();
             ProductCategoryAPI = new ProductCategoryAPI();
@@ -136,13 +135,7 @@ namespace RestoranDesktop.ViewModel
 
         #region Private Methods
 
-        private void CreateProduct()
-        {
-            var view = new ProductCreateView();
-            var viewmodel = new ProductCreateViewModel();
-            view.DataContext = viewmodel;
-            view.ShowDialog();
-        }
+
         private void DetailShow(int productId)
         {
             var productDetail = Products.Single(x => x.ProductId == productId);

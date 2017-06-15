@@ -13,10 +13,10 @@ using ProductRecipe = RestoranDesktop.Model.ProductRecipe;
 
 namespace RestoranDesktop.ViewModel.Recipe
 {
-    public class RecipeDetailViewModel:BaseViewModel
+    public class RecipeDetailViewModel : BaseViewModel
     {
         private RecipeAPI recipeApi;
-        public int Id { get; set; }
+        public int recipeId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
@@ -30,7 +30,7 @@ namespace RestoranDesktop.ViewModel.Recipe
         {
             recipeApi = new RecipeAPI();
             var recipe = recipeApi.Get(recipeId);
-            this.Id = recipe.Id;
+            this.recipeId = recipe.Id;
             this.Name = recipe.Name;
             this.Description = recipe.Description;
             var products = recipe.Products.Select(x => new ProductRecipe()
@@ -38,23 +38,21 @@ namespace RestoranDesktop.ViewModel.Recipe
                 ProductName = x.ProductName,
                 Value = x.Value
             });
-            Products=new ObservableCollection<ProductRecipe>(products);
+            Products = new ObservableCollection<ProductRecipe>(products);
             var recipeLocation = recipeApi.GetLocations(recipeId);
-            var locations = recipeLocation.Locations.Select(x=>new Model.Location()
+            var locations = recipeLocation.Locations.Select(x => new Model.Location()
             {
                 Name = x.Name
             });
-           Locations=new ObservableCollection<Model.Location>(locations);
-            EditCommand=new Command((() =>
-            {
-                
-            }));
+            Locations = new ObservableCollection<Model.Location>(locations);
+            EditCommand = new Command(Edit);
         }
-
-        private void Edit(int recipeId)
+        private void Edit()
         {
-            var view=new RecipeEditView();
-            
+            var view = new RecipeEditView();
+            var viewmodel = new RecipeEditViewModel(recipeId);
+            view.DataContext = viewmodel;
+            view.Show();
         }
     }
 }

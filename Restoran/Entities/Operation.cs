@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Restoran
 {
+    /// <summary>
+    /// Не помню что это
+    /// </summary>
   public  class Operation
     {
         public int OperationId { get; set; }

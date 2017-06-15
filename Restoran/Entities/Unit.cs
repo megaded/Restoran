@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Restoran
 {
-    // Единица измерения
-  public class Unit
+    /// <summary>
+    /// Единица измерения
+    /// </summary>
+    public class Unit
     {
         public int UnitId { get; set; }
         public string Name { get; set; }

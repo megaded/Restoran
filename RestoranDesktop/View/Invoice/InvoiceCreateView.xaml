@@ -1,0 +1,41 @@
+﻿<Window x:Class="RestoranDesktop.View.Invoice.InvoiceCreateView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RestoranDesktop.View.Invoice"
+        mc:Ignorable="d"
+        Title="InvoiceCreateView" Height="300" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Label>Номер накладной</Label>
+            <TextBox></TextBox>
+            <Label>Номер счет-фактуры</Label>
+            <TextBox></TextBox>
+            <Label>Дата заказа</Label>
+            <DatePicker></DatePicker>
+            <DataGrid ItemsSource="{Binding ProductsOrdered}" AutoGenerateColumns="False" GridLinesVisibility="None"  HorizontalContentAlignment="Center">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns >
+                    <DataGridTextColumn IsReadOnly="True" Width="Auto"  Header="Название" Binding="{Binding ProductName}"/>
+                    <DataGridTextColumn Width="Auto"  Header="Количество" Binding="{Binding Value}"  />
+                    <DataGridTextColumn Width="Auto"  Header="Цена" Binding="{Binding Price}"  />
+                    <DataGridTextColumn Width="Auto"  Header="Налог" Binding="{Binding Tax}"  />
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding RemoveCommand}">Удалить</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Command="{Binding }">Добавить продукт</Button>
+            <Button Command="{Binding }">Оприходовать</Button>
+        </StackPanel>
+    </Grid>
+</Window>

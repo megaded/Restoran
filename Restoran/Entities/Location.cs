@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Restoran
 {
-
+    /// <summary>
+    /// Локация
+    /// </summary>
     public class Location
     {
         public int ID { get; set; }
